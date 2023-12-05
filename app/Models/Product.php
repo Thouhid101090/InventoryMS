@@ -49,13 +49,13 @@ class Product extends Model
 
 
     public function details(){
-        return $this->hasMany(SalesDetails::class,'product_id','id');
+        return $this->hasMany(SalesDetails::class);
     }
     public function sale(){
         return $this->hasMany(Sale::class,'sale_id','id');
     }
     public function pdetails(){
-        return $this->hasMany(PurchaseDetails::class,'product_id','id');
+        return $this->hasMany(PurchaseDetails::class);
     }
     public function purchase(){
         return $this->hasMany(Purchase::class,'purchase_id','id');

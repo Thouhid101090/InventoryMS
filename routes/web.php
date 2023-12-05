@@ -64,13 +64,14 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function(){
      Route::post('/purchase-report', [ReportController::class, 'generatePurchaseReport']);
      // web.php
 
-Route::get('/purchase/{id}/generate-invoice', [PurchaseController::class,'invoice'])->name('purchase.generate-invoice');
+    Route::get('/purchase/{id}/generate-invoice', [PurchaseController::class,'invoice'])->name('purchase.generate-invoice');
+    Route::get('/sale/{id}/generate-invoice', [SaleController::class,'invoice'])->name('sale.generate-invoice');
 
      //Route Sales
      Route::resource('sale', SaleController::class);
      Route::get('/sale-report', [ReportController::class, 'generateSaleReport'])->name('sale-report.generate');
      Route::post('/sale-report', [ReportController::class, 'generateSaleReport']);
-
+     //Route stock
      Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
 
 

@@ -12,10 +12,10 @@ class SalesDetails extends Model
     use HasFactory;
     public function sale()
     {
-        return $this->belongsTo(Sale::class, 'sales_id', 'id');
+        return $this->belongsTo(Sale::class);
     }
     public function product()
     {
-        return $this->belongsTo(Product::class, 'product_id', 'id');
+        return $this->belongsTo(Product::class);
     }
 }

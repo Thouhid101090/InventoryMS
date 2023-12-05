@@ -98,6 +98,10 @@
                                     <td>{{ $p->grand_total }}</td>
                                     <td>
                                         <div class="d-flex">
+
+                                            <a href="{{ route('sale.generate-invoice', $p->id) }}" class="btn btn-outline-info btn-sm mx-1">
+                                                <i class="mdi mdi-receipt"></i> Generate Invoice
+                                            </a>
                                             <a href="{{ route('sale.show', $p->id) }}" class="btn btn-outline-success btn-sm mx-1"><i class="mdi mdi-eye"></i></a>
 
                                             <a href="{{ route('sale.edit', encryptor('encrypt',$p->id)) }}" class="btn btn-outline-primary btn-sm mx-1"><i class="mdi mdi-border-color"></i></a>

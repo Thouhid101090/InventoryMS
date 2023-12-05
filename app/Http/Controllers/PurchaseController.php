@@ -154,7 +154,6 @@ class PurchaseController extends Controller
     public function showStock(string $id)
     {
                             $stock=new Stock;
-
                             $stock->product_id=$product_name;
                             $stock->quantity=$pd->quantity;
                             $stock->unit_price=($pd->total_amount / $pd->quantity);
@@ -173,10 +172,11 @@ class PurchaseController extends Controller
     }
     public function invoice(string $id)
     {
-        $purchase=Purchase::find($id);
-        $product=Product::find($id);
-        return view('purchase.invoice',compact('purchase','product'));
+        $purchaseDetails = PurchaseDetails::where('purchase_id', $id)->get();
+        $purchase = Purchase::find($id);
+        return view('purchase.invoice', compact('purchaseDetails', 'purchase'));
     }
+    
 
 
     /**

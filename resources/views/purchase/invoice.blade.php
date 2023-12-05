@@ -2,41 +2,9 @@
 
 @extends('layouts.app')
 @push('page-styles')
-
+<link rel="stylesheet" href="{{asset('public/invoice/style.css')}}">
 <style>
 
-    body {
-        font-family: Arial, sans-serif;
-    }
-    .invoice-container {
-        width: 80%;
-        margin: auto;
-        padding: 20px;
-        border: 1px solid #ccc;
-    }
-    .invoice-header {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    .invoice-details {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
-    }
-    .invoice-items {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-    .invoice-items th, .invoice-items td {
-        border: 1px solid #ccc;
-        padding: 10px;
-        text-align: left;
-    }
-    .total-section {
-        margin-top: 20px;
-        text-align: right;
-    }
 </style>
 @endpush
 
@@ -56,6 +24,7 @@
         </div>
         <div>
             <p><strong>Total Amount:</strong> ${{ $purchase->grand_total }}</p>
+           
         </div>
     </div>
 
@@ -65,18 +34,26 @@
                 <th>Product</th>
                 <th>Quantity</th>
                 <th>Unit Price</th>
+                <th>V.A.T</th>
+                <th>Discount</th>
                 <th>Subtotal</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($purchase as $item)
+          
+          
+                
+            @foreach ($purchaseDetails as $pd)
             <tr>
-                <td>{{ $item->product->product_name }}</td>
-                <td>{{ $item->total_quantity }}</td>
-                <td>{{ $item->unit_price }}</td>
-                <td>{{ $item->sub_amount }}</td>
+                <td>{{ $pd->product->product_name }}</td>
+                <td>{{ $pd->quantity }}</td>
+                <td>{{ $pd->unit_price }}</td>
+                <td>{{ $pd->tax }}</td>
+                <td>{{ $pd->discount }}</td>
+                <td>{{ $pd->sub_amount }}</td>
             </tr>
         @endforeach
+                
         </tbody>
     </table>
 
@@ -90,11 +67,9 @@
 
 
 <!-- END: Main Page Content -->
-@endsection
 
+@endsection
 @push('page-scripts')
     <script src="{{ asset('assets/js/img-preview.js') }}"></script>
-    <!-- Your HTML code -->
-
-
 @endpush
+

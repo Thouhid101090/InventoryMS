@@ -169,4 +169,12 @@ class SaleController extends Controller
         $this->notice::success('Data successfully deleted');
         return redirect()->back();
     }
+
+    public function invoice(string $id)
+    {
+        $saleDetails = SalesDetails::where('sales_id', $id)->get();
+        $sale = Sale::find($id);
+        return view('sale.invoice', compact('saleDetails', 'sale'));
+    }
+    
     }
