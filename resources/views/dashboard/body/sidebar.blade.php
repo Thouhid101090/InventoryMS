@@ -27,7 +27,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{route('sale-report.generate')}}">
-          <i class="menu-icon mdi mdi-cash-multiple"></i>
+            <i class="menu-icon mdi mdi-clipboard-text"></i>
           <span class="menu-title"></span>
           <b>Sales Report</b>
 
@@ -35,7 +35,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{route('purchase-report.generate')}}">
-          <i class="menu-icon mdi mdi-cash-multiple"></i>
+            <i class="menu-icon mdi mdi-clipboard-text"></i>
           <span class="menu-title"></span>
           <b>Purchase Report</b>
 
@@ -73,6 +73,13 @@
           <i class="menu-icon mdi mdi-lan"></i>
           <span class="menu-title"></span>
          <b>Categories</b>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('stock.index')}}" >
+          <i class="menu-icon mdi mdi-database"></i>
+          <span class="menu-title"></span>
+            <b>Stocks</b>
         </a>
       </li>
       <li class="nav-item">

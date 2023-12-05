@@ -171,6 +171,12 @@ class PurchaseController extends Controller
         $purchase=Purchase::find($id);
         return view('purchase.edit',compact('purchase'));
     }
+    public function invoice(string $id)
+    {
+        $purchase=Purchase::find($id);
+        $product=Product::find($id);
+        return view('purchase.invoice',compact('purchase','product'));
+    }
 
 
     /**

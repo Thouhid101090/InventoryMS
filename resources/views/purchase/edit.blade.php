@@ -24,7 +24,7 @@
 </header>
 
 <div class="container-xl px-2 mt-n10">
-    <form action="" method="POST" >
+    <form action="{{route('purchase.update', $purchase->id)}}" method="POST" >
         @csrf
         @method('PATCH')
         <div class="row">
@@ -52,7 +52,7 @@
                             <!-- Form Group (type of product category) -->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="supplierId">Supplier<span class="text-danger">*</span></label>
-                                <select class="form-select form-control-solid @error('categoryId') is-invalid @enderror" id="categoryId" name="categoryId">
+                                <select class="form-select form-control-solid @error('supplierId') is-invalid @enderror" id="supplierId" name="supplierId">
                                     <option selected="" disabled="">Select a supplier:</option>
                                     @foreach ($purchase as $p)
                                     <option value="{{ $p->id }}" @if(old('supplierId') == $p->id) selected="selected" @endif>{{ $p->name }}</option>

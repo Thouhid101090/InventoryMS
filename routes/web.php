@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\ProductController;
@@ -61,10 +62,16 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function(){
      Route::resource('purchase', PurchaseController::class);
      Route::get('/purchase-report', [ReportController::class, 'generatePurchaseReport'])->name('purchase-report.generate');
      Route::post('/purchase-report', [ReportController::class, 'generatePurchaseReport']);
+     // web.php
+
+Route::get('/purchase/{id}/generate-invoice', [PurchaseController::class,'invoice'])->name('purchase.generate-invoice');
+
      //Route Sales
      Route::resource('sale', SaleController::class);
      Route::get('/sale-report', [ReportController::class, 'generateSaleReport'])->name('sale-report.generate');
      Route::post('/sale-report', [ReportController::class, 'generateSaleReport']);
+
+     Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
 
 
 });

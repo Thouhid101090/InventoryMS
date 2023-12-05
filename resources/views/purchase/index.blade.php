@@ -97,9 +97,13 @@
                                     <td>{{ $p->grand_total }}</td>
                                     <td>
                                         <div class="d-flex">
+                                            <a href="{{ route('purchase.generate-invoice', $p->id) }}" class="btn btn-outline-info btn-sm mx-1">
+                                                <i class="mdi mdi-receipt"></i> Generate Invoice
+                                            </a>
+
                                             <a href="{{ route('purchase.show', $p->id) }}" class="btn btn-outline-success btn-sm mx-1"><i class="mdi mdi-eye"></i></a>
 
-                                            <a href="{{ route('purchase.edit', encryptor('encrypt',$p->id)) }}" class="btn btn-outline-primary btn-sm mx-1"><i class="mdi mdi-border-color"></i></a>
+                                            <a href="{{ route('purchase.edit', $p->id)}}" class="btn btn-outline-primary btn-sm mx-1"><i class="mdi mdi-border-color"></i></a>
 
                                             <form action="{{ route('purchase.destroy',encryptor('encrypt',$p->id)) }}" method="POST">
                                                 @method('delete')

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Supplier;
+use App\Models\Product;
 
+use App\Models\Supplier;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -39,9 +40,11 @@ class Purchase extends Model
         return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
     }
 
+
     public function details(){
         return $this->hasMany(PurchaseDetails::class,'purchase_id','id');
     }
+    
 
 
 }

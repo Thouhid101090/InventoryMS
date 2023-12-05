@@ -13,18 +13,10 @@
                 <div class="col-auto my-4">
                     <h1 class="page-header-title">
                         <div class="page-header-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                        Purchase List
+                        Stock
                     </h1>
                 </div>
-                <div class="col-auto my-4">
 
-                    <a href="{{ route('purchase.create') }}"
-                        class="btn btn-primary add-list my-1"><i class="fa-solid fa-plus me-3"></i>Add
-                    </a>
-                    <a href="{{ route('purchase.index') }}"
-                        class="btn btn-danger add-list my-1"><i class="fa-solid fa-trash me-3"></i>Clear Search
-                    </a>
-                </div>
             </div>
 
             @include('partials._breadcrumbs')
@@ -39,7 +31,7 @@
         <div class="card-body">
             <div class="row mx-n4">
                 <div class="col-lg-12 card-header mt-n4">
-                    <form action="{{ route('purchase.index') }}" method="GET">
+                    <form action="{{ route('stock.index') }}" method="GET">
                         <div class="d-flex flex-wrap align-items-center justify-content-between">
                             <div class="form-group row align-items-center">
                                 <label for="row" class="col-auto">Row:</label>
@@ -59,7 +51,7 @@
                                     <div class="input-group">
                                         <input type="text" id="search" class="form-control me-1" name="search" placeholder="Search product" value="{{ request('search') }}">
                                         <div class="input-group-append">
-                                            <button type="submit" class="input-group-text bg-primary"><i class="fa-solid fa-magnifying-glass font-size-20 text-white"></i></button>
+                                            <button type="submit" class="input-group-text bg-primary"><i class="mdi mdi-account-search font-size-20 text-white"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -77,37 +69,21 @@
                                 <tr>
                                     <th scope="col">{{__('No.')}}</th>
                                     <th scope="col">{{__('Products')}}</th>
-                                    <th scope="col">{{__('Sub Amount')}}</th>
                                     <th scope="col">{{__('Unit Price')}}</th>
                                     <th scope="col">{{__('Quentity')}}</th>
+                                    <th scope="col">{{__('Batch')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($stock as $p)
+                                @foreach ($stocks as $p)
                                 <tr>
-                                    <th scope="row">{{ (($purchase->currentPage() * (request('row') ? request('row') : 10)) - (request('row') ? request('row') : 10)) + $loop->iteration  }}</th>
+                                    <th scope="row">{{ (($stocks->currentPage() * (request('row') ? request('row') : 10)) - (request('row') ? request('row') : 10)) + $loop->iteration  }}</th>
 
-                                    <td>{{ $p->}}</td>
-                                    <td>{{ $p->supplier->name }}</td>
-                                    <td>{{ $p->reference_no}}</td>
-                                    <td>{{ $p->sub_amount }}</td>
-                                    <td>{{ $p->discount }}</td>
-                                    <td>{{ $p->grand_total }}</td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <a href="{{ route('purchase.show', $p->id) }}" class="btn btn-outline-success btn-sm mx-1"><i class="fa-solid fa-eye"></i></a>
+                                    <td>{{ $p->product->product_name }}</td>
+                                    <td>{{ $p->unit_price }}</td>
+                                    <td>{{ $p->quantity }}</td>
+                                    <td>{{ $p->batch_id }}</td>
 
-                                            <a href="{{ route('purchase.edit', encryptor('encrypt',$p->id)) }}" class="btn btn-outline-primary btn-sm mx-1"><i class="fas fa-edit"></i></a>
-
-                                            <form action="{{ route('purchase.destroy',encryptor('encrypt',$p->id)) }}" method="POST">
-                                                @method('delete')
-                                                @csrf
-                                                <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?')">
-                                                    <i class="far fa-trash-alt"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -115,7 +91,7 @@
                     </div>
                 </div>
 
-                {{ $purchase->links() }}
+                {{ $stocks->links() }}
             </div>
         </div>
     </div>
