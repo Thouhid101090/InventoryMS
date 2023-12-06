@@ -53,8 +53,12 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function(){
     Route::get('permission/{role}', [permission::class,'index'])->name('permission.list');
     Route::post('permission/{role}', [permission::class,'save'])->name('permission.save');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+
+    //profile Route
+    Route::get('/profile', [auth::class, 'profile'])->name('profile.index');
+
     Route::get('/profile/settings', [ProfileController::class, 'settings'])->name('profile.settings');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.edit');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 

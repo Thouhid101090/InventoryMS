@@ -23,6 +23,8 @@ class ReportController extends Controller
 
         return view('report.saleReport', compact('salesDetails', 'fromDate', 'toDate'));
     }
+
+
     public function generatePurchaseReport(Request $request)
     {
         $fromDate = Carbon::parse($request->input('from_date'))->startOfDay();

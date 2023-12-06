@@ -8,6 +8,7 @@
 
 @section('content')
 <button onclick="window.print()">Print</button>
+
 <div class="invoice-container">
     <div class="invoice-header">
         <h2>Invoice</h2>
@@ -62,11 +63,8 @@
     </div>
 </div>
 
-
-
-<!-- END: Main Page Content -->
-
 @endsection
 @push('page-scripts')
 <script src="{{ asset('assets/js/img-preview.js') }}"></script>
+
 @endpush

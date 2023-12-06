@@ -84,6 +84,11 @@ class AuthenticationController extends Controller
 
     public function singOut(){
         request()->session()->flush();
-        return redirect('login')->with('danger','Succfully Logged Out');
+        return redirect('login');
+        $this->notice::success('Successfully Logged Out');
+    }
+    public function profile(){
+
+        return view('profile.index');
     }
 }
