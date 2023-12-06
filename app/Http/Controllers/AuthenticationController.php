@@ -63,18 +63,19 @@ class AuthenticationController extends Controller
                 return redirect()->route('login');
         }catch(Exception $e){
             //dd($e);
-            return redirect()->route('login')->with('error','Your phone number or password is wrong!');
+            $this->notice::error('Your phone number or password is wrong!');
+            return redirect()->route('login');
         }
     }
 
     public function setSession($user){
         return request()->session()->put([
                 'userId'=>encryptor('encrypt',$user->id),
-                'userName'=>encryptor('encrypt',$user->name),
+                'userName'=>encryptor('encrypt',$user->name_en),
                 'EmailAddress'=>encryptor('encrypt',$user->email),
                 'role_id'=>encryptor('encrypt',$user->role_id),
                 'accessType'=>encryptor('encrypt',$user->full_access),
-                'role'=>encryptor('encrypt',$user->role->type),
+                'role'=>encryptor('encrypt',$user->role->name),
                 'roleIdentity'=>encryptor('encrypt',$user->role->identity),
                 'language'=>encryptor('encrypt',$user->language),
                 'image'=>$user->image ?? 'no-image.png'

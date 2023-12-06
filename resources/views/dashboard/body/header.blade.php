@@ -154,10 +154,10 @@
             <img class="img-xs rounded-circle" src="{{asset('public/uploads/users/'.request()->session()->get('image'))}}" alt="Profile image"> </a>
           <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
             <div class="dropdown-header text-center">
-              <img class="img-md rounded-circle" src="{{asset('public/uploads/users/'.request()->session()->get('image'))}}" alt="Profile image">
-              <p class="mb-1 mt-3 font-weight-semibold">{{encryptor('decrypt',request()->session()->get('userName'))}}</p>
-              <p class="fw-light text-muted mb-0">{{encryptor('decrypt',request()->session()->get('email'))}}</p>
-              <p class="fw-light text-muted mb-0">{{request()->session()->get('role')}}</p>
+              <img  class="img-md rounded-circle w-50" src="{{asset('public/uploads/users/'.request()->session()->get('image'))}}" alt="Profile image">
+              <p class="mb-1 mt-3 font-weight-semibold">{{encryptor('decrypt',request()->session()->get('role'))}}</p>
+              <p class="fw-light text-muted mb-0">{{encryptor('decrypt',request()->session()->get('EmailAddress'))}}</p>
+              <p class="fw-light text-muted mb-0">{{encryptor('decrypt',request()->session()->get('userName'))}}</p>
             </div>
             <a href="{{route('profile.index')}}" class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
             <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>

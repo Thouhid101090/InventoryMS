@@ -82,6 +82,15 @@
             <b>Stocks</b>
         </a>
       </li>
+      {{-- <li class="nav-item">
+        <a class="nav-link" href="{{route('permission.list')}}" >
+          <i class="menu-icon mdi mdi-database"></i>
+          <span class="menu-title"></span>
+            <b>Permission</b>
+        </a>
+      </li> --}}
+
+
       <li class="nav-item">
         <a class="nav-link" href="{{route('user.index')}}">
           <i class="menu-icon mdi mdi-account-key"></i>

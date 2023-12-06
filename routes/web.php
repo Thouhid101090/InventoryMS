@@ -52,7 +52,6 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function(){
     // Route Permission
     Route::get('permission/{role}', [permission::class,'index'])->name('permission.list');
     Route::post('permission/{role}', [permission::class,'save'])->name('permission.save');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 
     //profile Route
     Route::get('/profile', [auth::class, 'profile'])->name('profile.index');
