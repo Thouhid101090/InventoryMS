@@ -67,6 +67,7 @@
     <!-- Custom js for this page-->
     <script src="{{asset('public/assets/js/dashboard.js')}}"></script>
     <script src="{{asset('public/assets/js/Chart.roundedBarCharts.js')}}"></script>
+    @stack('page-scripts')
     <!-- End custom js for this page-->
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"/>

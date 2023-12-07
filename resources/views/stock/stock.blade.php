@@ -16,13 +16,10 @@
                         Stock
                     </h1>
                 </div>
-
             </div>
-
             @include('partials._breadcrumbs')
         </div>
     </div>
-
     @include('partials.session')
 </header>
 
@@ -69,20 +66,17 @@
                                 <tr>
                                     <th scope="col">{{__('No.')}}</th>
                                     <th scope="col">{{__('Products')}}</th>
-                                    <th scope="col">{{__('Unit Price')}}</th>
                                     <th scope="col">{{__('Quentity')}}</th>
-                                    <th scope="col">{{__('Batch')}}</th>
+                                    <th scope="col">{{__('Stock Value')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($stocks as $p)
                                 <tr>
-                                    <th scope="row">{{ (($stocks->currentPage() * (request('row') ? request('row') : 10)) - (request('row') ? request('row') : 10)) + $loop->iteration  }}</th>
-
-                                    <td>{{ $p->product->product_name }}</td>
-                                    <td>{{ $p->unit_price }}</td>
-                                    <td>{{ $p->quantity }}</td>
-                                    <td>{{ $p->batch_id }}</td>
+                                    <th scope="row">{{ ++$loop->index  }}</th>
+                                    <td><a href="{{route('stock.details',$p->id)}}">{{ $p->product_name }}</a></td>
+                                    <td>{{ $p->balance }}</td>
+                                    <td>{{ $p->stock_value }}</td>
 
                                 </tr>
                                 @endforeach
@@ -90,8 +84,6 @@
                         </table>
                     </div>
                 </div>
-
-                {{ $stocks->links() }}
             </div>
         </div>
     </div>

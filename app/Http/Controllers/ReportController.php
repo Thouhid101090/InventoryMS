@@ -7,8 +7,8 @@ use Carbon\Carbon;
 
 use App\Models\SalesDetails;
 use Illuminate\Http\Request;
-use App\Models\PurchaseDetails;
-
+use App\Models\Purchase;
+use DB;
 class ReportController extends Controller
 {
 
@@ -27,14 +27,12 @@ class ReportController extends Controller
 
     public function generatePurchaseReport(Request $request)
     {
-        $fromDate = Carbon::parse($request->input('from_date'))->startOfDay();
-        $toDate = Carbon::parse($request->input('to_date'))->endOfDay();
-
-        $purchaseDetails = PurchaseDetails::whereHas('purchase', function ($query) use ($fromDate, $toDate) {
-            $query->whereBetween('purchase_date', [$fromDate, $toDate]);
-        })->get();
-
-        return view('report.purchaseReport', compact('purchaseDetails', 'fromDate', 'toDate'));
+        $fromDate = $request->input('from_date')." 00:00:00";
+        $toDate =$request->input('to_date')." 23:59:59";
+        
+        $purchase = Purchase::whereBetween('purchase_date', [$fromDate, $toDate])->get();
+        
+        return view('report.purchaseReport', compact('purchase', 'fromDate', 'toDate'));
     }
 
 }

@@ -64,7 +64,6 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function(){
      // Route Purchases
      Route::resource('purchase', PurchaseController::class);
      Route::get('/purchase-report', [ReportController::class, 'generatePurchaseReport'])->name('purchase-report.generate');
-     Route::post('/purchase-report', [ReportController::class, 'generatePurchaseReport']);
      // web.php
 
     Route::get('/purchase/{id}/generate-invoice', [PurchaseController::class,'invoice'])->name('purchase.generate-invoice');
@@ -76,6 +75,7 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function(){
      Route::post('/sale-report', [ReportController::class, 'generateSaleReport']);
      //Route stock
      Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
+     Route::get('/stock/details/{product_id}', [StockController::class, 'details'])->name('stock.details');
 
 
 });

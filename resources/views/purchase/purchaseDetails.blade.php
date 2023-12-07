@@ -22,7 +22,6 @@
             @foreach ($purchase as $pur)
                 @foreach ($products as $p)
                   @foreach ($pur->details as $detail)
-                     @foreach ($p->details as $detail)
                         <tr>
                             <td>{{ $pur->supplier->name }}</td>
                             <td>{{ $detail->product->product_name }}</td>
@@ -31,9 +30,7 @@
                             <td>{{ $detail->sub_amount }}</td>
                             <td>{{ $detail->tax }}</td>
                             <td>{{ $detail->total_amount }}</td>
-
                         </tr>
-                     @endforeach
                   @endforeach
                 @endforeach
             @endforeach

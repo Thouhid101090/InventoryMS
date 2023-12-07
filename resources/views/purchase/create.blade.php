@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @push('page-styles')
- {{--- ---}}
+<style>
+    .form-control, .asColorPicker-input, .dataTables_wrapper select, .select2-container--default .select2-selection--single, .select2-container--default .select2-selection--single .select2-search__field, .typeahead, .tt-query, .tt-hint{
+        padding: 5px 3px;
+    }
+</style>
 @endpush
 
 @section('content')
@@ -64,7 +68,7 @@
                             </div>
                             <div class="row m-3">
                                 <div class="col-8 offset-2">
-                                    <input type="text"  name="a" id="item_search" class="form-control  ui-autocomplete-input" placeholder="Search Product">
+                                    <input type="text"  name="" id="item_search" class="form-control  ui-autocomplete-input" placeholder="Search Product">
                                 </div>
                             </div>
                             <div class="row">
@@ -221,7 +225,6 @@
         } );
         $("#item_search").autocomplete({
             source: function(data, cb){
-
                 $.ajax({
                 autoFocus:true,
                     url: "{{route('pur.product_search')}}",

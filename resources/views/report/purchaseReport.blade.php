@@ -21,8 +21,7 @@
             <div class="card-body">
                 <div class="row mx-n4">
                     <div class="col-lg-12 card-header mt-n4">
-                        <form action="{{ route('purchase-report.generate') }}" method="post">
-                            @csrf
+                        <form action="" method="get">
                             <div class="d-flex flex-wrap align-items-center justify-content-between">
                                 <div class="form-group row align-items-center">
                                     <label for="from_date" class="col-auto">From Date:</label>
@@ -41,31 +40,25 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">{{__('No.')}}</th>
-                                        <th scope="col">{{__('Product Name')}}</th>
-                                        <th scope="col">{{__('Entry Date')}}</th>
                                         <th scope="col">{{__('Supplier Name')}}</th>
+                                        <th scope="col">{{__('Entry Date')}}</th>
                                         <th scope="col">{{__('Quentity')}}</th>
-                                        <th scope="col">{{__('Unit Price')}}</th>
+                                        <th scope="col">{{__('Sub Price')}}</th>
                                         <th scope="col">{{__('Discount')}}</th>
-                                        <th scope="col">{{__('Discount Type')}}</th>
                                         <th scope="col">{{__('V.A.T')}}</th>
-                                        <th scope="col">{{__('Sub Total')}}</th>
                                         <th scope="col">{{__('Total')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($purchaseDetails as $sd)
+                                    @foreach($purchase as $sd)
                                     <tr>
                                         <td>{{$sd->id}}</td>
-                                        <td>{{ $sd->product->product_name }}</td>
-                                        <td>{{ $sd->created_at }}</td>
-                                        <td>{{ $sd->purchase->supplier_id }}</td>
-                                        <td>{{ $sd->quantity }}</td>
-                                        <td>{{ $sd->unit_price}}</td>
-                                        <td>{{ $sd->discount}}</td>
-                                        <td>{{ $sd->discount_type}}</td>
+                                        <td>{{ $sd->supplier->name }}</td>
+                                        <td>{{ $sd->purchase_date }}</td>
+                                        <td>{{ $sd->total_quantity }}</td>
+                                        <td>{{ $sd->sub_amount}}</td>
+                                        <td>{{ $sd->discount}} {{ $sd->discount_type==1?"%":"BDT"}}</td>
                                         <td>{{ $sd->tax}}</td>
-                                        <td></td>
                                         <td>{{ $sd->total_amount}}</td>
                                     </tr>
                                     @endforeach
