@@ -13,15 +13,20 @@
                 <div class="col-auto my-4">
                     <h1 class="page-header-title">
                         <div class="page-header-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                        Purchase List
+                        Product List
                     </h1>
                 </div>
                 <div class="col-auto my-4">
-
-                    <a href="{{ route('purchase.create') }}"
+                    <a href="{{ route('products.import') }}"
+                        class="btn btn-success add-list my-1"><i class="fa-solid fa-file-import me-3"></i>Import
+                    </a>
+                    <a href="{{ route('products.export') }}"
+                        class="btn btn-warning add-list my-1"><i class="fa-solid fa-file-arrow-down me-3"></i>Export
+                    <a>
+                    <a href="{{ route('products.create') }}"
                         class="btn btn-primary add-list my-1"><i class="fa-solid fa-plus me-3"></i>Add
                     </a>
-                    <a href="{{ route('purchase.index') }}"
+                    <a href="{{ route('products.index') }}"
                         class="btn btn-danger add-list my-1"><i class="fa-solid fa-trash me-3"></i>Clear Search
                     </a>
                 </div>
@@ -39,7 +44,7 @@
         <div class="card-body">
             <div class="row mx-n4">
                 <div class="col-lg-12 card-header mt-n4">
-                    <form action="{{ route('purchase.index') }}" method="GET">
+                    <form action="{{ route('products.index') }}" method="GET">
                         <div class="d-flex flex-wrap align-items-center justify-content-between">
                             <div class="form-group row align-items-center">
                                 <label for="row" class="col-auto">Row:</label>
@@ -76,36 +81,33 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{__('No.')}}</th>
-                                    <th scope="col">{{__('Purchase Date')}}</th>
-                                    <th scope="col">{{__('Supplier')}}</th>
-                                    <th scope="col">{{__('Purchase No')}}</th>
-                                    <th scope="col">{{__('Sub Amount')}}</th>
-                                    <th scope="col">{{__('Discount')}}</th>
-                                    <th scope="col">{{__('Total')}}</th>
+                                    <th scope="col">{{__('Image')}}</th>
+                                    <th scope="col">{{__('Product Name')}}</th>
+                                    <th scope="col">{{__('Category')}}</th>
+                                    <th scope="col">{{__('Price')}}</th>
+                                    <th scope="col">{{__('Action')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($purchase as $p)
+                                @foreach ($products as $product)
                                 <tr>
-                                    <th scope="row">{{ (($purchase->currentPage() * (request('row') ? request('row') : 10)) - (request('row') ? request('row') : 10)) + $loop->iteration  }}</th>
-
-                                    <td>{{ $p->purchase_date }}</td>
-                                    <td>{{ $p->supplier->name }}</td>
-                                    <td>{{ $p->reference_no}}</td>
-                                    <td>{{ $p->sub_amount }}</td>
-                                    <td>{{ $p->discount }}</td>
-                                    <td>{{ $p->grand_total }}</td>
+                                    <th scope="row">{{ (($products->currentPage() * (request('row') ? request('row') : 10)) - (request('row') ? request('row') : 10)) + $loop->iteration  }}</th>
+                                    <td>
+                                        <div style="max-height: 80px; max-width: 80px;">
+                                            <img class="img-fluid"  src="{{ $product->product_image ? asset('public/uploads/productImage/'.$product->product_image) : asset('assets/img/products/default.webp') }}">
+                                        </div>
+                                    </td>
+                                    <td>{{ $product->product_name }}</td>
+                                    <td>{{ $product->category->name }}</td>
+                                    <td>{{ $product->selling_price }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ route('purchase.generate-invoice', $p->id) }}" class="btn btn-outline-info btn-sm mx-1">
-                                                <i class="mdi mdi-receipt"></i> Generate Invoice
-                                            </a>
+                                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-outline-success btn-sm mx-1"><i class="mdi mdi-eye"></i></a>
 
-                                            <a href="{{ route('purchase.show', $p->id) }}" class="btn btn-outline-success btn-sm mx-1"><i class="mdi mdi-eye"></i></a>
+                                            <a href="{{ route('products.edit',$product->id) }}" class="btn btn-outline-primary btn-sm mx-1"><i class="mdi mdi-border-color
+                                                "></i></a>
 
-                                            <a href="{{ route('purchase.edit', $p->id)}}" class="btn btn-outline-primary btn-sm mx-1"><i class="mdi mdi-border-color"></i></a>
-
-                                            <form action="{{ route('purchase.destroy',encryptor('encrypt',$p->id)) }}" method="POST">
+                                            <form action="{{ route('products.destroy',encryptor('encrypt',$product->id)) }}" method="POST">
                                                 @method('delete')
                                                 @csrf
                                                 <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?')">
@@ -121,7 +123,7 @@
                     </div>
                 </div>
 
-                {{ $purchase->links() }}
+                {{ $products->links() }}
             </div>
         </div>
     </div>

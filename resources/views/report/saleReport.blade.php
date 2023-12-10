@@ -42,7 +42,7 @@
                                     <tr>
                                         <th scope="col">{{__('No.')}}</th>
                                         <th scope="col">{{__('Product Name')}}</th>
-                                        <th scope="col">{{__('Entry Date')}}</th>
+                                        <th scope="col">{{__('Sale Date')}}</th>
                                         <th scope="col">{{__('Customer Name')}}</th>
                                         <th scope="col">{{__('Quentity')}}</th>
                                         <th scope="col">{{__('Unit Price')}}</th>
@@ -60,7 +60,7 @@
                                     <tr>
                                         <td>{{$sd->id}}</td>
                                         <td>{{ $sd->product->product_name }}</td>
-                                        <td>{{ $sd->created_at }}</td>
+                                        <td>{{ $sd->sales_date }}</td>
                                         <td>{{ $sd->sale->customer_id }}</td>
                                         <td>{{ $sd->quantity }}</td>
                                         <td>{{ $sd->unit_price}}</td>

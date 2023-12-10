@@ -30,11 +30,8 @@ class SupplierPaymentController extends Controller
      */
     public function create()
     {
-        $supplierPayment=new SupplierPayment;
-        $supplierPayment->supplier_id=$request->supName;
-      
-
-
+        $suppliers = SupplierPayment::all();
+       return view('supplierPayment.create',compact('suppliers'));
     }
 
     /**
@@ -42,7 +39,12 @@ class SupplierPaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $supplierPayment=new SupplierPayment;
+        $supplierPayment->supplier_id=$request->supName;
+        $supplierPayment->pay_date=$request->date;
+        $supplierPayment->amount=$request->pay;
+        $supplierPayment->save();
+
     }
 
     /**

@@ -10,8 +10,7 @@ class CreateCustomerPaymentsTable extends Migration
     {
         Schema::create('customer_payments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id');      
-            $table->unsignedBigInteger('sales_id');
+            $table->unsignedBigInteger('customer_id');
             $table->decimal('amount',14,2);
             $table->date('pay_date');
             $table->string('created_by');

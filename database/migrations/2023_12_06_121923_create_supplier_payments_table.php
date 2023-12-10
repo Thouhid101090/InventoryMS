@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('supplier_payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('supplier_id');
-            $table->unsignedBigInteger('purchase_id');
             $table->decimal('amount',14,2);
             $table->date('pay_date');
             $table->string('created_by');

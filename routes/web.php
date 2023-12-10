@@ -12,6 +12,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\RoleController as role;
 use App\Http\Controllers\UserController as user;
+use App\Http\Controllers\SupplierPaymentController;
 use App\Http\Controllers\CustomerController as customers;
 use App\Http\Controllers\AuthenticationController as auth;
 use App\Http\Controllers\DashboardController as dashboard;
@@ -64,8 +65,8 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function(){
      // Route Purchases
      Route::resource('purchase', PurchaseController::class);
      Route::get('/purchase-report', [ReportController::class, 'generatePurchaseReport'])->name('purchase-report.generate');
-     // web.php
 
+     // incoice
     Route::get('/purchase/{id}/generate-invoice', [PurchaseController::class,'invoice'])->name('purchase.generate-invoice');
     Route::get('/sale/{id}/generate-invoice', [SaleController::class,'invoice'])->name('sale.generate-invoice');
 
@@ -73,9 +74,13 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function(){
      Route::resource('sale', SaleController::class);
      Route::get('/sale-report', [ReportController::class, 'generateSaleReport'])->name('sale-report.generate');
      Route::post('/sale-report', [ReportController::class, 'generateSaleReport']);
+
      //Route stock
      Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
      Route::get('/stock/details/{product_id}', [StockController::class, 'details'])->name('stock.details');
+
+    //  payments
+    Route::resource('supplierPayment',SupplierPaymentController::class);
 
 
 });
