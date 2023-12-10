@@ -7,10 +7,10 @@
       </div>
       <div>
         <a class="navbar-brand brand-logo" href="index.html">
-          <img src="{{asset('public/assets/images/logo.svg')}}" alt="logo" />
+          {{-- <img src="{{asset('public/assets/images/logo.svg')}}" alt="logo" /> --}}
         </a>
 
-        {{-- <a class="navbar-brand brand-logo" href=""><h2><span class=""><b>A</b></span>CCUPIA</h2></a> --}}
+        <a class="navbar-brand brand-logo" href=""><h2><span class="text-info"><b>A</b></span>CCUPIA</h2></a>
         <a class="navbar-brand brand-logo-mini" href="index.html">
           <img src="{{asset('public/assets/images/logo-mini.svg')}}" alt="logo" />
         </a>
@@ -19,7 +19,7 @@
     <div class="navbar-menu-wrapper d-flex align-items-top">
       <ul class="navbar-nav">
         <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-          <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">John Doe</span></h1>
+          <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">{{encryptor('decrypt',request()->session()->get('userName'))}}</span></h1>
 
         </li>
       </ul>

@@ -75,7 +75,9 @@
                                 <select class="form-select form-control-solid @error('categoryId') is-invalid @enderror" id="categoryId" name="categoryId">
                                     <option selected="" disabled="">Select a category:</option>
                                     @foreach ($categories as $category)
-                                    <option value="{{old('categoryId', $category->id) }}" @if(old('categoryId') == $category->id) selected="selected" @endif>{{ $category->name }}</option>
+                                        <option value="{{old('categoryId', $category->id) }}" @if(old('categoryId') == $category->id)
+                                         selected="selected" @endif>{{ $category->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @error('categoryId')

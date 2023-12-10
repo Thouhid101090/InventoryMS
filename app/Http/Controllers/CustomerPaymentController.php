@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomerPayment;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Models\CustomerPayment;
 
 class CustomerPaymentController extends Controller
 {
@@ -12,7 +13,17 @@ class CustomerPaymentController extends Controller
      */
     public function index()
     {
-        //
+        
+            $row = (int) request('row',10);
+            if($row<1 || $row>100){
+                abort(400,'The per-page parameter must be integer between 1 to 100.');
+    
+            }
+    
+            $customerPayment = CustomerPayment::with(['customer'])
+            ->paginate($row)
+            ->appends(request()->query());
+            return view('customerPayment.index',compact('customerPayment'));
     }
 
     /**
@@ -20,7 +31,8 @@ class CustomerPaymentController extends Controller
      */
     public function create()
     {
-        //
+        $customers = Customer::all();
+        return view('customerPayment.create',compact('customers'));
     }
 
     /**
@@ -28,7 +40,13 @@ class CustomerPaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customerPayment=new CustomerPayment;
+        $customerPayment->customer_id=$request->cusName;
+        $customerPayment->pay_date=$request->date;
+        $customerPayment->amount=$request->pay;
+        $customerPayment->created_by=currentUserId();
+        $customerPayment->save();
+        return redirect()->route('supplierPayment.index');
     }
 
     /**

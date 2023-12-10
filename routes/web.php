@@ -12,6 +12,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\RoleController as role;
 use App\Http\Controllers\UserController as user;
+use App\Http\Controllers\CustomerPaymentController;
 use App\Http\Controllers\SupplierPaymentController;
 use App\Http\Controllers\CustomerController as customers;
 use App\Http\Controllers\AuthenticationController as auth;
@@ -81,6 +82,7 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function(){
 
     //  payments
     Route::resource('supplierPayment',SupplierPaymentController::class);
+    Route::resource('customerPayment',CustomerPaymentController::class);
 
 
 });

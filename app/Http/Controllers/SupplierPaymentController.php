@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SupplierPayment;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use App\Models\SupplierPayment;
 
 class SupplierPaymentController extends Controller
 {
@@ -18,8 +19,7 @@ class SupplierPaymentController extends Controller
 
         }
 
-        $supplierPayment = SupplierPayment::with(['purchase','sale'])
-        ->filter(request(['search']))
+        $supplierPayment = SupplierPayment::with(['supplier'])
         ->paginate($row)
         ->appends(request()->query());
         return view('supplierPayment.index',compact('supplierPayment'));
@@ -30,7 +30,7 @@ class SupplierPaymentController extends Controller
      */
     public function create()
     {
-        $suppliers = SupplierPayment::all();
+        $suppliers = Supplier::all();
        return view('supplierPayment.create',compact('suppliers'));
     }
 
@@ -43,7 +43,9 @@ class SupplierPaymentController extends Controller
         $supplierPayment->supplier_id=$request->supName;
         $supplierPayment->pay_date=$request->date;
         $supplierPayment->amount=$request->pay;
+        $supplierPayment->created_by=currentUserId();
         $supplierPayment->save();
+        return redirect()->route('supplierPayment.index');
 
     }
 
@@ -58,17 +60,26 @@ class SupplierPaymentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SupplierPayment $supplierPayment)
+    public function edit($id)
     {
-        //
+        $suppliers=Supplier::find($id);
+        $supplierPayment=SupplierPayment::find($id);
+        return view('supplierPayment.edit',compact('suppliers','supplierPayment'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SupplierPayment $supplierPayment)
+    public function update(Request $request, $id )
     {
-        //
+        $suppliers = Supplier::find($id);
+        $supplierPayment=SupplierPayment::find($id);
+        $supplierPayment->supplier_id=$request->supName;
+        $supplierPayment->pay_date=$request->date;
+        $supplierPayment->amount=$request->pay;
+        $supplierPayment->created_by=currentUserId();
+        $supplierPayment->save();
+        return redirect()->route('supplierPayment.index');
     }
 
     /**

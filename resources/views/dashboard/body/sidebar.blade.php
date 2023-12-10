@@ -8,10 +8,9 @@
       </li>
       <li class="nav-item nav-category"></li>
 
-      <li class="nav-item nav-category">Elements</li>
 
       <li class="nav-item">
-        <a class="nav-link"  href="{{route('sale.index')}}">
+        <a class="nav-link" href="{{route('sale.index')}}">
           <i class="menu-icon mdi mdi-cart-outline"></i>
           <span class="menu-title"></span>
          <b>POS</b>
@@ -25,21 +24,34 @@
 
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('sale-report.generate')}}">
-            <i class="menu-icon mdi mdi-clipboard-text"></i>
-          <span class="menu-title"></span>
-          <b>Sales Report</b>
 
+
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+          <i class="menu-icon mdi mdi-floor-plan"></i>
+          <span class="menu-title"><b>Reports</b></span>
+          <i class="menu-arrow"></i> 
         </a>
+        <div class="collapse" id="ui-basic">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{route('purchase-report.generate')}}">Purchase Report</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('sale-report.generate')}}">Sales Report</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('stock.index')}}">Stocks</a></li>
+          </ul>
+        </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{route('purchase-report.generate')}}">
-            <i class="menu-icon mdi mdi-clipboard-text"></i>
-          <span class="menu-title"></span>
-          <b>Purchase Report</b>
-
+        <a class="nav-link" data-bs-toggle="collapse" href="#pay" aria-expanded="false" aria-controls="pay">
+          <i class="menu-icon mdi mdi-floor-plan"></i>
+          <span class="menu-title"><b>Payments</b></span>
+          <i class="menu-arrow"></i> 
         </a>
+        <div class="collapse" id="pay">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{route('supplierPayment.index')}}">Supplier Payment</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('customerPayment.index')}}">Customer Payment</a></li>
+          </ul>
+        </div>
       </li>
 
 
@@ -75,22 +87,14 @@
          <b>Categories</b>
         </a>
       </li>
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link" href="{{route('stock.index')}}" >
           <i class="menu-icon mdi mdi-database"></i>
           <span class="menu-title"></span>
             <b>Stocks</b>
         </a>
-      </li>
-      {{-- <li class="nav-item">
-        <a class="nav-link" href="{{route('permission.list')}}" >
-          <i class="menu-icon mdi mdi-database"></i>
-          <span class="menu-title"></span>
-            <b>Permission</b>
-        </a>
       </li> --}}
-
-
+     
       <li class="nav-item">
         <a class="nav-link" href="{{route('user.index')}}">
           <i class="menu-icon mdi mdi-account-key"></i>

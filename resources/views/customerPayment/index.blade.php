@@ -13,7 +13,7 @@
                 <div class="col-auto my-4">
                     <h1 class="page-header-title">
                         <div class="page-header-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                        Supplier Payment List
+                        Customer Payment List
                     </h1>
                 </div>
                 <div class="col-auto my-4">
@@ -44,7 +44,7 @@
         <div class="card-body">
             <div class="row mx-n4">
                 <div class="col-lg-12 card-header mt-n4">
-                    <form action="{{ route('supplierPayment.index') }}" method="GET">
+                    <form action="{{ route('customerPayment.index') }}" method="GET">
                         <div class="d-flex flex-wrap align-items-center justify-content-between">
                             <div class="form-group row align-items-center">
                                 <label for="row" class="col-auto">Row:</label>
@@ -81,18 +81,18 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{__('No.')}}</th>
-                                    <th scope="col">{{__('Supplier')}}</th>
+                                    <th scope="col">{{__('Customer')}}</th>
                                     <th scope="col">{{__('Paid Amount')}}</th>
                                     <th scope="col">{{__('Date')}}</th>
                                     <th scope="col">{{__('Action')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($supplierPayment as $sp)
+                                @foreach ($customerPayment as $sp)
                                 <tr>
-                                    <th scope="row">{{ (($supplierPayment->currentPage() * (request('row') ? request('row') : 10)) - (request('row') ? request('row') : 10)) + $loop->iteration  }}</th>
+                                    <th scope="row">{{ (($customerPayment->currentPage() * (request('row') ? request('row') : 10)) - (request('row') ? request('row') : 10)) + $loop->iteration  }}</th>
                                     
-                                    <td>{{ $sp->supplier->name }}</td>
+                                    <td>{{ $sp->customer->name }}</td>
                                     <td>{{ $sp->amount }}</td>
                                     <td>{{ $sp->pay_date }}</td>
                                     <td>
@@ -117,7 +117,7 @@
                     </div>
                 </div>
 
-                {{ $supplierPayment->links() }}
+                {{ $customerPayment->links() }}
             </div>
         </div>
     </div>

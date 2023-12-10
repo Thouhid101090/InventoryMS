@@ -13,7 +13,7 @@
                 <div class="col-auto mt-4">
                     <h1 class="page-header-title">
                         <div class="page-header-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                        Update Supplier Payment
+                        Add Customer Payment
                     </h1>
                 </div>
             </div>
@@ -24,7 +24,7 @@
 </header>
 
 <div class="container-xl px-2 mt-n10">
-    <form action="{{ route('supplierPayment.update',$supplierPayment->id) }}" method="POST">
+    <form action="{{ route('customerPayment.store') }}" method="POST">
         @csrf
         <div class="row">
             <div class="col-xl-12">
@@ -36,20 +36,20 @@
                         
 
                             <div class="col-md-6">
-                                <label class="small mb-1" for="supName">Supplier Name
+                                <label class="small mb-1" for="supName">Customer Name
                                     <span class="text-danger">*</span></label>
                                        
-                                <select class="form-select form-control-solid @error('supName') is-invalid @enderror"
-                                    id="supName" name="supName">
-                                    <option selected="" disabled="">Select a Supplier:</option>
-                                    @foreach ($suppliers as $supplier)
-                                    <option value="{{old('supName')}}" @if (old('supName')==$supplier->id)
+                                <select class="form-select form-control-solid @error('cusName') is-invalid @enderror"
+                                    id="cusName" name="cusName">
+                                    <option selected="" disabled="">Select a Customer:</option>
+                                    @foreach ($customers as $c)
+                                    <option value="{{ $c->id }}" @if (old('cusName')==$c->id)
                                         selected="selected" @endif>
-                                        {{ $supplier->name }}
+                                        {{ $c->name }}
                                     </option>
                                     @endforeach
                                 </select>
-                                @error('supName')
+                                @error('cusName')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -65,7 +65,7 @@
                        
                             <input type="date" id="datepicker" class="form-control form-control-solid
                              @error('date') is-invalid @enderror"
-                             value="{{ old('date',$supplierPayment->pay_date) }}"
+                             value="{{ old('date') }}"
                                 name="date" placeholder="dd/mm/yyyy" required>
 
                             @if($errors->has('date'))
@@ -77,7 +77,7 @@
                                 <h6>Paid Amount<span class="text-danger">*</span></h6>
                             </label>
                         
-                            <input type="text" id="pay" class="form-control" value="{{ old('pay',$supplierPayment->amount) }}" name="pay"
+                            <input type="text" id="pay" class="form-control" value="{{ old('pay') }}" name="pay"
                                 placeholder="Supplier Payment" required>
                             @if($errors->has('pay'))
                             <span class="text-danger"> {{ $errors->first('pay') }}</span>
