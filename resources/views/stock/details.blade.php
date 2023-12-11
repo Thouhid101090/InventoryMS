@@ -13,23 +13,10 @@
                 <div class="col-auto my-4">
                     <h1 class="page-header-title">
                         <div class="page-header-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                        Customer Payment List
+                       Product Details
                     </h1>
                 </div>
-                <div class="col-auto my-4">
-                    {{-- <a href="{{ route('products.import') }}"
-                        class="btn btn-success add-list my-1"><i class="fa-solid fa-file-import me-3"></i>Import
-                    </a>
-                    <a href="{{ route('products.export') }}"
-                        class="btn btn-warning add-list my-1"><i class="fa-solid fa-file-arrow-down me-3"></i>Export
-                    <a> --}}
-                    <a href="{{ route('customerPayment.create') }}"
-                        class="btn btn-primary add-list my-1"><i class="fa-solid fa-plus me-3"></i>Add
-                    </a>
-                    <a href="{{ route('customerPayment.index')}}"
-                        class="btn btn-danger add-list my-1"><i class="fa-solid fa-trash me-3"></i>Clear Search
-                    </a>
-                </div>
+
             </div>
 
             @include('partials._breadcrumbs')
@@ -44,7 +31,7 @@
         <div class="card-body">
             <div class="row mx-n4">
                 <div class="col-lg-12 card-header mt-n4">
-                    <form action="{{ route('customerPayment.index') }}" method="GET">
+                    <form action="{{ route('stock.details')}}" method="GET">
                         <div class="d-flex flex-wrap align-items-center justify-content-between">
                             <div class="form-group row align-items-center">
                                 <label for="row" class="col-auto">Row:</label>
@@ -81,10 +68,10 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{__('No.')}}</th>
-                                    <th scope="col">{{__('Customer')}}</th>
-                                    <th scope="col">{{__('Paid Amount')}}</th>
                                     <th scope="col">{{__('Date')}}</th>
-                                    <th scope="col">{{__('Action')}}</th>
+                                    <th scope="col">{{__('Sales')}}</th>
+                                    <th scope="col">{{__('Purchase')}}</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -92,24 +79,10 @@
                                 <tr>
                                     <th scope="row">{{ (($customerPayment->currentPage() * (request('row') ? request('row') : 10)) - (request('row') ? request('row') : 10)) + $loop->iteration  }}</th>
 
-                                    <td>{{ $sp->customer->name }}</td>
-                                    <td>{{ $sp->amount }}</td>
-                                    <td>{{ $sp->pay_date }}</td>
-                                    <td>
-                                        <div class="d-flex">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
 
-                                            <a href="{{ route('supplierPayment.edit',$sp->id) }}" class="btn btn-outline-primary btn-sm mx-1"><i class="mdi mdi-border-color
-                                                "></i></a>
-
-                                            <form action="{{ route('supplierPayment.destroy',$sp->id) }}" method="POST">
-                                                @method('delete')
-                                                @csrf
-                                                <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?')">
-                                                    <i class="mdi mdi-delete"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

@@ -84,7 +84,6 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function(){
     Route::resource('supplierPayment',SupplierPaymentController::class);
     Route::resource('customerPayment',CustomerPaymentController::class);
 
-
 });
 
 
