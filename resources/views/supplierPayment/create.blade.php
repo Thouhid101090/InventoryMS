@@ -86,7 +86,7 @@
                     </div>
 
                         <button class="btn btn-primary mt-3" type="submit">Save</button>
-                        <a class="btn btn-danger mt-3" href="{{ route('products.index') }}">Cancel</a>
+                        <a class="btn btn-danger mt-3" href="{{ route('supplierPayment.index') }}">Cancel</a>
                     </div>
                 </div>
 

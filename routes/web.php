@@ -14,6 +14,7 @@ use App\Http\Controllers\RoleController as role;
 use App\Http\Controllers\UserController as user;
 use App\Http\Controllers\CustomerPaymentController;
 use App\Http\Controllers\SupplierPaymentController;
+use App\Http\Controllers\ReturnFromCustomerController;
 use App\Http\Controllers\CustomerController as customers;
 use App\Http\Controllers\AuthenticationController as auth;
 use App\Http\Controllers\DashboardController as dashboard;
@@ -35,6 +36,14 @@ Route::middleware(['checkauth'])->prefix('admin')->group(function(){
     Route::get('/product_search_data', [PurchaseController::class,'product_search_data'])->name('pur.product_search_data');
     Route::get('/product_search_sales', [SaleController::class,'product_search_data'])->name('sales.product_search_data');
     Route::get('/check_stock', [SaleController::class,'check_stock'])->name('sales.check_stock');
+
+    Route::get('/sales_ref_search', [ReturnFromCustomerController::class,'sales_ref_data'])->name('return.sales_ref_data');
+    Route::get('/ref_search', [ReturnFromCustomerController::class,'ref_search'])->name('return.ref_search');
+    // Add this route to your web.php
+Route::get('/autocomplete', [ReturnFromCustomerController::class,'autocomplete'])->name('autocomplete');
+// Add this route to your web.php
+Route::get('/get-data', [ReturnFromCustomerController::class,'getData'])->name('get.data');
+
 
 });
 
@@ -83,6 +92,10 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function(){
     //  payments
     Route::resource('supplierPayment',SupplierPaymentController::class);
     Route::resource('customerPayment',CustomerPaymentController::class);
+
+    // routes/web.php
+
+    Route::resource('return',ReturnFromCustomerController::class);
 
 });
 

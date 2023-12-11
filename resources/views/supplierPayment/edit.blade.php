@@ -47,6 +47,8 @@
                                         selected="selected" @endif>
                                         {{ $supplier->name }}
                                     </option>
+                                   
+                                    
                                     @endforeach
                                 </select>
                                 @error('supName')

@@ -114,7 +114,7 @@ class SaleController extends Controller
                         }
                     }
                 }
-                \Toastr::success('Create Successfully!');
+                \Toastr::success('Added Successfully!');
                 return redirect()->route('sale.index');
             }
         }catch(Exception $e){

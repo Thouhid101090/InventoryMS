@@ -78,7 +78,7 @@
                                     <th scope="col">{{__('No.')}}</th>
                                     <th scope="col">{{__('Customer Date')}}</th>
                                     <th scope="col">{{__('Customer')}}</th>
-                                    <th scope="col">{{__('Customer No')}}</th>
+                                    <th scope="col">{{__('Ref.No')}}</th>
                                     <th scope="col">{{__('Sub Amount')}}</th>
                                     <th scope="col">{{__('Discount')}}</th>
                                     <th scope="col">{{__('Total')}}</th>

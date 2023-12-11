@@ -87,13 +87,13 @@
          <b>Categories</b>
         </a>
       </li>
-      {{-- <li class="nav-item">
-        <a class="nav-link" href="{{route('stock.index')}}" >
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('return.create')}}" >
           <i class="menu-icon mdi mdi-database"></i>
           <span class="menu-title"></span>
-            <b>Stocks</b>
+            <b>Return Check</b>
         </a>
-      </li> --}}
+      </li>
      
       <li class="nav-item">
         <a class="nav-link" href="{{route('user.index')}}">

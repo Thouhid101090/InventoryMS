@@ -31,7 +31,7 @@
         <div class="card-body">
             <div class="row mx-n4">
                 <div class="col-lg-12 card-header mt-n4">
-                    <form action="{{ route('stock.details')}}" method="GET">
+                    <form action="{{ route('stock.details',$stock->product_id)}}" method="GET">
                         <div class="d-flex flex-wrap align-items-center justify-content-between">
                             <div class="form-group row align-items-center">
                                 <label for="row" class="col-auto">Row:</label>
@@ -75,22 +75,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($customerPayment as $sp)
-                                <tr>
-                                    <th scope="row">{{ (($customerPayment->currentPage() * (request('row') ? request('row') : 10)) - (request('row') ? request('row') : 10)) + $loop->iteration  }}</th>
-
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-
-                                </tr>
-                                @endforeach
+                               
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                {{ $customerPayment->links() }}
+                {{-- {{ $customerPayment->links() }} --}}
             </div>
         </div>
     </div>

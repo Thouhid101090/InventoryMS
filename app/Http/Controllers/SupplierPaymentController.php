@@ -62,10 +62,18 @@ class SupplierPaymentController extends Controller
      */
     public function edit($id)
     {
-        $suppliers=Supplier::find($id);
-        $supplierPayment=SupplierPayment::find($id);
-        return view('supplierPayment.edit',compact('suppliers','supplierPayment'));
+        $suppliers = Supplier::find($id);
+        $supplierPayment = SupplierPayment::find($id);
+    
+        // Check if records are found
+        if (!$suppliers || !$supplierPayment) {
+            // Handle the case when the records are not found
+            abort(404); // or redirect, show an error page, etc.
+        }
+    
+        return view('supplierPayment.edit', compact('suppliers', 'supplierPayment'));
     }
+    
 
     /**
      * Update the specified resource in storage.
