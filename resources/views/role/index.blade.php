@@ -3,7 +3,7 @@
 @section('page', trans('List'))
 
 @section('content')
-    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+    {{-- <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
         <div class="container-xl px-4">
             <div class="page-header-content pt-4">
                 <div class="row align-items-center justify-content-between">
@@ -21,18 +21,12 @@
                     </div>
                 </div>
 
-                {{--            <nav class="mt-4 rounded" aria-label="breadcrumb"> --}}
-                {{--                <ol class="breadcrumb px-3 py-2 rounded mb-0"> --}}
-                {{--                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li> --}}
-                {{--                    <li class="breadcrumb-item active">Categories</li> --}}
-                {{--                </ol> --}}
-                {{--            </nav> --}}
                 @include('partials._breadcrumbs', ['model' => $data])
             </div>
         </div>
 
         @include('partials.session')
-    </header>
+    </header> --}}
 
     <div class="container px-4 mt-n10">
         @if ($data->isEmpty())
@@ -54,10 +48,10 @@
                 </div>
             </div>
         @else
-            <div class="card mb-4">
+            <div class="card mb-2">
                 <div class="card-body">
                     <div class="row mx-n4">
-                        <div class="col-lg-12 card-header mt-n4">
+                        <div class="col-lg-12 card-header">
                             <form action="{{ route('role.index') }}" method="GET">
                                 <div class="d-flex flex-wrap align-items-center justify-content-between">
                                     <div class="form-group row align-items-center">

@@ -8,12 +8,7 @@ use App\Models\ReturnFromCustomer;
 
 class ReturnFromCustomerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
 
-    
-        
 public function autocomplete(Request $request)
 {
     $referenceNumbers = Sale::where('reference_no', 'like', '%' . $request->term . '%')
@@ -29,10 +24,11 @@ public function getData(Request $request)
     if ($sale) {
         // You can modify this based on your actual database fields
         $data = [
-            'customer_id' => $sale->customer_id,
+            'customer_id' => $sale->customer->name,
+            // 'product' => $sale->details->product_id,
             'sales_date' => $sale->sales_date,
             'total_quantity' => $sale->total_quantity,
-            'sub_amount' => $sale->sub_amount,
+            'total' => $sale->grand_total,
             'other_charge' => $sale->other_charge,
         ];
 
@@ -43,14 +39,14 @@ public function getData(Request $request)
 }
 
 
- 
-     
+
+
 
 
 
     public function index()
     {
-        
+
     }
 
     /**

@@ -16,13 +16,14 @@
          <b>POS</b>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('purchase.index')}}">
-          <i class="menu-icon mdi mdi-cash-multiple"></i>
-          <span class="menu-title"></span>
-          <b>Purchases</b>
 
-        </a>
+
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="{{route('purchase.index')}}" aria-expanded="false" aria-controls="ui-basic">
+            <i class="menu-icon mdi mdi-floor-plan"></i>
+            <span class="menu-title"><b>Purchases</b></span>
+            <i class="menu-arrow"></i>
+          </a>
       </li>
 
 
@@ -30,7 +31,7 @@
         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
           <i class="menu-icon mdi mdi-floor-plan"></i>
           <span class="menu-title"><b>Reports</b></span>
-          <i class="menu-arrow"></i> 
+          <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
@@ -44,7 +45,7 @@
         <a class="nav-link" data-bs-toggle="collapse" href="#pay" aria-expanded="false" aria-controls="pay">
           <i class="menu-icon mdi mdi-floor-plan"></i>
           <span class="menu-title"><b>Payments</b></span>
-          <i class="menu-arrow"></i> 
+          <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="pay">
           <ul class="nav flex-column sub-menu">
@@ -94,7 +95,7 @@
             <b>Return Check</b>
         </a>
       </li>
-     
+
       <li class="nav-item">
         <a class="nav-link" href="{{route('user.index')}}">
           <i class="menu-icon mdi mdi-account-key"></i>

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-   
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Star Admin2 </title>
+    <title>@yield('title',env('APP_NAME'))</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('public/assets/vendors/feather/feather.css')}}">
     <link rel="stylesheet" href="{{asset('public/assets/vendors/mdi/css/materialdesignicons.min.css')}}">
@@ -26,28 +26,28 @@
   </head>
 
   <body>
-    <div class="container-scroller"> 
+    <div class="container-scroller">
       <!-- partial:partials/_navbar.html -->
-     
+
 
       @include('dashboard.body.header')
-     
+
       <div class="container-fluid page-body-wrapper">
-       
+
         @include('dashboard.body.settings')
 
         @include('dashboard.body.sidebar')
-        
+
         <div class="main-panel">
          @yield('content')
-        
-       
+
+
       </div>
-     
+
     </div>
     </div>
     <!-- container-scroller -->
-  
+
     <!-- plugins:js -->
     <script src="{{asset('public/assets/vendors/js/vendor.bundle.base.js')}}"></script>
     <!-- endinject -->
@@ -55,7 +55,7 @@
     <script src="{{asset('public/assets/vendors/chart.js/Chart.min.js')}}"></script>
     <script src="{{asset('public/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
     <script src="{{asset('public/assets/vendors/progressbar.js/progressbar.min.js')}}"></script>
-  
+
     <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="{{asset('public/assets/js/off-canvas.js')}}"></script>
