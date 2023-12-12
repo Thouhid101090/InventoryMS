@@ -8,6 +8,7 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="{{asset('public/auth/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/css/style.css')}}">
        @stack('styles')
     </head>
     <body>

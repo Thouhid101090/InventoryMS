@@ -20,6 +20,8 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{asset('public/assets/css/vertical-layout-light/style.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/css/style.css')}}">
+
     <!-- endinject -->
     <link rel="shortcut icon" href="{{asset('public/assets/images/favicon.png')}}" />
     @stack('page-styles')

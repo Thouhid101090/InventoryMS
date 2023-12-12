@@ -6,40 +6,43 @@
 
 @section('content')
 <!-- BEGIN: Header -->
-<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+<header style="padding-bottom: 6rem;
+background-color: #8e9298 !important;
+background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
+ class="page-header page-header-dark">
     <div class="container-xl px-4">
-        <div class="page-header-content pt-4">
+        <div class="page-header-content">
             <div class="row align-items-center justify-content-between">
-                <div class="col-auto my-4">
-                    <h1 class="page-header-title">
-                        <div class="page-header-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                        Product List
-                    </h1>
+                <div class="col-auto">
+                    <h2 class="page-header-title">
+                        <div class="page-header-icon"></div>
+                       <b>Product List</b> 
+                    </h2>
                 </div>
-                <div class="col-auto my-4">
+                <div class="col-auto my-3">
                     <a href="{{ route('products.import') }}"
-                        class="btn btn-success add-list my-1"><i class="fa-solid fa-file-import me-3"></i>Import
+                        class="btn btn-success add-list my-1">Import
                     </a>
                     <a href="{{ route('products.export') }}"
-                        class="btn btn-warning add-list my-1"><i class="fa-solid fa-file-arrow-down me-3"></i>Export
+                        class="btn btn-warning add-list my-1">Export
                     <a>
                     <a href="{{ route('products.create') }}"
-                        class="btn btn-primary add-list my-1"><i class="fa-solid fa-plus me-3"></i>Add
+                        class="btn btn-primary add-list my-1">Add
                     </a>
                     <a href="{{ route('products.index') }}"
-                        class="btn btn-danger add-list my-1"><i class="fa-solid fa-trash me-3"></i>Clear Search
+                        class="btn btn-danger add-list my-1">Clear Search
                     </a>
                 </div>
             </div>
 
-            @include('partials._breadcrumbs')
+            {{-- @include('partials._breadcrumbs') --}}
         </div>
     </div>
 
-    @include('partials.session')
+    {{-- @include('partials.session') --}}
 </header>
 
-<div class="container px-4 mt-n10">
+<div style="margin-top: -8rem;" class="container px-4 mt-n10">
     <div class="card mb-4">
         <div class="card-body">
             <div class="row mx-n4">

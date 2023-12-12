@@ -3,32 +3,33 @@
 @section('page', trans('List'))
 
 @section('content')
-    {{-- <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+    <header style="padding-bottom: 6rem;
+    background-color: #8e9298 !important;
+    background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
+     class="page-header page-header-dark ">
         <div class="container-xl px-4">
-            <div class="page-header-content pt-4">
+            <div class="page-header-content">
                 <div class="row align-items-center justify-content-between">
-                    <div class="col-auto mt-4">
-                        <h1 class="page-header-title">
+                    <div class="col-auto mt-1">
+                        <h2 class="page-header-title">
                             <div class="page-header-icon"><i class="fa-solid fa-folder"></i></div>
-                            Role List
-                        </h1>
+                            <b>Role List</b>
+                        </h2>
                     </div>
-                    <div class="col-auto my-4">
-                        <a href="{{ route('role.create') }}" class="btn btn-primary add-list"><i
-                                class="fa-solid fa-plus me-3"></i>Add</a>
-                        <a href="{{ route('role.index') }}" class="btn btn-danger add-list"><i
-                                class="fa-solid fa-trash me-3"></i>Clear Search</a>
+                    <div class="col-auto my-3">
+                        <a href="{{ route('role.create') }}" class="btn btn-primary add-list">Add</a>
+                        <a href="{{ route('role.index') }}" class="btn btn-danger add-list">Clear Search</a>
                     </div>
                 </div>
 
-                @include('partials._breadcrumbs', ['model' => $data])
+                {{-- @include('partials._breadcrumbs', ['model' => $data]) --}}
             </div>
         </div>
 
         @include('partials.session')
-    </header> --}}
+    </header>
 
-    <div class="container px-4 mt-n10">
+    <div style="margin-top: -8rem;" class="container px-4 mt-n10">
         @if ($data->isEmpty())
             <div class="card mb-4">
                 <div class="card-body">

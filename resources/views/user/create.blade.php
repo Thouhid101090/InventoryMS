@@ -2,15 +2,17 @@
 
 @section('content')
 <!-- BEGIN: Header -->
-<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+<header style="padding-bottom: 6rem;
+background-color: #8e9298 !important;
+background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"  class="page-header page-header-dark ">
     <div class="container-xl px-4">
-        <div class="page-header-content pt-4">
+        <div class="page-header-content pt-1">
             <div class="row align-items-center justify-content-between">
-                <div class="col-auto mt-4">
-                    <h1 class="page-header-title">
+                <div class="col-auto mt-1">
+                    <h2 class="page-header-title">
                         <div class="page-header-icon"><i class="fa-solid fa-users"></i></div>
                         Add User
-                    </h1>
+                    </h2>
                 </div>
             </div>
 
@@ -19,7 +21,7 @@
     </div>
 </header>
 
-<div class="container-xl px-2 mt-n10">
+<div  style="margin-top: -8rem;" class="container-xl px-2 mt-n10">
     <form action="{{route('user.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">

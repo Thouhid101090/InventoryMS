@@ -6,14 +6,16 @@
 
 @section('content')
 <!-- BEGIN: Header -->
-<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+<header style="padding-bottom: 6rem;
+background-color: #8e9298 !important;
+background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;" class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
     <div class="container-xl px-4">
-        <div class="page-header-content pt-4">
+        <div class="page-header-content pt-1">
             <div class="row align-items-center justify-content-between">
-                <div class="col-auto my-4">
+                <div class="col-auto ">
                     <h1 class="page-header-title">
                         <div class="page-header-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                        Purchase List
+                       <b>Purchase List</b> 
                     </h1>
                 </div>
                 <div class="col-auto my-4">
@@ -27,14 +29,14 @@
                 </div>
             </div>
 
-            @include('partials._breadcrumbs')
+            {{-- @include('partials._breadcrumbs') --}}
         </div>
     </div>
 
     @include('partials.session')
 </header>
 
-<div class="container px-4 mt-n10">
+<div style="margin-top: -8rem;" class="container px-4 mt-n10">
     <div class="card mb-4">
         <div class="card-body">
             <div class="row mx-n4">
