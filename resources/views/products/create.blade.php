@@ -6,15 +6,13 @@
 
 @section('content')
 <!-- BEGIN: Header -->
-<header style="padding-bottom: 6rem;
-background-color: #8e9298 !important;
-background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;" class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+<header class="page-header page-header-dark ">
     <div class="container-xl px-4">
-        <div class="page-header-content pt-4">
+        <div class="page-header-content my-3">
             <div class="row align-items-center justify-content-between">
-                <div class="col-auto mt-4">
-                    <h2 class="page-header-title">
-                        <div class="page-header-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+                <div class="col-auto">
+                    <h2 class="page-header-title d-flex">
+                        <i class="menu-icon mdi mdi-package-variant-closed me-2"></i>
                         <b>Add Product</b>
                     </h2>
                 </div>
@@ -25,7 +23,7 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
     </div>
 </header>
 
-<div style="margin-top: -8rem;" class="container-xl px-2 mt-n10">
+<div class="container-xl px-4 mt-n10">
     <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">

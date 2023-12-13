@@ -4,24 +4,24 @@
 <!-- BEGIN: Header -->
 <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
     <div class="container-xl px-4">
-        <div class="page-header-content pt-4">
+        <div class="page-header-content my-3">
             <div class="row align-items-center justify-content-between">
-                <div class="col-auto mt-4">
-                    <h1 class="page-header-title">
-                        <div class="page-header-icon"><i class="fa-solid fa-folder"></i></div>
-                        Edit Category
+                <div class="col-auto ">
+                    <h2 class="page-header-title d-flex">
+                        <i class="menu-icon mdi mdi-lan me-2"></i>
+                       <b>Edit Category</b>
                     </h1>
                 </div>
             </div>
 
-            @include('partials._breadcrumbs')
+            {{-- @include('partials._breadcrumbs') --}}
         </div>
     </div>
 </header>
 <!-- END: Header -->
 
 <!-- BEGIN: Main Page Content -->
-<div class="container-xl px-2 mt-n10">
+<div  style="margin-top:-6erm" class="container-xl px-4 mt-n10">
     <form action="{{ route('categories.update', encryptor('encrypt',$category->id)) }}" method="POST">
         @csrf
         @method('put')

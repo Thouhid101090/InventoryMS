@@ -29,11 +29,11 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
                 </div>
             </div>
 
-            @include('partials._breadcrumbs')
+            {{-- @include('partials._breadcrumbs') --}}
         </div>
     </div>
 
-    @include('partials.session')
+    {{-- @include('partials.session') --}}
 </header>
 
 <div class="container px-4 mt-n10">

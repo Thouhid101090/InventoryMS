@@ -6,24 +6,24 @@
 
 @section('content')
 <!-- BEGIN: Header -->
-<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+<header class="page-header page-header-dark">
     <div class="container-xl px-4">
-        <div class="page-header-content pt-4">
+        <div class="page-header-content my-3">
             <div class="row align-items-center justify-content-between">
-                <div class="col-auto mt-4">
-                    <h1 class="page-header-title">
-                        <div class="page-header-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                        Details Product
-                    </h1>
+                <div class="col-auto">
+                    <h2 class="page-header-title d-flex">
+                        <i class="menu-icon mdi mdi-package-variant-closed me-2"></i>
+                        <b> Product Details</b>
+                    </h2>
                 </div>
             </div>
 
-            @include('partials._breadcrumbs')
+            {{-- @include('partials._breadcrumbs') --}}
         </div>
     </div>
 </header>
 
-<div class="container-xl px-2 mt-n10">
+<div class="container-xl px-4 mt-n10">
     <div class="row">
         <div class="col-xl-4">
             <!-- Product image card-->

@@ -11,8 +11,8 @@
             <div class="page-header-content">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-auto mt-1">
-                        <h2 class="page-header-title">
-                            <div class="page-header-icon"><i class="fa-solid fa-folder"></i></div>
+                        <h2 class="page-header-title d-flex">
+                            <i class="menu-icon mdi mdi-key me-2"></i>
                             <b>Role List</b>
                         </h2>
                     </div>

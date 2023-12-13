@@ -6,16 +6,14 @@
 
 @section('content')
 <!-- BEGIN: Header -->
-<header style="padding-bottom: 6rem;
-background-color: #8e9298 !important;
-background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"  class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+<header class="page-header page-header-dark">
     <div class="container-xl px-4">
-        <div class="page-header-content pt-1">
+        <div class="page-header-content my-3">
             <div class="row align-items-center justify-content-between">
                 <div class="col-auto mt-1">
-                    <h2 class="page-header-title">
-                        <div class="page-header-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                        <b>Edit Product</b>
+                    <h2 class="page-header-title d-flex">
+                        <i class="menu-icon mdi mdi-package-variant-closed me-2"></i>
+                        <b>Update Product</b>
                     </h2>
                 </div>
             </div>
@@ -25,7 +23,7 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
     </div>
 </header>
 
-<div style="margin-top: -8rem;"  class="container-xl px-2">
+<div class="container-xl mt-n10 px-4">
     <form action="{{ route('products.update',$product->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method("PATCH")
@@ -37,12 +35,16 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
                     <div class="card-header">Product Image</div>
                     <div class="card-body text-center">
                         <!-- Product image -->
-                        <img class="img-account-profile mb-2" src="{{ asset('public/uploads/productImage/'.$product->product_image) }}" alt="" id="image-preview" />
+                        <img class="img-account-profile mb-2"
+                            src="{{ asset('public/uploads/productImage/'.$product->product_image) }}" alt=""
+                            id="image-preview" />
                         <!-- Product image help block -->
                         <div class="small font-italic text-muted mb-2">JPG or PNG no larger than 2 MB</div>
                         <!-- Product image input -->
-                        <input class="form-control form-control-solid mb-2 @error('product_image') is-invalid @enderror" 
-                        type="file"  id="image" name="product_image" value="{{old('product_image',$product->product_image)}}" accept="image/*" onchange="previewImage();">
+                        <input class="form-control form-control-solid mb-2 @error('product_image') is-invalid @enderror"
+                            type="file" id="image" name="product_image"
+                            value="{{old('product_image',$product->product_image)}}" accept="image/*"
+                            onchange="previewImage();">
                         @error('product_image')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -61,8 +63,11 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
                     <div class="card-body">
                         <!-- Form Group (product name) -->
                         <div class="mb-3">
-                            <label class="small mb-1" for="proName">Product name <span class="text-danger">*</span></label>
-                            <input class="form-control form-control-solid @error('proName') is-invalid @enderror" id="proName" name="proName" type="text" placeholder="" value="{{ old('proName',$product->product_name) }}" autocomplete="off"/>
+                            <label class="small mb-1" for="proName">Product name <span
+                                    class="text-danger">*</span></label>
+                            <input class="form-control form-control-solid @error('proName') is-invalid @enderror"
+                                id="proName" name="proName" type="text" placeholder=""
+                                value="{{ old('proName',$product->product_name) }}" autocomplete="off" />
                             @error('proName')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -73,13 +78,16 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (type of product category) -->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="categoryId">Product category <span class="text-danger">*</span></label>
-                                <select class="form-select form-control-solid @error('categoryId') is-invalid @enderror" id="categoryId" name="categoryId">
+                                <label class="small mb-1" for="categoryId">Product category <span
+                                        class="text-danger">*</span></label>
+                                <select class="form-select form-control-solid @error('categoryId') is-invalid @enderror"
+                                    id="categoryId" name="categoryId">
                                     <option selected="" disabled="">Select a category:</option>
                                     @foreach ($categories as $category)
-                                        <option value="{{old('categoryId', $category->id) }}" @if(old('categoryId') == $category->id)
-                                         selected="selected" @endif>{{ $category->name }}
-                                        </option>
+                                    <option value="{{old('categoryId', $category->id) }}"
+                                        @if(old('categoryId')==$category->id)
+                                        selected="selected" @endif>{{ $category->name }}
+                                    </option>
                                     @endforeach
                                 </select>
                                 @error('categoryId')
@@ -97,9 +105,12 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
 
                             <!-- Form Group (selling price) -->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="sellingPrice">Selling price <span class="text-danger">*</span></label>
-                                <input class="form-control form-control-solid @error('sellingPrice') is-invalid @enderror" id="selling_price"
-                                 name="sellingPrice" type="text" placeholder="" value="{{ old('sellingPrice',$product->selling_price) }}" autocomplete="off" />
+                                <label class="small mb-1" for="sellingPrice">Selling price <span
+                                        class="text-danger">*</span></label>
+                                <input
+                                    class="form-control form-control-solid @error('sellingPrice') is-invalid @enderror"
+                                    id="selling_price" name="sellingPrice" type="text" placeholder=""
+                                    value="{{ old('sellingPrice',$product->selling_price) }}" autocomplete="off" />
                                 @error('sellingPrice')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -109,9 +120,11 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
                         </div>
                         <!-- Form Group (Product Code) -->
                         <div class="mb-3">
-                            <label class="small mb-1" for="productCode">Product Code <span class="text-danger">*</span></label>
-                            <input class="form-control form-control-solid @error('productCode') is-invalid @enderror" id="productCode"
-                            name="productCode" type="text" placeholder="" value="{{ old('productCode',$product->product_code) }}" autocomplete="off" />
+                            <label class="small mb-1" for="productCode">Product Code <span
+                                    class="text-danger">*</span></label>
+                            <input class="form-control form-control-solid @error('productCode') is-invalid @enderror"
+                                id="productCode" name="productCode" type="text" placeholder=""
+                                value="{{ old('productCode',$product->product_code) }}" autocomplete="off" />
                             @error('productCode')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -119,9 +132,11 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label class="small mb-1" for="brand">Product Brand <span class="text-danger">*</span></label>
-                            <input class="form-control form-control-solid @error('brand') is-invalid @enderror" id="brand"
-                            name="brand" type="text" placeholder="" value="{{ old('brand',$product->brand) }}" autocomplete="off" />
+                            <label class="small mb-1" for="brand">Product Brand <span
+                                    class="text-danger">*</span></label>
+                            <input class="form-control form-control-solid @error('brand') is-invalid @enderror"
+                                id="brand" name="brand" type="text" placeholder=""
+                                value="{{ old('brand',$product->brand) }}" autocomplete="off" />
                             @error('brand')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -143,5 +158,5 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
 @endsection
 
 @push('page-scripts')
-    <script src="{{ asset('assets/js/img-preview.js') }}"></script>
+<script src="{{ asset('assets/js/img-preview.js') }}"></script>
 @endpush

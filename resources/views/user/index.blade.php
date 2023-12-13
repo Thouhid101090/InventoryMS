@@ -11,8 +11,8 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
         <div class="page-header-content ">
             <div class="row align-items-center justify-content-between">
                 <div class="col-auto mt-1">
-                    <h2 class="page-header-title">
-                        <div class="page-header-icon"><i class="fa-solid fa-users"></i></div>
+                    <h2 class="page-header-title d-flex">
+                        <i class="menu-icon mdi mdi-account-key me-2"></i>
                         <b>User List</b>
                     </h2>
                 </div>

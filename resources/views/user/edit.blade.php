@@ -9,10 +9,10 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
     <div class="container-xl px-4">
         <div class="page-header-content pt-1">
             <div class="row align-items-center justify-content-between">
-                <div class="col-auto mt-1">
-                    <h2 class="page-header-title">
-                        <div class="page-header-icon"><i class="fa-solid fa-users"></i></div>
-                        Edit User
+                <div class="col-auto mt-2">
+                    <h2 class="page-header-title d-flex">
+                        <i class="menu-icon mdi mdi-account-key me-2"></i>
+                       <b> Edit User</b>
                     </h2>
                 </div>
             </div>
@@ -22,7 +22,7 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
     </div>
 </header>
 
-<div style="margin-top: -8rem;" class="container-xl px-2 mt-n10">
+<div style="margin-top: -8rem;" class="container-xl px-4 mt-n10">
     <form action="{{ route('user.update', encryptor('encrypt',$user->id)) }}" method="POST"
         enctype="multipart/form-data">
         @csrf
@@ -171,7 +171,7 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
 
                         <!-- Submit button -->
                         <button class="btn btn-primary" type="submit">Save</button>
-                        <a class="btn btn-danger" href="">Cancel</a>
+                        <a class="btn btn-danger" href="{{route('user.index')}}">Cancel</a>
                     </div>
                 </div>
                 <!-- END: User Details -->

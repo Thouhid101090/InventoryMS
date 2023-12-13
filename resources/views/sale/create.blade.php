@@ -1,24 +1,32 @@
 @extends('layouts.app')
 
 @push('page-styles')
- {{--- ---}}
+<style>
+    .form-control, .asColorPicker-input, .dataTables_wrapper select, 
+    .select2-container--default .select2-selection--single, .select2-container--default 
+    .select2-selection--single .select2-search__field, .typeahead, .tt-query, .tt-hint{
+    padding: 5px 3px;
+}
+    
+</style>
+
 @endpush
 
 @section('content')
 <!-- BEGIN: Header -->
 <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
     <div class="container-xl px-4">
-        <div class="page-header-content pt-4">
+        <div class="page-header-content pt-1">
             <div class="row align-items-center justify-content-between">
-                <div class="col-auto mt-4">
-                    <h1 class="page-header-title">
+                <div class="col-auto ">
+                    <h2 class="page-header-title">
                         <div class="page-header-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
                         Add Sales
-                    </h1>
+                    </h2>
                 </div>
             </div>
 
-            @include('partials._breadcrumbs')
+            {{-- @include('partials._breadcrumbs') --}}
         </div>
     </div>
 </header>

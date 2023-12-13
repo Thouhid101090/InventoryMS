@@ -6,9 +6,9 @@
 
 @section('content')
 <!-- BEGIN: Header -->
-<header class="page-header page-header-dark mb-1">
+<header class="page-header page-header-dark">
     <div class="container-xl px-4">
-        <div class="page-header-content pt-4">
+        <div class="page-header-content pt-1">
             <div class="row align-items-center justify-content-between">
                 <div class="col-auto mt-1">
                     <h2 class="page-header-title">
@@ -25,7 +25,7 @@
 <!-- END: Header -->
 
 <!-- BEGIN: Main Page Content -->
-<div class="container-xl px-2 mt-n10">
+<div style="margin-top: -6rem;" class="container-xl px-4 mt-n10">
     <form action="{{route('role.update',encryptor('encrypt',$role->id))}}" method="POST">
         @csrf
         @method('PATCH')

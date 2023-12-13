@@ -8,24 +8,24 @@
 <!-- BEGIN: Header -->
 <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
     <div class="container-xl px-4">
-        <div class="page-header-content pt-4">
+        <div class="page-header-content my-3">
             <div class="row align-items-center justify-content-between">
-                <div class="col-auto mt-4">
-                    <h1 class="page-header-title">
-                        <div class="page-header-icon"><i class="fa-solid fa-users"></i></div>
-                        Update Customer
-                    </h1>
+                <div class="col-auto">
+                    <h2 class="page-header-title d-flex">
+                        <i class="menu-icon mdi mdi-account-multiple-outline me-2"></i>
+                        <b>Update Customer</b>
+                    </h2>
                 </div>
             </div>
 
-            @include('partials._breadcrumbs')
+            {{-- @include('partials._breadcrumbs') --}}
         </div>
     </div>
 </header>
 <!-- END: Header -->
 
 <!-- BEGIN: Main Page Content -->
-<div class="container-xl px-2 mt-n10">
+<div class="container-xl px-4 mt-n10">
     <form action="{{ route('customers.update',$info->id)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method("PATCH")

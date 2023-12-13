@@ -6,24 +6,25 @@
 
 @section('content')
 <!-- BEGIN: Header -->
-<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+<header class="page-header page-header-dark">
     <div class="container-xl px-4">
-        <div class="page-header-content pt-4">
+        <div class="page-header-content my-3">
             <div class="row align-items-center justify-content-between">
-                <div class="col-auto mt-4">
-                    <h1 class="page-header-title">
-                        <div class="page-header-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                        Add Customer Payment
-                    </h1>
+                <div class="col-auto ">
+                    <h2 class="page-header-title d-flex">
+                        <i class="menu-icon mdi mdi-cash-usd me-2"></i>
+                        <b> Add Customer Payment</b>
+                       
+                    </h2>
                 </div>
             </div>
 
-            @include('partials._breadcrumbs')
+            {{-- @include('partials._breadcrumbs') --}}
         </div>
     </div>
 </header>
 
-<div class="container-xl px-2 mt-n10">
+<div class="container-xl px-4 mt-n10">
     <form action="{{ route('customerPayment.store') }}" method="POST">
         @csrf
         <div class="row">
@@ -86,7 +87,7 @@
                     </div>
 
                         <button class="btn btn-primary mt-3" type="submit">Save</button>
-                        <a class="btn btn-danger mt-3" href="{{ route('products.index') }}">Cancel</a>
+                        <a class="btn btn-danger mt-3" href="{{ route('customerPayment.index') }}">Cancel</a>
                     </div>
                 </div>
 
