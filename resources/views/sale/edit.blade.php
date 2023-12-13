@@ -10,15 +10,15 @@
     <div class="container-xl px-4">
         <div class="page-header-content pt-4">
             <div class="row align-items-center justify-content-between">
-                <div class="col-auto mt-4">
-                    <h1 class="page-header-title">
-                        <div class="page-header-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                        Update Purchase
-                    </h1>
+                <div class="col-auto ">
+                    <h2 class="page-header-title d-flex">
+                        <i class="menu-icon mdi mdi-cart-outline me-2"></i>
+                        <b>Update Sale</b>
+                    </h2>
                 </div>
             </div>
 
-            @include('partials._breadcrumbs')
+            {{-- @include('partials._breadcrumbs') --}}
         </div>
     </div>
 </header>

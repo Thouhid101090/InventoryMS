@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @push('page-styles')
-{{--- ---}}
+<style>
+   
+</style>
 @endpush
 
 @section('content')

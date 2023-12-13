@@ -98,7 +98,7 @@
                                     <td>
                                         <div class="d-flex">
                                             <a href="{{ route('purchase.generate-invoice', $p->id) }}" class="btn btn-outline-info btn-sm mx-1">
-                                                <i class="mdi mdi-receipt"></i> Generate Invoice
+                                               Inv
                                             </a>
 
                                             <a href="{{ route('purchase.show', $p->id) }}" class="btn btn-outline-success btn-sm mx-1"><i class="mdi mdi-eye"></i></a>

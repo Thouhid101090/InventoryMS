@@ -1,30 +1,33 @@
 @extends('layouts.app')
 
 @push('page-styles')
-    {{--- ---}}
+<style>
+    .table th, .table td{
+        padding: .5%
+    }
+</style>
+
 @endpush
 
 @section('content')
 <!-- BEGIN: Header -->
-<header style="padding-bottom: 6rem;
-background-color: #8e9298 !important;
-background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;" class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
     <div class="container-xl px-4">
-        <div class="page-header-content pt-4">
+        <div class="page-header-content my-3">
             <div class="row align-items-center justify-content-between">
-                <div class="col-auto my-4">
-                    <h1 class="page-header-title">
-                        <div class="page-header-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                        Sale List
-                    </h1>
+                <div class="col-auto">
+                    <h2 class="page-header-title d-flex">
+                        <i class="menu-icon mdi mdi-cart-outline me-2"></i>
+                        <b>Sale List</b>
+                    </h2>
                 </div>
-                <div class="col-auto my-4">
+                <div class="col-auto">
 
                     <a href="{{ route('sale.create') }}"
-                        class="btn btn-primary add-list my-1"><i class="fa-solid fa-plus me-3"></i>Add
+                        class="btn btn-primary add-list "></i>Add
                     </a>
                     <a href="{{ route('sale.index') }}"
-                        class="btn btn-danger add-list my-1"><i class="fa-solid fa-trash me-3"></i>Clear Search
+                        class="btn btn-danger add-list ">Clear Search
                     </a>
                 </div>
             </div>
@@ -102,7 +105,7 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
                                         <div class="d-flex">
 
                                             <a href="{{ route('sale.generate-invoice', $p->id) }}" class="btn btn-outline-info btn-sm mx-1">
-                                                <i class="mdi mdi-receipt"></i> Generate Invoice
+                                                Inv
                                             </a>
                                             <a href="{{ route('sale.show', $p->id) }}" class="btn btn-outline-success btn-sm mx-1"><i class="mdi mdi-eye"></i></a>
 

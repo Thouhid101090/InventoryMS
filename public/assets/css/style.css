@@ -6,3 +6,10 @@ header{
 .mt-n10{
     margin-top: -8rem;
 }
+.table th, .table td{
+    padding: .5%
+}
+.table td {
+    max-width: 150px; 
+    white-space: normal !important;
+}

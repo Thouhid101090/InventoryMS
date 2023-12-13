@@ -46,7 +46,7 @@ class CustomerPaymentController extends Controller
         $customerPayment->amount=$request->pay;
         $customerPayment->created_by=currentUserId();
         $customerPayment->save();
-        return redirect()->route('supplierPayment.index');
+        return redirect()->route('customerPayment.index');
     }
 
     /**

@@ -5,19 +5,29 @@
     .form-control, .asColorPicker-input, .dataTables_wrapper select, .select2-container--default .select2-selection--single, .select2-container--default .select2-selection--single .select2-search__field, .typeahead, .tt-query, .tt-hint{
         padding: 5px 3px;
     }
+    .tbl-scroll td {
+        max-width: 150px; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        word-wrap: break-word;
+    }
+   
 </style>
+
+
 @endpush
 
 @section('content')
 <!-- BEGIN: Header -->
-<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+<header class="page-header page-header-dark">
     <div class="container-xl px-4">
-        <div class="page-header-content pt-1">
+        <div class="page-header-content my-3">
             <div class="row align-items-center justify-content-between">
                 <div class="col-auto">
                     <h2 class="page-header-title">
-                        <div class="page-header-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                        Add Purchase
+                        <i class="menu-icon mdi mdi-cash-multiple"></i>
+                       <b>Add Purchase</b> 
                     </h2>
                 </div>
             </div>
@@ -27,10 +37,11 @@
     </div>
 </header>
 
-    <section style="margin-top: -6rem;" id="multiple-column-form">
+<div  class="container-xl px-4 mt-n10">
+    <section id="multiple-column-form">
         <div class="match-height">
             <div class="card">
-                <div class="card-content mt-5">
+                <div class="card-content">
                     <div class="card-body">
                         <form class="form" method="post" action="{{route('purchase.store')}}">
                             @csrf
@@ -38,7 +49,7 @@
                                 <div class="col-md-2 mt-2">
                                     <label for="supplierName" class="float-end"><h6>Supplier<span class="text-danger">*</span></h6></label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-10">
                                     <select required class="form-control form-select" name="supplierName" id="supplierName">
                                         <option value="">Select Supplier</option>
                                         @forelse($supplier as $d)
@@ -52,30 +63,32 @@
                                 <span class="text-danger"> {{ $errors->first('supplierName') }}</span>
                                 @endif
 
-                                <div class="col-md-2 mt-2">
+                                
+
+                                <div class="col-md-2 mt-3">
                                     <label for="date" class="float-end"><h6>Date<span class="text-danger">*</span></h6></label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 mt-2">
                                     <input type="date" id="datepicker" class="form-control" value="{{ old('purchase_date')}}" name="purchase_date" placeholder="dd/mm/yyyy" required>
                                 </div>
 
-                                <div class="col-md-2 mt-2">
-                                    <label for="reference_no" class="float-end"><h6>Reference Number</h6></label>
+                                <div class="col-md-2 mt-3">
+                                    <label for="reference_no" class="float-end"><h6>Ref. No.<span class="text-danger">*</span></h6></label>
                                 </div>
                                 <div class="col-md-4 mt-2">
-                                    <input type="text" class="form-control" required value="{{ old('reference_no')}}" name="reference_no">
+                                    <input type="text" class="form-control p-2" value="{{ old('reference_no')}}" name="reference_no" required>
                                 </div>
                             </div>
                             <div class="row m-3">
                                 <div class="col-8 offset-2">
-                                    <input type="text"  name="" id="item_search" class="form-control  ui-autocomplete-input" placeholder="Search Product">
+                                    <input type="text"  name="" id="item_search" class="form-control  ui-autocomplete-input p-4 border-primary" placeholder="Search Product">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-md-12 tbl-scroll">
                                     <table class="table mb-5">
                                         <thead>
-                                            <tr class="bg-primary text-white text-center">
+                                            <tr class="bg-secondary text-dark text-center">
                                                 <th class="p-2">Product Name</th>
                                                 <th class="p-2">Quantity</th>
                                                 <th class="p-2">Purchase Price</th>
@@ -95,7 +108,7 @@
                             </div>
 
 
-                            <div class="row mb-5">
+                            <div class="row">
                                 <div class="col-12 col-sm-6">
                                     <div class="row">
                                         <div class="col-4 offset-2 mt-2 text-end pe-3">
@@ -199,6 +212,7 @@
             </div>
         </div>
     </section>
+</div>
 
 <!-- END: Main Page Content -->
 @endsection

@@ -7,21 +7,31 @@
     .select2-selection--single .select2-search__field, .typeahead, .tt-query, .tt-hint{
     padding: 5px 3px;
 }
-    
+
+    .tbl-scroll td {
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        word-wrap: break-word;
+    }
 </style>
+
+    
+
 
 @endpush
 
 @section('content')
 <!-- BEGIN: Header -->
-<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+<header class="page-header page-header-dark">
     <div class="container-xl px-4">
-        <div class="page-header-content pt-1">
+        <div class="page-header-content my-3">
             <div class="row align-items-center justify-content-between">
                 <div class="col-auto ">
-                    <h2 class="page-header-title">
-                        <div class="page-header-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                        Add Sales
+                    <h2 class="page-header-title d-flex">
+                        <i class="menu-icon mdi mdi-cart-outline me-2"></i>
+                        <b>Sale</b>
                     </h2>
                 </div>
             </div>
@@ -30,11 +40,11 @@
         </div>
     </div>
 </header>
-
+<div  class="container-xl px-4 mt-n10">
     <section id="multiple-column-form">
         <div class="match-height">
             <div class="card">
-                <div class="card-content mt-5">
+                <div class="card-content ">
                     <div class="card-body">
                         <form class="form" method="post" action="{{route('sale.store')}}">
                             @csrf
@@ -42,7 +52,7 @@
                                 <div class="col-md-2 mt-2">
                                     <label for="customerName" class="float-end"><h6>Customer<span class="text-danger">*</span></h6></label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-10">
 
                                     <select required class="form-control form-select" name="customerName" id="customerName">
                                         <option value="">Select Customer</option>
@@ -57,30 +67,30 @@
                                 @if($errors->has('customerName'))
                                 <span class="text-danger"> {{ $errors->first('customerName') }}</span>
                                 @endif
-                                <div class="col-md-2 mt-2">
+                                <div  class="col-md-2 mt-3">
                                     <label for="date" class="float-end"><h6>Date<span class="text-danger">*</span></h6></label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 mt-2">
                                     <input type="date" id="datepicker" class="form-control" value="{{ old('sale_date')}}"
                                      name="sale_date" placeholder="dd/mm/yyyy" required>
                                 </div>
-                                <div class="col-md-2 mt-2">
-                                    <label for="reference_no" class="float-end"><h6>Reference Number</h6></label>
+                                <div class="col-md-2 mt-3">
+                                    <label for="reference_no" class="float-end"><h6>Ref. No.<span class="text-danger">*</span></h6></label>
                                 </div>
                                 <div class="col-md-4 mt-2">
-                                    <input type="text" class="form-control" value="{{ old('reference_no')}}" name="reference_no">
+                                    <input type="text" class="form-control p-2" value="{{ old('reference_no')}}" name="reference_no" required>
                                 </div>
                             </div>
                             <div class="row m-3">
                                 <div class="col-8 offset-2">
-                                    <input type="text" name="" id="item_search" class="form-control  ui-autocomplete-input" placeholder="Search Product">
+                                    <input type="text" name="" id="item_search" class="form-control ui-autocomplete-input p-4 border-primary" placeholder="Search Product">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-md-12 tbl-scroll">
                                     <table class="table mb-5">
                                         <thead>
-                                            <tr class="bg-primary text-white text-center">
+                                            <tr class="bg-secondary text-dark text-center">
                                                 <th class="p-2">Product Name</th>
                                                 <th class="p-2">Quantity</th>
                                                 <th class="p-2">Salling Price</th>
@@ -100,33 +110,33 @@
                             </div>
 
 
-                            <div class="row mb-5">
+                            <div class="row ">
                                 <div class="col-12 col-sm-6">
                                     <div class="row">
-                                        <div class="col-4 offset-2 mt-2 text-end pe-3">
+                                        <div class="col-4 offset-2 mt-1 text-end pe-3">
                                             <label for="" class="form-group"><h6>Total Quantities</h6></label>
                                         </div>
-                                        <div class="col-4 mt-2">
+                                        <div class="col-4 mt-1">
                                             <label for="" class="form-group"><h6 class="total_qty">0</h6></label>
                                             <input type="hidden" name="total_qty" class="total_qty_p">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-4 offset-2 mt-2 text-end pe-3">
+                                        <div class="col-4 offset-2 mt-1 text-end pe-3">
                                             <label for="" class="form-group"><h6>Other Charges</h6></label>
                                         </div>
-                                        <div class="col-4 mt-2">
+                                        <div class="col-4 mt-1">
                                             <input type="text" class="form-control form-group" id="other_charge" name="other_charge" onkeyup="check_change()">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-4 offset-2 mt-2 text-end pe-3">
+                                        <div class="col-4 offset-2 mt-1 text-end pe-3">
                                             <label for="" class="form-group"><h6>Discount on</h6></label>
                                         </div>
-                                        <div class="col-4 mt-2">
+                                        <div class="col-4 mt-1">
                                             <input type="text" class="form-control form-group" id="discount_all" name="discount_all" onkeyup="check_change()">
                                         </div>
-                                        <div class="col-2 mt-2">
+                                        <div class="col-2 mt-1">
                                             <select onchange="check_change()" class="form-control" id="discount_all_type" name="discount_all_type">
                                                 <option value="0">%</option>
                                                 <option value="1">Fixed</option>
@@ -134,10 +144,10 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-4 offset-2 mt-2 text-end pe-3">
+                                        <div class="col-4 offset-2 mt-1 text-end pe-3">
                                             <label for="" class="form-group"><h6>Note</h6></label>
                                         </div>
-                                        <div class="col-6 mt-2">
+                                        <div class="col-6 mt-1">
                                             <textarea class="form-control" name="note" rows="2"></textarea>
                                         </div>
                                     </div>
@@ -163,28 +173,28 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-4 offset-4 mt-2 pe-2 text-end">
+                                        <div class="col-4 offset-4  pe-2 text-end">
                                             <label for="" class="form-group"><h6>Discount on All</h6></label>
                                         </div>
-                                        <div class="col-4 mt-2 pe-5 text-end">
+                                        <div class="col-4  pe-5 text-end">
                                             <label for="" class="form-group"><h6 class="tdiscount">0.00</h6></label>
                                             <input type="hidden" name="tdiscount" class="tdiscount_p">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-4 offset-4 mt-2 pe-2 text-end">
+                                        <div class="col-4 offset-4  pe-2 text-end">
                                             <label for="" class="form-group"><h6>Round Of</h6></label>
                                         </div>
-                                        <div class="col-4 mt-2 pe-5 text-end">
+                                        <div class="col-4 pe-5 text-end">
                                             <label for="" class="form-group"><h6 class="troundof">0.00</h6></label>
                                             <input type="hidden" name="troundof" class="troundof_p">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-4 offset-4 mt-2 pe-2 text-end">
+                                        <div class="col-4 offset-4  pe-2 text-end">
                                             <label for="" class="form-group"><h6>Grand Total</h6></label>
                                         </div>
-                                        <div class="col-4 mt-2 pe-5 text-end">
+                                        <div class="col-4  pe-5 text-end">
                                             <label for="" class="form-group"><h6 class="tgrandtotal">0.00</h6></label>
                                             <input type="hidden" name="tgrandtotal" class="tgrandtotal_p">
                                         </div>
@@ -204,6 +214,7 @@
             </div>
         </div>
     </section>
+</div>
 
 <!-- END: Main Page Content -->
 @endsection
