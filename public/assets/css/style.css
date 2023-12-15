@@ -13,3 +13,10 @@ header{
     max-width: 150px; 
     white-space: normal !important;
 }
+
+.btn.btn-sm{
+    border-radius: 8px;
+}
+.btn i{
+    padding: 0px;
+}

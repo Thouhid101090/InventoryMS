@@ -2,13 +2,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+    <header class="page-header page-header-dark">
         <div class="container-xl px-4">
             <div class="page-header-content my-3">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-auto">
                         <h2 class="page-header-title d-flex">
-                            <i class="menu-icon mdi mdi-undo-variant"></i>
+                            <i class="menu-icon mdi mdi-undo-variant me-2"></i>
                            Return Product Check
                         </h2>
                     </div>
@@ -21,9 +21,11 @@
 
         {{-- @include('partials.session') --}}
     </header>
-    <div class="container">
+    <div class="container  mt-n10">
         <div class="row">
             <div class="col-md-10">
+                <div class="card mb-4">
+                    <div class="card-body">
 
                 <form>
                     <div class="form-group col-md-6 offset-md-3">
@@ -76,6 +78,8 @@
                     <button type="button" class="btn btn-primary">Submit</button>
                 </form>
 
+            </div>
+            </div>
             </div>
         </div>
     </div>

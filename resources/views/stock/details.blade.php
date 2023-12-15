@@ -6,26 +6,19 @@
 
 @section('content')
 <!-- BEGIN: Header -->
-<header style="padding-bottom: 6rem;
-background-color: #8e9298 !important;
-background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;" class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+<header class="page-header page-header-dark">
     <div class="container-xl px-4">
-        <div class="page-header-content pt-4">
+        <div class="page-header-content my-3">
             <div class="row align-items-center justify-content-between">
-                <div class="col-auto my-4">
-                    <h1 class="page-header-title">
-                        <div class="page-header-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                       Product Details
-                    </h1>
-                </div>
-
+                <h2 class="page-header-title d-flex">
+                    <i class="menu-icon mdi mdi-clipboard-text me-2"></i>
+                    <b>Product Report</b>
+                </h2>
             </div>
-
-            @include('partials._breadcrumbs')
+            {{-- @include('partials._breadcrumbs') --}}
         </div>
     </div>
-
-    @include('partials.session')
+    {{-- @include('partials.session') --}}
 </header>
 
 <div class="container px-4 mt-n10">

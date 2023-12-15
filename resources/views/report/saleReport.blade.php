@@ -25,17 +25,40 @@
                 <div class="row mx-n4">
                     <div class="col-lg-12 card-header mt-n4">
                         <form action="{{ route('sale-report.generate') }}" method="post">
-                            @csrf
-                            <div class="d-flex flex-wrap align-items-center justify-content-between">
-                                <div class="form-group row align-items-center">
-                                    <label for="from_date" class="col-auto">From Date:</label>
-                                    <input class="form-control" type="date" name="from_date" value="{{ $fromDate ?? '' }}" required>
-                                    <label for="to_date" class="col-auto">To Date:</label>
-                                    <input class="form-control" type="date" name="to_date" value="{{ $toDate ?? '' }}" required>
-                                    <button type="submit">Generate Report</button>
-                                </div>
-                            </div>
-                        </form>
+                           
+                                @csrf
+        
+                                <div class="d-flex flex-wrap align-items-center justify-content-between">
+                                    {{-- <div class="row"> --}}
+                                        {{-- <div class="form-group row align-items-center"> --}}
+        
+                                            <div class="col-md-1">
+                                                <label for="from_date" class="col-auto">From Date:</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input class="form-control p-3" type="date" name="from_date"
+                                                    value="{{ $fromDate ?? '' }}" required>
+        
+                                            </div>
+        
+        
+                                            <div class="col-md-1">
+                                                <label for="to_date" class="col-auto">To Date:</label>
+                                            </div>
+                                                <div class="col-md-3">
+                                                <input class="form-control p-3" type="date" name="to_date"
+                                                value="{{ $toDate ?? '' }}" required>
+                                              </div>
+                                               
+                                           
+                                            {{--
+                                        </div> --}}
+        
+        
+                                        <button class="col-md-2 btn btn-primary" type="submit">Generate Report</button>
+                                    </div>
+                                    {{-- </div> --}}
+                            </form>
                     </div>
                     <hr>
                     <div class="col-lg-12">
@@ -59,12 +82,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($salesDetails as $sd)
+                                    @foreach($sales as $sd)
                                     <tr>
                                         <td>{{$sd->id}}</td>
-                                        <td>{{ $sd->product->product_name }}</td>
+                                        <td></td>
                                         <td>{{ $sd->sales_date }}</td>
-                                        <td>{{ $sd->sale->customer_id }}</td>
+                                        <td>{{ $sd->customer->name }}</td>
                                         <td>{{ $sd->quantity }}</td>
                                         <td>{{ $sd->unit_price}}</td>
                                         <td>{{ $sd->discount}}</td>
