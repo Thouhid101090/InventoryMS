@@ -41,7 +41,7 @@ class Purchase extends Model
     }
 
 
-    public function details(){
+    public function pdetails(){
         return $this->hasMany(PurchaseDetails::class);
     }
     

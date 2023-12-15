@@ -146,8 +146,8 @@ class PurchaseController extends Controller
      */
     public function show(string $id)
     {
-        $purchase = Purchase::with('details')->get();
-        $products = Purchase::with('details')->get();
+        $purchase = Purchase::with('pdetails')->get();
+        $products = Purchase::with('pdetails')->get();
 
          return view('purchase.purchaseDetails', compact('purchase','products'));
     }
@@ -170,15 +170,7 @@ class PurchaseController extends Controller
         $purchase=Purchase::find($id);
         return view('purchase.edit',compact('purchase'));
     }
-    public function invoice(string $id)
-    {
-        $purchaseDetails = PurchaseDetails::where('purchase_id', $id)->get();
-        $purchase = Purchase::find($id);
-        return view('purchase.invoice', compact('purchaseDetails', 'purchase'));
-    }
-    
-
-
+   
     /**
      * Update the specified resource in storage.
      */
@@ -214,5 +206,12 @@ class PurchaseController extends Controller
         $purchase->delete();
         $this->notice::success('Data successfully deleted');
         return redirect()->back();
+    }
+
+    public function invoice(string $id)
+    {
+        $purchaseDetails = PurchaseDetails::where('purchase_id', $id)->get();
+        $purchase = Purchase::find($id);
+        return view('purchase.invoice', compact('purchaseDetails', 'purchase'));
     }
 }

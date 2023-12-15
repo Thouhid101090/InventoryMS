@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id')->nullable();
             $table->unsignedBigInteger('purchase_id')->nullable();
             $table->unsignedBigInteger('sales_id')->nullable();
+            $table->unsignedBigInteger('return_id')->nullable();
             $table->unsignedBigInteger('transfer_id')->nullable();
             $table->decimal('quantity',10,2)->default(0);
             $table->decimal('unit_price',10,2)->default(0);

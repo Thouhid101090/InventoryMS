@@ -7,6 +7,7 @@ use App\Models\Sale;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Supplier;
+use App\Models\SalesDetails;
 use App\Models\PurchaseDetails;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

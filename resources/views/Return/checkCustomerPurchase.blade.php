@@ -27,7 +27,8 @@
                 <div class="card mb-4">
                     <div class="card-body">
 
-                <form>
+                <form action="" method="post">
+                    @csrf
                     <div class="form-group col-md-6 offset-md-3">
                         <label for="item_search">Reference Number:</label>
                         <input type="text" id="item_search" class="form-control border-primary p-4" placeholder="Enter Reference Number">
@@ -36,14 +37,14 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="customer_id">Customer:</label>
-                                <input type="text" id="customer_id" class="form-control" readonly>
+                                <input type="text" id="customer_id" class="form-control" >
                             </div>
 
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="product">Product:</label>
-                                <input type="text" id="product" class="form-control" readonly>
+                                <input type="text" id="product" class="form-control" >
                             </div>
 
                         </div>
@@ -51,7 +52,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="sales_date">Sales Date:</label>
-                                <input type="text" id="sales_date" class="form-control" readonly>
+                                <input type="text" id="sales_date" class="form-control" >
                             </div>
 
                         </div>
@@ -59,14 +60,14 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="total_quantity">Quentity</label>
-                                <input type="text" id="total_quantity" class="form-control" readonly>
+                                <input type="text" id="total_quantity" class="form-control" >
                             </div>
 
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="total_quantity">Total</label>
-                                <input type="text" id="total" class="form-control" readonly>
+                                <input type="text" id="total" class="form-control" >
                             </div>
 
                         </div>

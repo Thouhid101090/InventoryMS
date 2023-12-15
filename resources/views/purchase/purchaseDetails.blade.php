@@ -20,8 +20,9 @@
         </thead>
         <tbody>
             @foreach ($purchase as $pur)
-                @foreach ($products as $p)
-                  @foreach ($pur->details as $detail)
+            @if ($pur->supplier)
+                @foreach ($pur->details ?? [] as $detail)
+                    @if ($detail->product)
                         <tr>
                             <td>{{ $pur->supplier->name }}</td>
                             <td>{{ $detail->product->product_name }}</td>
@@ -31,9 +32,10 @@
                             <td>{{ $detail->tax }}</td>
                             <td>{{ $detail->total_amount }}</td>
                         </tr>
-                  @endforeach
+                    @endif
                 @endforeach
-            @endforeach
+            @endif
+        @endforeach
         </tbody>
     </table>
 @endsection
