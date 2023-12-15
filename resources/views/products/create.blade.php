@@ -33,7 +33,7 @@
                     <div class="card-header">Product Image</div>
                     <div class="card-body text-center">
                         <!-- Product image -->
-                        <img class="img-account-profile mb-2" src="{{ asset('assets/img/products/default.webp') }}" alt="" id="image-preview" />
+                        <img class="img-account-profile mb-2" src="{{ asset('public/assets/img/products/default.webp') }}" alt="" id="image-preview" />
                         <!-- Product image help block -->
                         <div class="small font-italic text-muted mb-2">JPG or PNG no larger than 2 MB</div>
                         <!-- Product image input -->
@@ -137,7 +137,7 @@
 @endsection
 
 @push('page-scripts')
-    <script src="{{ asset('assets/js/img-preview.js') }}"></script>
+    <script src="{{ asset('public/assets/js/img-preview.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 @endpush
 

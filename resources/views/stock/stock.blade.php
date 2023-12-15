@@ -7,6 +7,9 @@
             color: black;
             font-weight: 900;
         }
+        .table th, .table td{
+            padding: .7rem;
+        }
    </style>
 @endpush
 

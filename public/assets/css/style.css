@@ -20,3 +20,13 @@ header{
 .btn i{
     padding: 0px;
 }
+.img-account-profile {
+    height: 10rem;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem !important;
+}
+img, svg {
+    vertical-align: middle;
+}

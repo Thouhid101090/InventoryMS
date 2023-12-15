@@ -15,7 +15,6 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
                     </h2>
                 </div>
             </div>
-
             {{-- @include('partials._breadcrumbs') --}}
         </div>
     </div>
@@ -31,11 +30,13 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
                     <div class="card-header">Profile Picture</div>
                     <div class="card-body text-center">
                         <!-- Profile picture image -->
-                        <img class="img-account-profile rounded-circle mb-2" src="{{ asset('assets/img/demo/user-placeholder.svg') }}" alt="" id="image-preview" />
+                        <img class="img-account-profile rounded-circle mb-2" src="{{ asset('public/assets/img/demo/user-placeholder.svg') }}" 
+                        alt="" id="image-preview" />
                         <!-- Profile picture help block -->
                         <div class="small font-italic text-muted mb-2">JPG or PNG no larger than 1 MB</div>
                         <!-- Profile picture input -->
-                        <input class="form-control form-control-solid mb-2 @error('photo') is-invalid @enderror" type="file"  id="image" name="image" accept="image/*" onchange="previewImage();">
+                        <input class="form-control form-control-solid mb-2 @error('photo') is-invalid @enderror" type="file"
+                          id="image" name="image" accept="image/*" onchange="previewImage();">
                         @error('photo')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -178,5 +179,5 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
 @endsection
 
 @push('page-scripts')
-    <script src="{{ asset('assets/js/img-preview.js') }}"></script>
+    <script src="{{ asset('public/assets/js/img-preview.js') }}"></script>
 @endpush

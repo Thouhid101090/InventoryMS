@@ -67,7 +67,7 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
                                 <option value="">Select Role</option>
                                 @forelse ($role as $r )
                                 <option value="{{$r->id}}" {{old('roleId',$user->
-                                    role_id)==$r->id?'selected':''}}>{{$r->type}}</option>
+                                    role_id)==$r->id?'selected':''}}>{{$r->name}}</option>
                                 @empty
                                 <option value="">No Role Found</option>
                                 @endforelse
