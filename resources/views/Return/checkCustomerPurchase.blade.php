@@ -89,44 +89,58 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
-            $(function() {
-                $("#item_search").autocomplete({
-                    source: function(request, response) {
+          $(function() {
+    $("#item_search").autocomplete({
+        source: function(request, response) {
+            $.ajax({
+                url: "{{ route('autocomplete') }}",
+                data: {
+                    term: request.term
+                },
+                success: function(data) {
+                    response(data);
+                }
+            });
+        },
+        minLength: 1,
+        select: function(event, ui) {
+            $.ajax({
+                url: "{{ route('get.data') }}",
+                data: {
+                    reference_no: ui.item.value
+                },
+                success: function(data) {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        // Populate data from the sale
+                        $('#customer_id').val(data.customer_id);
+                        $('#sales_date').val(data.sales_date);
+                        $('#total_quantity').val(data.total_quantity);
+                        $('#total').val(data.total);
+
+                        // Now make a separate call to retrieve product data
                         $.ajax({
-                            url: "{{ route('autocomplete') }}",
+                            url: "{{ route('get.product') }}",
                             data: {
-                                term: request.term
+                                sales_id: data.sales_id
                             },
-                            success: function(data) {
-                                response(data);
-                            }
-                        });
-                    },
-                    minLength: 2,
-                    select: function(event, ui) {
-                        $.ajax({
-                            url: "{{ route('get.data') }}",
-                            data: {
-                                reference_no: ui.item.value
-                            },
-                            success: function(data) {
-                                if (data.error) {
-                                    alert(data.error);
+                            success: function(productData) {
+                                if (productData.error) {
+                                    alert(productData.error);
                                 } else {
-                                    console.log(data);
-
-                                    $('#customer_id').val(data.customer_id);
-                                    // $('#product').val(data.sales_id);
-                                    $('#sales_date').val(data.sales_date);
-                                    $('#total_quantity').val(data.total_quantity);
-                                    $('#total').val(data.total);
-
+                                    // Populate product data
+                                    $('#product').val(data.product);
                                 }
                             }
                         });
                     }
-                });
+                }
             });
+        }
+    });
+});
+
         </script>
     @endpush
 @endsection

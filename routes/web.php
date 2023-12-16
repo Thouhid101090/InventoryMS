@@ -43,6 +43,7 @@ Route::middleware(['checkauth'])->prefix('admin')->group(function(){
 Route::get('/autocomplete', [ReturnFromCustomerController::class,'autocomplete'])->name('autocomplete');
 // Add this route to your web.php
 Route::get('/get-data', [ReturnFromCustomerController::class,'getData'])->name('get.data');
+Route::get('/get-product', [ReturnFromCustomerController::class,'getData'])->name('get.product');
 
 
 });
