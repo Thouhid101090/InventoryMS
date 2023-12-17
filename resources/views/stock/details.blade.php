@@ -26,7 +26,7 @@
         <div class="card-body">
             <div class="row mx-n4">
                 <div class="col-lg-12 card-header mt-n4">
-                    <form action="{{ route('stock.details',$stock->product_id)}}" method="GET">
+                    <form action="{{ route('stock.details',$product_id)}}" method="GET">
                         <div class="d-flex flex-wrap align-items-center justify-content-between">
                             <div class="form-group row align-items-center">
                                 <label for="row" class="col-auto">Row:</label>
@@ -62,16 +62,78 @@
                         <table class="table table-striped align-middle">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">{{__('No.')}}</th>
-                                    <th scope="col">{{__('Date')}}</th>
-                                    <th scope="col">{{__('Sales')}}</th>
-                                    <th scope="col">{{__('Purchase')}}</th>
-
+                                    <th rowspan="2">{{__('No.')}}</th>
+                                    <th rowspan="2">{{__('Date')}}</th>
+                                    <th colspan="3">{{__('Purchase')}}</th>
+                                    <th colspan="3">{{__('Sales')}}</th>
+                                    <th colspan="2">{{__('Balance')}}</th>
+                                </tr>
+                                <tr>
+                                    <th>{{__('Qty')}}</th>
+                                    <th>{{__('Price')}}</th>
+                                    <th>{{__('Total')}}</th>
+                                    <th>{{__('Qty')}}</th>
+                                    <th>{{__('Price')}}</th>
+                                    <th>{{__('Total')}}</th>
+                                    <th>{{__('Qty')}}</th>
+                                    <th>{{__('Total')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                               
+                                @php $total_sales=$total_purchase=$balance=0 @endphp
+                                @php $total_sales_qty=$total_purchase_qty=$balance_qty=0 @endphp
+
+                               @forelse ($stock as $st)
+                                <tr>
+                                    <td>{{++$loop->index}}</td>
+                                    <td>{{\Carbon\Carbon::parse($st['updated_at'])->format('M d Y')}}</td>
+                                    @if($st->purchase_id)
+                                        @php 
+                                            $total_purchase+=$st->unit_price * $st->quantity;
+                                            $total_purchase_qty+=$st->quantity;
+                                        @endphp
+                                        <td>{{$st->quantity}}</td>
+                                        <td>{{$st->unit_price}}</td>
+                                        <td>{{$st->unit_price * $st->quantity}}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{$balance_qty+=$st->quantity}}</td>
+                                        <td>{{$balance+=($st->unit_price * $st->quantity)}}</td>
+                                        <td></td>
+                                    @elseif($st->sales_id)
+                                        @php 
+                                            $total_sales+=$st->unit_price * abs($st->quantity);
+                                            $total_sales_qty+=abs($st->quantity);
+                                        @endphp
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{abs($st->quantity)}}</td>
+                                        <td>{{$st->unit_price}}</td>
+                                        <td>{{$st->unit_price * abs($st->quantity)}}</td>
+                                        <td>{{$balance_qty+=$st->quantity}}</td>
+                                        <td>{{$balance+=($st->unit_price * $st->quantity)}}</td>
+                                        <td></td>
+                                    @endif
+                                </tr>
+                               @empty
+                                   
+                               @endforelse
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="2" class="text-end">Total</th>
+                                    <th>{{$total_purchase_qty}}</th>
+                                    <th></th>
+                                    <th>{{$total_purchase}}</th>
+                                    <th>{{$total_sales_qty}}</th>
+                                    <th></th>
+                                    <th>{{$total_sales}}</th>
+                                    <th>{{$balance_qty}}</th>
+                                    <th>{{$balance}}</th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>

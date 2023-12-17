@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sale;
 use App\Models\SalesDetails;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ReturnFromCustomer;
 
@@ -24,26 +25,25 @@ public function getData(Request $request)
   
     
     if ($sale) {
-       
-            $data = [
-                'customer_id' => $sale->customer->name,             
-                'sales_date' => $sale->sales_date,
-                'total_quantity' => $sale->total_quantity,
-                'total' => $sale->grand_total,
-                'other_charge' => $sale->other_charge,
-              
-                
-            ];     
-            return response()->json($data);
-
+        $products=array();
+        foreach($sale->details as $sd){
+            $product=Product::find($sd->product_id);
+            $products[]=array('quantity'=>$sd->quantity,'unit_price'=>$sd->unit_price,'id'=>$product->id,'product_name'=>$product->product_name);
         }
+
+        $data = [
+            'customer_id' => $sale->customer->name,             
+            'sales_date' => $sale->sales_date,
+            'products' => $products
+        ];     
+        return response()->json($data);
+
+    }
     return response()->json(['error' => 'No data found for the given reference number']);
 }
 public function getProduct(Request $request)
 {
-    $sd = SalesDetails::where('sales_id', $request->sales_id)->first();
-  
-    
+    $sd = SalesDetails::where('sales_id', $request->sales_id)->get();
     if ($sd) {
        
             $data = [

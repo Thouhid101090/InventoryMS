@@ -4,7 +4,6 @@ namespace App\Models;
 // use app\Models\Category;
 use App\Models\Sale;
 
-use App\Models\Product;
 use App\Models\Category;
 use App\Models\Supplier;
 use App\Models\SalesDetails;

@@ -44,7 +44,9 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="product">Product:</label>
-                                <input type="text" id="product" class="form-control" >
+                                <select id="product" class="form-control" onchange="check_data(this)" >
+                                    <option value="">Select Product</option>
+                                </select>
                             </div>
 
                         </div>
@@ -54,7 +56,6 @@
                                 <label for="sales_date">Sales Date:</label>
                                 <input type="text" id="sales_date" class="form-control" >
                             </div>
-
                         </div>
 
                         <div class="col-md-4">
@@ -66,7 +67,14 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="total_quantity">Total</label>
+                                <label for="total_quantity">Unit Price</label>
+                                <input type="text" id="unit_price" readonly class="form-control" >
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="total_quantity">Unit Price</label>
                                 <input type="text" id="total" class="form-control" >
                             </div>
 
@@ -116,31 +124,28 @@
                         // Populate data from the sale
                         $('#customer_id').val(data.customer_id);
                         $('#sales_date').val(data.sales_date);
-                        $('#total_quantity').val(data.total_quantity);
-                        $('#total').val(data.total);
-
-                        // Now make a separate call to retrieve product data
-                        $.ajax({
-                            url: "{{ route('get.product') }}",
-                            data: {
-                                sales_id: data.sales_id
-                            },
-                            success: function(productData) {
-                                if (productData.error) {
-                                    alert(productData.error);
-                                } else {
-                                    // Populate product data
-                                    $('#product').val(data.product);
-                                }
-                            }
-                        });
+                        let product=`<option value="" key="">Select Product</option>`;
+                        for (var pro of data.products){
+                            product+=`<option data-price="${pro.unit_price}" data-qty="${pro.quantity}" value="${pro.quantity}" key="">${pro.product_name}</option>`;
+                        }
+                        $('#product').html(product);
+                        // $('#total_quantity').val(data.total_quantity);
+                        // $('#total').val(data.total);
+                        // $('#product').val(data.product);
+                        console.log(data);
+                        
                     }
                 }
             });
         }
     });
 });
-
+function check_data(e){
+    unit_price=$(e).find('option:selected').data('price')
+    $('#unit_price').val(unit_price);
+    qty=$(e).find('option:selected').data('qty')
+   
+}
         </script>
     @endpush
 @endsection
