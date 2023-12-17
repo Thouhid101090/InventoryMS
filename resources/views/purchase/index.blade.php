@@ -101,7 +101,7 @@
                                                Inv
                                             </a>
 
-                                            <a href="{{ route('purchase.show', $p->id) }}" class="btn btn-outline-success btn-sm mx-1"><i class="mdi mdi-eye"></i></a>
+                                            <a href="{{ route('purchase.show',encrypt($p->id)) }}" class="btn btn-outline-success btn-sm mx-1"><i class="mdi mdi-eye"></i></a>
 
                                             <a href="{{ route('purchase.edit', $p->id)}}" class="btn btn-outline-primary btn-sm mx-1"><i class="mdi mdi-border-color"></i></a>
 

@@ -41,19 +41,19 @@ public function getData(Request $request)
     }
     return response()->json(['error' => 'No data found for the given reference number']);
 }
-public function getProduct(Request $request)
-{
-    $sd = SalesDetails::where('sales_id', $request->sales_id)->get();
-    if ($sd) {
+// public function getProduct(Request $request)
+// {
+//     $sd = SalesDetails::where('sales_id', $request->sales_id)->get();
+//     if ($sd) {
        
-            $data = [
-                'product'=>$sd->product_id            
-            ];     
-            return response()->json($data);
+//             $data = [
+//                 'product'=>$sd->product_id            
+//             ];     
+//             return response()->json($data);
 
-        }
-    return response()->json(['error' => 'No data found for the given reference number']);
-}
+//         }
+//     return response()->json(['error' => 'No data found for the given reference number']);
+// }
     
 
     public function index()

@@ -57,7 +57,7 @@ class SaleController extends Controller
             $data.='<td class="p-2"><input onkeyup="get_cal(this)" name="discount[]" type="text" class="form-control discount" value="0"></td>';
             $data.='<td class="p-2"><input name="unit_cost[]" readonly type="text" class="form-control unit_cost" value="0"></td>';
             $data.='<td class="p-2"><input name="subtotal[]" readonly type="text" class="form-control subtotal" value="0"></td>';
-            $data.='<td class="p-2 text-danger"><i style="font-size:1.7rem" onclick="removerow(this)" class="fa fa-dash-circle-fill"></i></td>';
+            $data.='<td class="p-2 text-danger"><i style="font-size:1.7rem" onclick="removerow(this)" class="mdi mdi-help-circle"></i></td>';
             $data.='</tr>';
 
             print_r(json_encode($data));
@@ -127,10 +127,7 @@ class SaleController extends Controller
 
     public function show(Sale $id)
     {
-        $sales = Sale::with('details')->get();
-        $products = Sale::with('details')->get();
-
-         return view('sale.salesDetails', compact('sales','products'));
+       
     }
 
     public function edit(Sale $id)
@@ -176,5 +173,15 @@ class SaleController extends Controller
         $sale = Sale::find($id);
         return view('sale.invoice', compact('saleDetails', 'sale'));
     }
+
+
+public function showDetails($id)
+{
+    $sales = Sale::with('details.product')->findOrFail(decrypt($id));
+    // $products = Sale::with('details')->get();
+    // $sales = Sale::findOrFail(decrypt($id)); 
+    return view('sale.salesDetails', compact('sales'));
+}
+
     
     }

@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
-@push('page-styles')
-    {{--- ---}}
+@push('page-styles')\
+<style>
+table, th, td {
+    border: 2px solid black;
+  }
+</style>
 @endpush
 
 @section('content')
@@ -59,14 +63,20 @@
 
                 <div class="col-lg-12">
                     <div class="table-responsive">
-                        <table class="table table-striped align-middle">
+                        <table class="table table-striped align-middle text-center">
+                            <colgroup>
+                                <col span="2" style="background-color: #fff">
+                                <col span="3" style="background-color: #b3d2d2">
+                                <col span="3" style="background-color: #9ce3e3">
+                                <col span="2" style="background-color: #779090">
+                            </colgroup>
                             <thead class="thead-light">
                                 <tr>
                                     <th rowspan="2">{{__('No.')}}</th>
                                     <th rowspan="2">{{__('Date')}}</th>
-                                    <th colspan="3">{{__('Purchase')}}</th>
-                                    <th colspan="3">{{__('Sales')}}</th>
-                                    <th colspan="2">{{__('Balance')}}</th>
+                                    <th class="text-center" colspan="3">{{__('Purchase')}}</th>
+                                    <th class="text-center"  colspan="3">{{__('Sales')}}</th>
+                                    <th class="text-center"   colspan="2">{{__('Balance')}}</th>
                                 </tr>
                                 <tr>
                                     <th>{{__('Qty')}}</th>
@@ -121,9 +131,10 @@
                                    
                                @endforelse
                             </tbody>
+                            
                             <tfoot>
                                 <tr>
-                                    <th colspan="2" class="text-end">Total</th>
+                                    <th colspan="2" class="text-center">Total</th>
                                     <th>{{$total_purchase_qty}}</th>
                                     <th></th>
                                     <th>{{$total_purchase}}</th>

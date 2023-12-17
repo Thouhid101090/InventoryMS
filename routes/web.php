@@ -83,8 +83,10 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function(){
 
      //Route Sales
      Route::resource('sale', SaleController::class);
+     Route::get('sale/show-details/{id}',[SaleController::class,'showDetails'])->name('sale.show-details');
      Route::get('/sale-report', [ReportController::class, 'generateSaleReport'])->name('sale-report.generate');
      Route::post('/sale-report', [ReportController::class, 'generateSaleReport']);
+     
 
      //Route stock
      Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
