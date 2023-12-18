@@ -102,7 +102,7 @@ use App\Http\Controllers\PermissionController as permission;
     Route::resource('supplierPayment',SupplierPaymentController::class);
     Route::resource('customerPayment',CustomerPaymentController::class);
 
-    // routes/web.php
+    // return
 
     Route::resource('return',ReturnFromCustomerController::class);
     Route::resource('supplierReturn',ReturnToSupplierController::class);

@@ -11,13 +11,10 @@
                         Return Product Check To Supplier
                     </h2>
                 </div>
-
             </div>
-
             {{-- @include('partials._breadcrumbs') --}}
         </div>
     </div>
-
     {{-- @include('partials.session') --}}
 </header>
 <div class="container  mt-n10">
@@ -25,7 +22,6 @@
         <div class="col-md-10">
             <div class="card mb-4">
                 <div class="card-body">
-
                     <form action="" method="post">
                         @csrf
                         <div class="form-group col-md-6 offset-md-3">
@@ -80,13 +76,8 @@
 
                             </div>
                         </div>
-
-
-
-
                         <button type="button" class="btn btn-primary">Submit</button>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -119,10 +110,8 @@
             }
         });
 
-
-
     $(function() {
-    $("#item_search").autocompleteS({
+    $("#item_search").autocomplete({
 
         source: function(request, response) {
             $.ajax({
@@ -139,7 +128,7 @@
         minLength: 1,
         select: function(event, ui) {
             $.ajax({
-                url: "{{ route('get.data.supplier') }}",
+                url: "{{ route('get.data.supplier')}}",
                 data: {
                     reference_no: ui.item.value
                 },
@@ -147,7 +136,7 @@
                     if (data.error) {
                         alert(data.error);
                     } else {
-                        // Populate data from the sale
+                     
                         $('#supplier_id').val(data.supplier_id);
                         $('#purchase_date').val(data.purchase_date);
                         let product=`<option value="" key="">Select Product</option>`;

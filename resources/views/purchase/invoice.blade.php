@@ -48,8 +48,8 @@
                 <td>{{ $pd->product->product_name }}</td>
                 <td>{{ $pd->quantity }}</td>
                 <td>{{ $pd->unit_price }}</td>
-                <td>{{ $pd->tax }}</td>
-                <td>{{ $pd->discount }}</td>
+                <td>{{ $pd->tax }} {{ $pd->discount_type==0?"%":"BDT"}}</td>
+                <td>{{ $pd->discount }} {{ $pd->discount_type==0?"%":"BDT"}}</td>
                 <td>{{ $pd->sub_amount }}</td>
             </tr>
         @endforeach

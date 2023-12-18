@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ReturnToSupplier;
+use Exception;
+use App\Models\Product;
+use App\Models\Purchase;
 use Illuminate\Http\Request;
+use App\Models\PurchaseDetails;
 
 class ReturnToSupplierController extends Controller
 {
@@ -11,6 +14,7 @@ class ReturnToSupplierController extends Controller
 
     public function autocompleteS(Request $request)
     {
+      
         $referenceNumbers = Purchase::where('reference_no', 'like', '%' . $request->term . '%')
             ->pluck('reference_no');
 
@@ -19,9 +23,8 @@ class ReturnToSupplierController extends Controller
 
     public function getDataS(Request $request)
     {
+        
         $purchase = Purchase::where('reference_no', $request->reference_no)->first();
-
-
         if ($purchase) {
             $products=array();
             foreach($purchase->pdetails as $sd){
@@ -31,7 +34,7 @@ class ReturnToSupplierController extends Controller
 
             $data = [
                 'supplier_id' => $purchase->supplier->name,
-                'prchase_date' => $purchase->purchase_date,
+                'purchase_date' => $purchase->purchase_date,
                 'products' => $products
             ];
             return response()->json($data);
