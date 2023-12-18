@@ -10,7 +10,7 @@
                         <h2 class="page-header-title d-flex">
                             <i class="menu-icon mdi mdi-clipboard-text me-2"></i>
                             <b>Sales Report</b>
-                            
+
                         </h2>
                     </div>
                 </div>
@@ -25,23 +25,23 @@
                 <div class="row mx-n4">
                     <div class="col-lg-12 card-header mt-n4">
                         <form action="{{ route('sale-report.generate') }}" method="post">
-                           
+
                                 @csrf
-        
+
                                 <div class="d-flex flex-wrap align-items-center justify-content-between">
                                     {{-- <div class="row"> --}}
                                         {{-- <div class="form-group row align-items-center"> --}}
-        
+
                                             <div class="col-md-1">
                                                 <label for="from_date" class="col-auto">From Date:</label>
                                             </div>
                                             <div class="col-md-3">
                                                 <input class="form-control p-3" type="date" name="from_date"
                                                     value="{{ $fromDate ?? '' }}" required>
-        
+
                                             </div>
-        
-        
+
+
                                             <div class="col-md-1">
                                                 <label for="to_date" class="col-auto">To Date:</label>
                                             </div>
@@ -49,12 +49,12 @@
                                                 <input class="form-control p-3" type="date" name="to_date"
                                                 value="{{ $toDate ?? '' }}" required>
                                               </div>
-                                               
-                                           
+
+
                                             {{--
                                         </div> --}}
-        
-        
+
+
                                         <button class="col-md-2 btn btn-primary" type="submit">Generate Report</button>
                                     </div>
                                     {{-- </div> --}}
@@ -67,34 +67,27 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">{{__('No.')}}</th>
-                                        <th scope="col">{{__('Product Name')}}</th>
-                                        <th scope="col">{{__('Sale Date')}}</th>
                                         <th scope="col">{{__('Customer Name')}}</th>
+                                        <th scope="col">{{__('Entry Date')}}</th>
                                         <th scope="col">{{__('Quentity')}}</th>
-                                        <th scope="col">{{__('Unit Price')}}</th>
+                                        <th scope="col">{{__('Sub Price')}}</th>
                                         <th scope="col">{{__('Discount')}}</th>
-                                        <th scope="col">{{__('Discount Type')}}</th>
                                         <th scope="col">{{__('V.A.T')}}</th>
-                                        <th scope="col">{{__('Sub Total')}}</th>
                                         <th scope="col">{{__('Total')}}</th>
-
-
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($sales as $sd)
                                     <tr>
                                         <td>{{$sd->id}}</td>
-                                        <td></td>
-                                        <td>{{ $sd->sales_date }}</td>
                                         <td>{{ $sd->customer->name }}</td>
-                                        <td>{{ $sd->quantity }}</td>
-                                        <td>{{ $sd->unit_price}}</td>
-                                        <td>{{ $sd->discount}}</td>
-                                        <td>{{ $sd->discount_type}}</td>
+                                        <td>{{ $sd->sales_date }}</td>
+                                        <td>{{ $sd->total_quantity }}</td>
+                                        <td>{{ $sd->sub_amount}}</td>
+                                        <td>{{ $sd->discount}} {{ $sd->discount_type==0?"%":"BDT"}}</td>
                                         <td>{{ $sd->tax}}</td>
-                                        <td></td>
-                                        <td>{{ $sd->total_amount}}</td>
+
+                                        <td>{{ $sd->grand_total}}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

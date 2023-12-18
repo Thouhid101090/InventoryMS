@@ -46,8 +46,8 @@
                                         <input class="form-control p-3" type="date" name="to_date"
                                         value="{{ $toDate ?? '' }}" required>
                                       </div>
-                                       
-                                   
+
+
                                     {{--
                                 </div> --}}
 
@@ -81,9 +81,9 @@
                                     <td>{{ $sd->purchase_date }}</td>
                                     <td>{{ $sd->total_quantity }}</td>
                                     <td>{{ $sd->sub_amount}}</td>
-                                    <td>{{ $sd->discount}} {{ $sd->discount_type==1?"%":"BDT"}}</td>
+                                    <td>{{ $sd->discount}} {{ $sd->discount_type==0?"%":"BDT"}}</td>
                                     <td>{{ $sd->tax}}</td>
-                                    <td>{{ $sd->total_amount}}</td>
+                                    <td>{{ $sd->grand_total}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

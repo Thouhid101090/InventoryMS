@@ -42,9 +42,9 @@ class Purchase extends Model
 
 
     public function pdetails(){
-        return $this->hasMany(PurchaseDetails::class);
+        return $this->hasMany(PurchaseDetails::class,'purchase_id','id');
     }
-    
+
 
 
 }

@@ -14,6 +14,7 @@ use App\Http\Controllers\RoleController as role;
 use App\Http\Controllers\UserController as user;
 use App\Http\Controllers\CustomerPaymentController;
 use App\Http\Controllers\SupplierPaymentController;
+use App\Http\Controllers\ReturnToSupplierController;
 use App\Http\Controllers\ReturnFromCustomerController;
 use App\Http\Controllers\CustomerController as customers;
 use App\Http\Controllers\AuthenticationController as auth;
@@ -23,32 +24,37 @@ use App\Http\Controllers\PermissionController as permission;
 
 
 // Route Authentication
-Route::get('/register',[auth::class,'signUpForm'])->name('register');
-Route::post('/register',[auth::class,'signUpstore'])->name('register.store');
-Route::get('/login',[auth::class,'signinForm'])->name('login');
-Route::post('/login',[auth::class,'signInCheck'])->name('login.check');
-Route::get('/logout',[auth::class,'singOut'])->name('logOut');
-
-Route::middleware(['checkauth'])->prefix('admin')->group(function(){
+    Route::get('/register',[auth::class,'signUpForm'])->name('register');
+    Route::post('/register',[auth::class,'signUpstore'])->name('register.store');
+    Route::get('/login',[auth::class,'signinForm'])->name('login');
+    Route::post('/login',[auth::class,'signInCheck'])->name('login.check');
+    Route::get('/logout',[auth::class,'singOut'])->name('logOut');
+// checkauth middleware group start
+    Route::middleware(['checkauth'])->prefix('admin')->group(function(){
 
     Route::get('dashboard', [dashboard::class,'index'])->name('dashboard');
+    //Route search product for purchase
     Route::get('/product_search', [PurchaseController::class,'product_search'])->name('pur.product_search');
     Route::get('/product_search_data', [PurchaseController::class,'product_search_data'])->name('pur.product_search_data');
+    //Route search product for sale
     Route::get('/product_search_sales', [SaleController::class,'product_search_data'])->name('sales.product_search_data');
     Route::get('/check_stock', [SaleController::class,'check_stock'])->name('sales.check_stock');
 
-    Route::get('/sales_ref_search', [ReturnFromCustomerController::class,'sales_ref_data'])->name('return.sales_ref_data');
-    Route::get('/ref_search', [ReturnFromCustomerController::class,'ref_search'])->name('return.ref_search');
-    // Add this route to your web.php
-Route::get('/autocomplete', [ReturnFromCustomerController::class,'autocomplete'])->name('autocomplete');
-// Add this route to your web.php
-Route::get('/get-data', [ReturnFromCustomerController::class,'getData'])->name('get.data');
-Route::get('/get-product', [ReturnFromCustomerController::class,'getData'])->name('get.product');
+    // return product from customer check
+
+    Route::get('/autocomplete', [ReturnFromCustomerController::class,'autocomplete'])->name('autocomplete.customer');
+    Route::get('/get-data', [ReturnFromCustomerController::class,'getData'])->name('get.data.customer');
+
+ // return product to supplier check
+
+    Route::get('/autocomplete-s', [ReturnToSupplierController::class,'autocompleteS'])->name('autocomplete.supplier');
+    Route::get('/get-data-s', [ReturnToSupplierController::class,'getDataS'])->name('get.data.supplier');
 
 
 });
+// checkauth middleware group end
 
-Route::middleware(['checkrole'])->prefix('admin')->group(function(){
+    Route::middleware(['checkrole'])->prefix('admin')->group(function(){
     Route::resource('user', user::class);
     Route::resource('role', role::class);
     Route::resource('categories', CategoryController::class);
@@ -86,7 +92,7 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function(){
      Route::get('sale/show-details/{id}',[SaleController::class,'showDetails'])->name('sale.show-details');
      Route::get('/sale-report', [ReportController::class, 'generateSaleReport'])->name('sale-report.generate');
      Route::post('/sale-report', [ReportController::class, 'generateSaleReport']);
-     
+
 
      //Route stock
      Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
@@ -99,6 +105,7 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function(){
     // routes/web.php
 
     Route::resource('return',ReturnFromCustomerController::class);
+    Route::resource('supplierReturn',ReturnToSupplierController::class);
 
 });
 

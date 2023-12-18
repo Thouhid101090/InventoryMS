@@ -6,7 +6,7 @@
           <span class="menu-title"><b>Dashboard</b></span>
         </a>
       </li>
-    
+
 
       <li class="nav-item">
         <a class="nav-link" href="{{route('sale.index')}}">
@@ -21,7 +21,7 @@
         </a>
       </li>
 
-      
+
 
 
 
@@ -85,7 +85,13 @@
       <li class="nav-item">
         <a class="nav-link" href="{{route('return.create')}}">
           <i class="menu-icon mdi mdi-undo-variant"></i>
-          <span class="menu-title"><b>Return Check</b></span>
+          <span class="menu-title"><b>Customer Return Check</b></span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('supplierReturn.create')}}">
+          <i class="menu-icon mdi mdi-undo-variant"></i>
+          <span class="menu-title"><b>Supplier Return Check</b></span>
         </a>
       </li>
       <li class="nav-item">

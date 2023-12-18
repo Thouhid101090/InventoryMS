@@ -22,8 +22,8 @@ public function autocomplete(Request $request)
 public function getData(Request $request)
 {
     $sale = Sale::where('reference_no', $request->reference_no)->first();
-  
-    
+
+
     if ($sale) {
         $products=array();
         foreach($sale->details as $sd){
@@ -32,29 +32,15 @@ public function getData(Request $request)
         }
 
         $data = [
-            'customer_id' => $sale->customer->name,             
+            'customer_id' => $sale->customer->name,
             'sales_date' => $sale->sales_date,
             'products' => $products
-        ];     
+        ];
         return response()->json($data);
 
     }
     return response()->json(['error' => 'No data found for the given reference number']);
 }
-// public function getProduct(Request $request)
-// {
-//     $sd = SalesDetails::where('sales_id', $request->sales_id)->get();
-//     if ($sd) {
-       
-//             $data = [
-//                 'product'=>$sd->product_id            
-//             ];     
-//             return response()->json($data);
-
-//         }
-//     return response()->json(['error' => 'No data found for the given reference number']);
-// }
-    
 
     public function index()
      {
@@ -71,7 +57,7 @@ public function getData(Request $request)
      */
     public function store(Request $request)
     {
-       
+
     }
     public function show(ReturnFromCustomer $returnFromCustomer)
     {

@@ -127,7 +127,7 @@ class SaleController extends Controller
 
     public function show(Sale $id)
     {
-       
+
     }
 
     public function edit(Sale $id)
@@ -178,10 +178,8 @@ class SaleController extends Controller
 public function showDetails($id)
 {
     $sales = Sale::with('details.product')->findOrFail(decrypt($id));
-    // $products = Sale::with('details')->get();
-    // $sales = Sale::findOrFail(decrypt($id)); 
     return view('sale.salesDetails', compact('sales'));
 }
 
-    
+
     }

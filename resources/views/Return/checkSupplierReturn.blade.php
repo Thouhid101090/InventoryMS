@@ -8,7 +8,7 @@
                 <div class="col-auto">
                     <h2 class="page-header-title d-flex">
                         <i class="menu-icon mdi mdi-undo-variant me-2"></i>
-                        Return Product Check From Customer
+                        Return Product Check To Supplier
                     </h2>
                 </div>
 
@@ -36,8 +36,8 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="customer_id">Customer:</label>
-                                    <input type="text" id="customer_id" class="form-control">
+                                    <label for="supplier_id">Supplier:</label>
+                                    <input type="text" id="supplier_id" class="form-control">
                                 </div>
 
                             </div>
@@ -53,8 +53,8 @@
 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="sales_date">Sales Date:</label>
-                                    <input type="text" id="sales_date" class="form-control">
+                                    <label for="purchase_date">Purchase Date:</label>
+                                    <input type="text" id="purchase_date" class="form-control">
                                 </div>
                             </div>
 
@@ -67,14 +67,14 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="total_quantity">Unit Price</label>
+                                    <label for="unit_price">Unit Price</label>
                                     <input type="text" id="unit_price" readonly class="form-control">
                                 </div>
 
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="total_quantity">Unit Price</label>
+                                    <label for="total">Total</label>
                                     <input type="text" id="total" class="form-control">
                                 </div>
 
@@ -98,8 +98,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         $(document).ready(function () {
-
-
             $('#total_quantity').on('input', function () {
                 var selectedProductQty = $('#product').find('option:selected').data('qty');
                 var returnedQty = parseInt($(this).val()) || 0;
@@ -124,11 +122,12 @@
 
 
     $(function() {
-    $("#item_search").autocomplete({
+    $("#item_search").autocompleteS({
 
         source: function(request, response) {
             $.ajax({
-                url: "{{ route('autocomplete.customer') }}",
+
+                url: "{{ route('autocomplete.supplier') }}",
                 data: {
                     term: request.term
                 },
@@ -140,7 +139,7 @@
         minLength: 1,
         select: function(event, ui) {
             $.ajax({
-                url: "{{ route('get.data.customer') }}",
+                url: "{{ route('get.data.supplier') }}",
                 data: {
                     reference_no: ui.item.value
                 },
@@ -149,8 +148,8 @@
                         alert(data.error);
                     } else {
                         // Populate data from the sale
-                        $('#customer_id').val(data.customer_id);
-                        $('#sales_date').val(data.sales_date);
+                        $('#supplier_id').val(data.supplier_id);
+                        $('#purchase_date').val(data.purchase_date);
                         let product=`<option value="" key="">Select Product</option>`;
                         for (var pro of data.products){
                             product+=`<option data-price="${pro.unit_price}" data-qty="${pro.quantity}" value="${pro.quantity}" key="">${pro.product_name}</option>`;

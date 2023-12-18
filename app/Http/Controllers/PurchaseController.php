@@ -146,19 +146,18 @@ class PurchaseController extends Controller
      */
     public function show(string $id)
     {
-        $purchase = Purchase::with('pdetails')->get();
-        $products = Purchase::with('pdetails')->get();
 
-         return view('purchase.purchaseDetails', compact('purchase','products'));
-    }
-    
+         $purchase = Purchase::with('pdetails.product')->findOrFail(decrypt($id));
+         return view('purchase.purchaseDetails', compact('purchase'));
+        }
+
 
     public function showStock(string $id)
     {
-                            $stock=new Stock;
-                            $stock->product_id=$product_name;
-                            $stock->quantity=$pd->quantity;
-                            $stock->unit_price=($pd->total_amount / $pd->quantity);
+        $stock=new Stock;
+        $stock->product_id=$product_name;
+        $stock->quantity=$pd->quantity;
+        $stock->unit_price=($pd->total_amount / $pd->quantity);
 
 
     }
@@ -172,7 +171,7 @@ class PurchaseController extends Controller
         $purchase=Purchase::find($id);
         return view('purchase.edit',compact('purchase'));
     }
-   
+
     /**
      * Update the specified resource in storage.
      */

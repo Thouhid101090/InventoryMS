@@ -31,7 +31,7 @@
                 <th>Customer</th>
                 <th>Product</th>
                 <th>quantity</th>
-                <th>Price(per product)</th>
+                <th>Price</th>
                 <th>Sub Total</th>
                 <th>VAT</th>
                 <th>Total</th>
@@ -46,7 +46,7 @@
                     <td>{{ $detail->quantity }}</td>
                     <td>{{ $detail->unit_price }}</td>
                     <td>{{ $detail->sub_amount }}</td>
-                    <td>{{ $detail->tax }}</td>
+                    <td>{{ $detail->tax }} {{$detail->di_type}}</td>
                     <td>{{ $detail->total_amount }}</td>
                 </tr>
             @endforeach
