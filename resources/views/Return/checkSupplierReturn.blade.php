@@ -22,18 +22,18 @@
         <div class="col-md-10">
             <div class="card mb-4">
                 <div class="card-body">
-                    <form action="" method="post">
+                    <form action="{{ route('return.store') }}" method="post" id="returnForm">
                         @csrf
                         <div class="form-group col-md-6 offset-md-3">
                             <label for="item_search">Reference Number:</label>
-                            <input type="text" id="item_search" class="form-control border-primary p-4"
+                            <input name="ref" type="text" id="item_search" class="form-control border-primary p-4"
                                 placeholder="Enter Reference Number">
                         </div>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="supplier_id">Supplier:</label>
-                                    <input type="text" id="supplier_id" class="form-control">
+                                    <input name="supName" type="text" id="supplier_id" class="form-control">
                                 </div>
 
                             </div>
@@ -76,7 +76,8 @@
 
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary">Submit</button>
+                        <input type="hidden" name="product_id" id="product_id">
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
@@ -87,8 +88,33 @@
 @push('page-scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-        $(document).ready(function () {
+<script>
+    $(document).ready(function () {
+            $('#returnForm').submit(function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Serialize the form data
+        var formData = $(this).serialize();
+
+        // Send the data to the server
+        $.ajax({
+            url: $(this).attr('action'),
+            method: 'POST',
+            data: formData,
+            success: function (response) {
+                // Handle the success response, if needed
+                console.log(response);
+            },
+            error: function (error) {
+                // Handle the error response, if needed
+                console.error(error);
+            }
+        });
+        $('#product').change(function () {
+        var selectedProductId = $(this).val();
+        $('#product_id').val(selectedProductId);
+    });
+    });
             $('#total_quantity').on('input', function () {
                 var selectedProductQty = $('#product').find('option:selected').data('qty');
                 var returnedQty = parseInt($(this).val()) || 0;
