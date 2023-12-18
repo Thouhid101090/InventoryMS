@@ -93,7 +93,7 @@
                                     <td>{{ $p->supplier->name }}</td>
                                     <td>{{ $p->reference_no}}</td>
                                     <td>{{ $p->sub_amount }}</td>
-                                    <td>{{ $p->discount }}</td>
+                                    <td>{{ $p->discount }} {{ $p->discount_type==0?"%":"BDT"}}</td>
                                     <td>{{ $p->grand_total }}</td>
                                     <td>
                                         <div class="d-flex">

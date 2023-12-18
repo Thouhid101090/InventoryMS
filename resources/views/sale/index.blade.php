@@ -86,7 +86,7 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{__('No.')}}</th>
-                                    <th scope="col">{{__('Customer Date')}}</th>
+                                    <th scope="col">{{__('Sale Date')}}</th>
                                     <th scope="col">{{__('Customer')}}</th>
                                     <th scope="col">{{__('Ref.No')}}</th>
                                     <th scope="col">{{__('Sub Amount')}}</th>
@@ -105,7 +105,7 @@
                                     <td>{{ $p->customer->name }}</td>
                                     <td>{{ $p->reference_no}}</td>
                                     <td>{{ $p->sub_amount }}</td>
-                                    <td>{{ $p->discount }}</td>
+                                    <td>{{ $p->discount }} {{ $p->discount_type==0?"%":"BDT"}}</td>
                                     <td>{{ $p->grand_total }}</td>
                                     <td>
                                         <div class="d-flex">

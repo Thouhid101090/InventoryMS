@@ -28,11 +28,12 @@
     <table>
         <thead>
             <tr>
-                <th>Customer</th>
+               
                 <th>Product</th>
                 <th>quantity</th>
                 <th>Price</th>
                 <th>Sub Total</th>
+                <th>Discount</th>
                 <th>VAT</th>
                 <th>Total</th>
 
@@ -41,12 +42,13 @@
         <tbody>
             @foreach ($sales->details as $detail)
                 <tr>
-                    <td>{{ $sales->customer->name }}</td>
+                   
                     <td>{{ $detail->product->product_name }}</td>
                     <td>{{ $detail->quantity }}</td>
                     <td>{{ $detail->unit_price }}</td>
                     <td>{{ $detail->sub_amount }}</td>
-                    <td>{{ $detail->tax }} {{$detail->di_type}}</td>
+                    <td>{{ $detail->discount }} {{ $detail->discount_type==0?"%":"BDT"}}</td>
+                    <td>{{ $detail->tax }} {{ $detail->discount_type==0?"%":"BDT"}}</td>
                     <td>{{ $detail->total_amount }}</td>
                 </tr>
             @endforeach
