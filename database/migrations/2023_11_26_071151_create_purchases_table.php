@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('supplier_id');
             $table->date('purchase_date');
-            $table->string('reference_no')->nullable();
+            $table->string('reference_no')->unique();
             $table->string('total_quantity');
             $table->decimal('sub_amount',10,2)->default(0);
             $table->decimal('tax',10,2)->default(0)->nullable();

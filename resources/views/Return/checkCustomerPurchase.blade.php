@@ -74,7 +74,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="total_quantity">Unit Price</label>
+                                    <label for="total_quantity">Total Price</label>
                                     <input type="text" id="total" class="form-control">
                                 </div>
 

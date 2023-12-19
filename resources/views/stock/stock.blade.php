@@ -23,7 +23,7 @@
                     <h2 class="page-header-title d-flex">
                         <i class="menu-icon mdi mdi-clipboard-text me-2"></i>
                         <b>Stock</b>
-                        
+
                     </h2>
                 </div>
             </div>
@@ -77,7 +77,6 @@
                                     <th scope="col">{{__('No.')}}</th>
                                     <th scope="col">{{__('Products')}}</th>
                                     <th scope="col">{{__('Quentity')}}</th>
-                                    <th scope="col">{{__('Stock Value')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -86,7 +85,6 @@
                                     <th scope="row">{{ ++$loop->index  }}</th>
                                     <td><a href="{{route('stock.details',$p->id)}}">{{ $p->product_name }}</a></td>
                                     <td>{{ $p->balance }}</td>
-                                    <td>{{ $p->stock_value }}</td>
 
                                 </tr>
                                 @endforeach

@@ -29,7 +29,7 @@ table, th, td {
     <div class="card mb-4">
         <div class="card-body">
             <div class="row mx-n4">
-                <div class="col-lg-12 card-header mt-n4">
+                {{-- <div class="col-lg-12 card-header mt-n4">
                     <form action="{{ route('stock.details',$product_id)}}" method="GET">
                         <div class="d-flex flex-wrap align-items-center justify-content-between">
                             <div class="form-group row align-items-center">
@@ -57,9 +57,9 @@ table, th, td {
                             </div>
                         </div>
                     </form>
-                </div>
+                </div> --}}
 
-                <hr>
+
 
                 <div class="col-lg-12">
                     <div class="table-responsive">
@@ -76,7 +76,7 @@ table, th, td {
                                     <th rowspan="2">{{__('Date')}}</th>
                                     <th class="text-center" colspan="3">{{__('Purchase')}}</th>
                                     <th class="text-center"  colspan="3">{{__('Sales')}}</th>
-                                    <th class="text-center"   colspan="2">{{__('Balance')}}</th>
+                                    <th class="text-center"   colspan="1">{{__('Balance')}}</th>
                                 </tr>
                                 <tr>
                                     <th>{{__('Qty')}}</th>
@@ -86,7 +86,6 @@ table, th, td {
                                     <th>{{__('Price')}}</th>
                                     <th>{{__('Total')}}</th>
                                     <th>{{__('Qty')}}</th>
-                                    <th>{{__('Total')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -96,11 +95,19 @@ table, th, td {
                                @forelse ($stock as $st)
                                 <tr>
                                     <td>{{++$loop->index}}</td>
-                                    <td>{{\Carbon\Carbon::parse($st['updated_at'])->format('M d Y')}}</td>
+                                    <td>
+                                        @if($st->sale)
+                                        {{\Carbon\Carbon::parse($st->sale->sales_date)->format('M d Y')}}
+                                        @elseif ($st->purchase)
+                                        {{\Carbon\Carbon::parse($st->purchase->purchase_date)->format('M d Y')}}
+                                        @else
+                                        @endif
+                                    </td>
                                     @if($st->purchase_id)
-                                        @php 
+                                        @php
                                             $total_purchase+=$st->unit_price * $st->quantity;
                                             $total_purchase_qty+=$st->quantity;
+                                            $balance+=($st->unit_price * $st->quantity);
                                         @endphp
                                         <td>{{$st->quantity}}</td>
                                         <td>{{$st->unit_price}}</td>
@@ -109,12 +116,13 @@ table, th, td {
                                         <td></td>
                                         <td></td>
                                         <td>{{$balance_qty+=$st->quantity}}</td>
-                                        <td>{{$balance+=($st->unit_price * $st->quantity)}}</td>
+
                                         <td></td>
                                     @elseif($st->sales_id)
-                                        @php 
+                                        @php
                                             $total_sales+=$st->unit_price * abs($st->quantity);
                                             $total_sales_qty+=abs($st->quantity);
+                                            $balance-=($st->unit_price * abs($st->quantity));
                                         @endphp
                                         <td></td>
                                         <td></td>
@@ -123,15 +131,15 @@ table, th, td {
                                         <td>{{$st->unit_price}}</td>
                                         <td>{{$st->unit_price * abs($st->quantity)}}</td>
                                         <td>{{$balance_qty+=$st->quantity}}</td>
-                                        <td>{{$balance+=($st->unit_price * $st->quantity)}}</td>
-                                        <td></td>
+
+
                                     @endif
                                 </tr>
                                @empty
-                                   
+
                                @endforelse
                             </tbody>
-                            
+
                             <tfoot>
                                 <tr>
                                     <th colspan="2" class="text-center">Total</th>
@@ -142,7 +150,7 @@ table, th, td {
                                     <th></th>
                                     <th>{{$total_sales}}</th>
                                     <th>{{$balance_qty}}</th>
-                                    <th>{{$balance}}</th>
+
                                 </tr>
                             </tfoot>
                         </table>

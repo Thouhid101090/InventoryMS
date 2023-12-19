@@ -6,13 +6,13 @@
         padding: 5px 3px;
     }
     .tbl-scroll td {
-        max-width: 150px; 
+        max-width: 150px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: normal;
         word-wrap: break-word;
     }
-   
+
 </style>
 
 
@@ -27,7 +27,7 @@
                 <div class="col-auto">
                     <h2 class="page-header-title">
                         <i class="menu-icon mdi mdi-cash-multiple"></i>
-                       <b>Add Purchase</b> 
+                       <b>Add Purchase</b>
                     </h2>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                                 <span class="text-danger"> {{ $errors->first('supplierName') }}</span>
                                 @endif
 
-                                
+
 
                                 <div class="col-md-2 mt-3">
                                     <label for="date" class="float-end"><h6>Date<span class="text-danger">*</span></h6></label>
@@ -76,7 +76,7 @@
                                     <label for="reference_no" class="float-end"><h6>Ref. No.<span class="text-danger">*</span></h6></label>
                                 </div>
                                 <div class="col-md-4 mt-2">
-                                    <input type="text" class="form-control p-2" value="{{ old('reference_no')}}" name="reference_no" required>
+                                    <input type="text" class="form-control p-2" value="{{ old('reference_no')}}" name="reference_no" >
                                 </div>
                             </div>
                             <div class="row m-3">

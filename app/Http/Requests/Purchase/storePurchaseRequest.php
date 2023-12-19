@@ -22,6 +22,7 @@ class storePurchaseRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'reference_no'=> 'required|unique:purchases,reference_no',
             'a'=> 'required',
             'total_qty'=> 'required'
         ];

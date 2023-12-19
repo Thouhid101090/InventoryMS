@@ -6,9 +6,7 @@
           <span class="menu-title"><b>Dashboard</b></span>
         </a>
       </li>
-
-
-      <li class="nav-item">
+      <li class="nav-item ">
         <a class="nav-link" href="{{route('sale.index')}}">
           <i class="menu-icon mdi mdi-cart-outline"></i>
           <span class="menu-title"><b>POS</b></span>
@@ -20,11 +18,6 @@
           <span class="menu-title"><b>Purchases</b></span>
         </a>
       </li>
-
-
-
-
-
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
           <i class="menu-icon mdi mdi-clipboard-text"></i>
@@ -39,7 +32,6 @@
           </ul>
         </div>
       </li>
-
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#pay" aria-expanded="false" aria-controls="pay">
           <i class="menu-icon mdi mdi-cash-usd"></i>
@@ -53,9 +45,6 @@
           </ul>
         </div>
       </li>
-
-
-
       <li class="nav-item">
         <a class="nav-link" href="{{route('customers.index')}}">
           <i class="menu-icon mdi mdi-account-multiple-outline"></i>
@@ -71,8 +60,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{route('products.index')}}">
-          <i class="menu-icon mdi mdi-package-variant-closed
-          "></i>
+          <i class="menu-icon mdi mdi-package-variant-closed"></i>
           <span class="menu-title"><b>Products</b></span>
         </a>
       </li>
