@@ -46,8 +46,6 @@ class Product extends Model
     public function supplier(){
         return $this->belongsTo(Supplier::class);
     }
-
-
     public function details(){
         return $this->hasMany(SalesDetails::class);
     }
@@ -60,7 +58,9 @@ class Product extends Model
     public function purchase(){
         return $this->hasMany(Purchase::class,'purchase_id','id');
     }
-
+    public function returnCustomer(){
+        return $this->hasMany(ReturnFromCustomer::class);
+    }
 
     public function scopeFilter($query,array $fillable)
     {

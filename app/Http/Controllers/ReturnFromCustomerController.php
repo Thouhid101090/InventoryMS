@@ -7,7 +7,7 @@ use App\Models\SalesDetails;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ReturnFromCustomer;
-
+use Excepsion;
 class ReturnFromCustomerController extends Controller
 {
 
@@ -42,14 +42,18 @@ public function getData(Request $request)
     return response()->json(['error' => 'No data found for the given reference number']);
 }
 
-    public function index()
-     {
+public function index()
+{
+    // Fetch all return transactions from customers
+    $returnFromCustomers = ReturnFromCustomer::with('customer', 'salesDetails.product')->get();
 
-      }
+    // Pass the data to the view
+    return view('return.ReturnFromCustomer.index', compact('returnFromCustomers'));
+}
 
     public function create()
     {
-        return view('return.checkCustomerPurchase');
+        return view('return.ReturnFromCustomer.checkCustomerPurchase');
     }
 
     /**
@@ -57,7 +61,42 @@ public function getData(Request $request)
      */
     public function store(Request $request)
     {
-
+     
+            try {
+                $request->validate([
+                    'customer_id' => 'required',
+                    'sales_date' => 'required|date',
+                    'product_id' => 'required',
+                    'total_quantity' => 'required|numeric|min:1',
+                    'unit_price' => 'required|numeric|min:0',
+                    'total' => 'required|numeric|min:0',
+                ]);
+        
+                // Create a new ReturnFromCustomer instance
+                $returnFromCustomer = new ReturnFromCustomer();
+                $returnFromCustomer->customer_id = $request->customer_id;
+                $returnFromCustomer->sales_date = $request->sales_date;
+        
+                // Save the ReturnFromCustomer instance to get the ID
+                $returnFromCustomer->save();
+        
+                // Create a new SalesDetails instance for each returned product
+                $salesDetails = new SalesDetails();
+                $salesDetails->return_from_customer_id = $returnFromCustomer->id;
+                $salesDetails->product_id = $request->product_id;
+                $salesDetails->quantity = $request->total_quantity;
+                $salesDetails->unit_price = $request->unit_price;
+                $salesDetails->total = $request->total;
+                $salesDetails->save();
+        
+                // You can add more logic to handle multiple returned products
+        
+                // Optionally, you can redirect the user after storing the data
+                return redirect()->route('return.index')->with('success', 'Return from customer stored successfully.');
+            
+            } catch (\Throwable $e) {
+                dd($e);
+            }
     }
     public function show(ReturnFromCustomer $returnFromCustomer)
     {

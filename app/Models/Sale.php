@@ -19,6 +19,9 @@ class Sale extends Model
     public function stock(){
         return $this->hasMany(Stock::class);
     }
+    public function returnCustomer(){
+        return $this->hasMany(ReturnFromCustomer::class);
+    }
 
 
 }

@@ -1,5 +1,39 @@
 @extends('layouts.app')
+@push('page-styles')
+<style>
+    /* Style for the reference number search input */
+    #item_search {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
 
+    /* Style for the autocomplete dropdown */
+    .ui-autocomplete {
+        max-height: 200px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        position: absolute;
+        background-color: #fff;
+    }
+
+    .ui-menu-item {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .ui-menu-item:hover {
+        background-color: #f0f0f0;
+    }
+</style>
+ 
+@endpush
 @section('content')
 <header class="page-header page-header-dark">
     <div class="container-xl px-4">

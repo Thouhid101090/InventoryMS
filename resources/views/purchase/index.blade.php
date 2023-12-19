@@ -103,7 +103,7 @@
 
                                             <a href="{{ route('purchase.show',encrypt($p->id)) }}" class="btn btn-outline-success btn-sm mx-1"><i class="mdi mdi-eye"></i></a>
 
-                                            <a href="{{ route('purchase.edit', $p->id)}}" class="btn btn-outline-primary btn-sm mx-1"><i class="mdi mdi-border-color"></i></a>
+                                            {{-- <a href="{{ route('purchase.edit', $p->id)}}" class="btn btn-outline-primary btn-sm mx-1"><i class="mdi mdi-border-color"></i></a>
 
                                             <form action="{{ route('purchase.destroy',encryptor('encrypt',$p->id)) }}" method="POST">
                                                 @method('delete')
@@ -111,7 +111,7 @@
                                                 <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?')">
                                                     <i class="mdi mdi-delete"></i>
                                                 </button>
-                                            </form>
+                                            </form> --}}
                                         </div>
                                     </td>
                                 </tr>

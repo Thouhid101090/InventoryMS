@@ -18,4 +18,7 @@ class Customer extends Model
     public function customerPayment(){
         return $this->hasMany(CustomerPayment::class);
     }
+    public function returnCustomer(){
+        return $this->hasMany(ReturnFromCustomer::class);
+    }
 }
