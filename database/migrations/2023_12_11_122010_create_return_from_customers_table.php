@@ -6,13 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('return_from_customers', function (Blueprint $table) {
             $table->id();
+            $table->string('ref_no');
+            $table->date('sales_date');
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('sale_id')->nullable();
             $table->unsignedBigInteger('product_id');
@@ -26,9 +26,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('return_from_customers');

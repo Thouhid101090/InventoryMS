@@ -1,47 +1,44 @@
+{{-- resources/views/return/ReturnFromCustomer/index.blade.php --}}
+
 @extends('layouts.app')
 
 @section('content')
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
-                <h5>Return Details</h5>
+                Returns from Customers
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h6>Customer:</h6>
-                        <p>{{ $returnFromCustomer->customer->name }}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <h6>Sales Date:</h6>
-                        <p>{{ $returnFromCustomer->sales_date }}</p>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-12">
-                        <h6>Returned Products:</h6>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Product Name</th>
-                                    <th>Quantity</th>
-                                    <th>Unit Price</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($returnFromCustomer->salesDetails as $salesDetail)
-                                    <tr>
-                                        <td>{{ $salesDetail->product->product_name }}</td>
-                                        <td>{{ $salesDetail->quantity }}</td>
-                                        <td>{{ $salesDetail->unit_price }}</td>
-                                        <td>{{ $salesDetail->total }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Reference Number</th>
+                            <th>Sales Date</th>
+                            <th>Customer</th>
+                            <th>Product</th>
+                            <th>Returned Quantity</th>
+                            <th>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($returnFromCustomers as $return)
+                            <tr>
+                                <td>{{ $return->ref_no }}</td>
+                                <td>{{ $return->sales_date }}</td>
+                                {{-- <td>{{ $return->customer->name }}</td>
+                                <td>{{ $return->product->product_name }}</td> --}}
+                                <td>{{ $return->returned_quantity }}</td>
+                                <td>{{ $return->total_amount }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="6">No returns from customers found.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

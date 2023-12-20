@@ -32,7 +32,7 @@
         background-color: #f0f0f0;
     }
 </style>
- 
+
 @endpush
 @section('content')
 <header class="page-header page-header-dark">
@@ -124,31 +124,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     $(document).ready(function () {
-            $('#returnForm').submit(function (event) {
-        event.preventDefault(); // Prevent the default form submission
 
-        // Serialize the form data
-        var formData = $(this).serialize();
-
-        // Send the data to the server
-        $.ajax({
-            url: $(this).attr('action'),
-            method: 'POST',
-            data: formData,
-            success: function (response) {
-                // Handle the success response, if needed
-                console.log(response);
-            },
-            error: function (error) {
-                // Handle the error response, if needed
-                console.error(error);
-            }
-        });
-        $('#product').change(function () {
-        var selectedProductId = $(this).val();
-        $('#product_id').val(selectedProductId);
-    });
-    });
             $('#total_quantity').on('input', function () {
                 var selectedProductQty = $('#product').find('option:selected').data('qty');
                 var returnedQty = parseInt($(this).val()) || 0;
@@ -196,7 +172,7 @@
                     if (data.error) {
                         alert(data.error);
                     } else {
-                     
+
                         $('#supplier_id').val(data.supplier_id);
                         $('#purchase_date').val(data.purchase_date);
                         let product=`<option value="" key="">Select Product</option>`;

@@ -10,8 +10,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class ReturnFromCustomer extends Model
 {
     use HasFactory;
-    public function saleDetails(){
-        $this->belongsTo(SalesDetails::class,'sales_id','id');
+    protected $fillable = [
+        'ref_no', 'sales_date', 'customer_id', 'sale_id', 'product_id',
+        'returned_quantity', 'total_amount', 'reason', 'created_by', 'updated_by'
+    ];
+    public function salesDetails()
+    {
+        return $this->hasMany(SalesDetails::class, 'product_id'); // Adjust the foreign key as needed
+    }
+    public function sale(){
+        $this->belongsTo(Sale::class,'customer_id','id');
     }
     public function product(){
         $this->belongsTo(Product::class,'product_id','id');
@@ -19,7 +27,4 @@ class ReturnFromCustomer extends Model
     public function customer(){
         $this->belongsTo(Customer::class,'customer_id','id');
     }
-   
-
-   
 }
