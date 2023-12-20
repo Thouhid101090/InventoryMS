@@ -19,12 +19,12 @@ class ReturnFromCustomer extends Model
         return $this->hasMany(SalesDetails::class, 'product_id'); // Adjust the foreign key as needed
     }
     public function sale(){
-        $this->belongsTo(Sale::class,'customer_id','id');
+        return  $this->belongsTo(Sale::class,'customer_id','id');
     }
     public function product(){
-        $this->belongsTo(Product::class,'product_id','id');
+        return $this->belongsTo(Product::class,'product_id','id');
     }
     public function customer(){
-        $this->belongsTo(Customer::class,'customer_id','id');
+        return $this->belongsTo(Customer::class,'customer_id','id');
     }
 }

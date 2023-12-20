@@ -61,6 +61,9 @@ class Product extends Model
     public function returnCustomer(){
         return $this->hasMany(ReturnFromCustomer::class);
     }
+    public function returnSupplier(){
+        return $this->hasMany(ReturnToSupplier::class);
+    }
 
     public function scopeFilter($query,array $fillable)
     {

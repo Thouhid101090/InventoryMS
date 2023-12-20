@@ -65,14 +65,17 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="customer_id">Customer:</label>
-                                        <input name="cust" type="text" id="customer_id" class="form-control">
+                                        <input type="text" id="customer_name" class="form-control">
                                     </div>
-
+                                    {{-- ########## --}}
+                                    <input type="hidden" name="cust" id="customer_id">
+                                    <input  type="hidden" name="pro" id="product_id">
+                                    {{-- ########### --}}
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="product">Product:</label>
-                                        <select name="pro" id="product" class="form-control" onchange="check_data(this)">
+                                        <select id="product" class="form-control" onchange="check_data(this)">
                                             <option value="">Select Product</option>
                                         </select>
                                     </div>
@@ -168,13 +171,15 @@
                                     alert(data.error);
                                 } else {
                                     // Populate data from the sale
-                                    $('#customer_id').val(data.customer_id);
+                                    $('#customer_name').val(data.customer_name);  
+                                      $('#customer_id').val(data.customer_id);
                                     $('#sales_date').val(data.sales_date);
+                                 
                                     let product =
                                         `<option value="" key="">Select Product</option>`;
                                     for (var pro of data.products) {
                                         product +=
-                                            `<option data-price="${pro.unit_price}" data-qty="${pro.quantity}" value="${pro.quantity}" key="">${pro.product_name}</option>`;
+                                            `<option data-price="${pro.unit_price}" data-qty="${pro.quantity}" value="${pro.product_id}" key="">${pro.product_name}</option>`;
                                     }
                                     $('#product').html(product);
                                     console.log(data);
@@ -185,6 +190,8 @@
                 });
             });
             function check_data(e) {
+                var product_id = $(e).find('option:selected').val();
+                 $('#product_id').val(product_id);
                 unit_price = $(e).find('option:selected').data('price')
                 $('#unit_price').val(unit_price);
             }

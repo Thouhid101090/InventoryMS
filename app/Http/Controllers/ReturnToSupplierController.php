@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Exception;
 use App\Models\Product;
 use App\Models\Purchase;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Models\PurchaseDetails;
+use App\Models\ReturnToSupplier;
+
 class ReturnToSupplierController extends Controller
 {
    public function autocompleteS(Request $request)
@@ -24,11 +27,17 @@ class ReturnToSupplierController extends Controller
             $products=array();
             foreach($purchase->pdetails as $sd){
                 $product=Product::find($sd->product_id);
-                $products[]=array('quantity'=>$sd->quantity,'unit_price'=>$sd->unit_price,'id'=>$product->id,'product_name'=>$product->product_name);
+                $products[]=array('quantity'=>$sd->quantity,
+                'unit_price'=>$sd->unit_price,
+                'id'=>$product->id,
+                'product_name'=>$product->product_name,
+                'product_id'=>$sd->product_id
+            );
             }
 
             $data = [
-                'supplier_id' => $purchase->supplier->name,
+                'supplier_id' => $purchase->supplier->id,
+                'supplier_name' => $purchase->supplier->name,
                 'purchase_date' => $purchase->purchase_date,
                 'products' => $products
             ];
@@ -42,12 +51,17 @@ class ReturnToSupplierController extends Controller
      */
     public function index()
     {
-        //
+        $ReturnToSupplier = ReturnToSupplier::all();
+        return view('return.ReturnToSupplier.index', compact('ReturnToSupplier'));
     }
 
     public function create()
     {
-        return view('return.checkSupplierReturn');
+        $supplier = new Supplier;
+        $purDetails = new purchaseDetails;
+        return view( 'return.ReturnToSupplier.checkSupplierReturn',
+         compact( 'supplier', 'purDetails' ) );
+       
     }
 
     /**
@@ -55,46 +69,23 @@ class ReturnToSupplierController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the form data
-        $request->validate([
-            'ref' => 'required',
-            'supName' => 'required',
-            'product_id' => 'required',
-            'total_quantity' => 'required|numeric|min:1',
-            // Add other validation rules as needed
-        ]);
-
         DB::beginTransaction();
-
         try {
-            // Store data in return_to_suppliers table
-            $returnToSupplier = new ReturnToSupplier;
-            $returnToSupplier->supplier_id = $request->supName; // Assuming supplier_id is stored in 'supName'
-            $returnToSupplier->product_id = $request->product_id;
-            $returnToSupplier->returned_quantity = $request->total_quantity;
-            // Add other fields as needed
-            $returnToSupplier->created_by = currentUserId();
-            $returnToSupplier->updated_by = currentUserId();
-           if($returnToSupplier->save()) {
-            // Store data in stocks table
-            $stock = new Stock;
-            $stock->product_id = $request->product_id;
-            $stock->return_to_supplier_id = $returnToSupplier->id;
-            $stock->quantity = -$request->total_quantity; // Negative quantity for return
-            $stock->unit_price = $request->unit_price;
-            // Add other fields as needed
-            $stock->save();
-
+            $r = new ReturnToSupplier;
+            $r->ref_no = $request->ref;
+            $r->supplier_id = $request->sup_id;
+            $r->product_id = $request->pro;
+            $r->purchase_date = $request->pur_dt;
+            $r->returned_quantity = $request->ttl_qty;
+            $r->total_amount = $request->ttl_prs;
+            // dd( $request->all() );
+            $r->save();
             DB::commit();
-           }
+            return redirect()->route( 'supplierReturn.index' )->with( 'success', 'Return from customer stored successfully.' );
 
-            
-
-            return response()->json(['success' => 'Data stored successfully']);
-        } catch (\Exception $e) {
-            DB::rollBack();
-
-            // Handle the exception (e.g., log the error)
+        } catch ( \Throwable $e ) {
+            DB::rollback();
+            dd( $e );
             return response()->json(['error' => 'Error storing data']);
         }
     }

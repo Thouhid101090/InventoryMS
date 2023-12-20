@@ -56,7 +56,7 @@
         <div class="col-md-10">
             <div class="card mb-4">
                 <div class="card-body">
-                    <form action="{{ route('return.store') }}" method="post" id="returnForm">
+                    <form action="{{ route('supplierReturn.store') }}" method="post" id="returnForm">
                         @csrf
                         <div class="form-group col-md-6 offset-md-3">
                             <label for="item_search">Reference Number:</label>
@@ -66,11 +66,14 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="supplier_id">Supplier:</label>
-                                    <input name="supName" type="text" id="supplier_id" class="form-control">
+                                    <label for="supplier_name">Supplier:</label>
+                                    <input name="supName" type="text" id="supplier_name" class="form-control">
                                 </div>
-
                             </div>
+                            {{-- ########## --}}
+                            <input type="hidden" name="sup_id" id="supplier_id">
+                            <input type="hidden" name="pro" id="product_id">
+                            {{-- ########### --}}
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="product">Product:</label>
@@ -84,21 +87,21 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="purchase_date">Purchase Date:</label>
-                                    <input type="text" id="purchase_date" class="form-control">
+                                    <input name="pur_dt" type="text" id="purchase_date" class="form-control">
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="total_quantity">Quentity</label>
-                                    <input type="text" id="total_quantity" class="form-control">
+                                    <input name="ttl_qty" type="text" id="total_quantity" class="form-control">
                                 </div>
 
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="unit_price">Unit Price</label>
-                                    <input type="text" id="unit_price" readonly class="form-control">
+                                    <input name="ttl_prs" type="text" id="unit_price" readonly class="form-control">
                                 </div>
 
                             </div>
@@ -110,7 +113,7 @@
 
                             </div>
                         </div>
-                        <input type="hidden" name="product_id" id="product_id">
+                       
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
@@ -173,11 +176,12 @@
                         alert(data.error);
                     } else {
 
+                        $('#supplier_name').val(data.supplier_name);
                         $('#supplier_id').val(data.supplier_id);
                         $('#purchase_date').val(data.purchase_date);
                         let product=`<option value="" key="">Select Product</option>`;
                         for (var pro of data.products){
-                            product+=`<option data-price="${pro.unit_price}" data-qty="${pro.quantity}" value="${pro.quantity}" key="">${pro.product_name}</option>`;
+                            product+=`<option data-price="${pro.unit_price}" data-qty="${pro.quantity}" value="${pro.product_id}" key="">${pro.product_name}</option>`;
                         }
                         $('#product').html(product);
                         console.log(data);
@@ -191,7 +195,8 @@
 function check_data(e){
     unit_price=$(e).find('option:selected').data('price')
     $('#unit_price').val(unit_price);
-    qty=$(e).find('option:selected').data('qty')
+    var product_id = $(e).find('option:selected').val();
+                 $('#product_id').val(product_id);
 
 }
 

@@ -30,19 +30,19 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
                     <thead>
                         <tr>
                             <th>{{__('Ref.no')}}</th>
-                            <th>{{__('Sales Date')}}</th>
-                            <th>{{__('Customer')}}</th>
+                            <th>{{__('Purchase Date')}}</th>
+                            <th>{{__('Supplier')}}</th>
                             <th>{{__('Product')}}</th>
                             <th>{{__('Quantity')}}</th>
                             <th>{{__('Total Price')}}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($returnFromCustomers as $r)
+                        @forelse($ReturnToSupplier as $r)
                             <tr>
                                 <td>{{ $r->ref_no }}</td>
-                                <td>{{ $r->sales_date }}</td>
-                                <td>{{ $r->customer->name }}</td>
+                                <td>{{ $r->purchase_date }}</td>
+                                <td>{{ $r->supplier->name }}</td>
                                 <td>{{ $r->product?->product_name}}</td>
                                 <td>{{ $r->returned_quantity }}</td>
                                 <td>{{ $r->total_amount }}</td>

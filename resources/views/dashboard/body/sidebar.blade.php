@@ -76,6 +76,7 @@
           <span class="menu-title"><b>Customer Return Check</b></span>
         </a>
       </li>
+     
       <li class="nav-item">
         <a class="nav-link" href="{{route('supplierReturn.create')}}">
           <i class="menu-icon mdi mdi-undo-variant"></i>
