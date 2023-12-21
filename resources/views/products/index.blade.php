@@ -115,7 +115,7 @@
                                                 class="btn btn-outline-primary btn-sm mx-1"><i class="mdi mdi-border-color
                                                 "></i></a>
 
-                                            <form
+                                            {{-- <form
                                                 action="{{ route('products.destroy',encryptor('encrypt',$product->id)) }}"
                                                 method="POST">
                                                 @method('delete')
@@ -124,7 +124,7 @@
                                                     onclick="return confirm('Are you sure you want to delete this record?')">
                                                     <i class="mdi mdi-delete"></i>
                                                 </button>
-                                            </form>
+                                            </form> --}}
                                         </div>
                                     </td>
                                 </tr>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use DB;
 use Exception;
+use App\Models\Stock;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Supplier;
@@ -13,7 +14,7 @@ use App\Models\ReturnToSupplier;
 class ReturnToSupplierController extends Controller
 {
    public function autocompleteS(Request $request)
-    {      
+    {
         $referenceNumbers = Purchase::where('reference_no', 'like', '%' . $request->term . '%')
             ->pluck('reference_no');
 
@@ -21,7 +22,7 @@ class ReturnToSupplierController extends Controller
     }
     public function getDataS(Request $request)
     {
-        
+
         $purchase = Purchase::where('reference_no', $request->reference_no)->first();
         if ($purchase) {
             $products=array();
@@ -61,7 +62,7 @@ class ReturnToSupplierController extends Controller
         $purDetails = new purchaseDetails;
         return view( 'return.ReturnToSupplier.checkSupplierReturn',
          compact( 'supplier', 'purDetails' ) );
-       
+
     }
 
     /**
@@ -80,6 +81,22 @@ class ReturnToSupplierController extends Controller
             $r->total_amount = $request->ttl_prs;
             // dd( $request->all() );
             $r->save();
+
+            $stock = Stock::where('product_id', $request->pro)->first();
+        if ($stock) {
+            // Update existing stock
+            $stock->quantity -= $request->ttl_qty;
+            $stock->return_to_supplier_id = $r->id;
+            $stock->save();
+        } else {
+            // Create a new stock entry
+            Stock::create([
+                'product_id' => $request->pro,
+                'quantity' => $request->ttl_qty,
+                'return_from_customer_id' => $r->id,
+                // Add other necessary fields.
+            ]);
+        }
             DB::commit();
             return redirect()->route( 'supplierReturn.index' )->with( 'success', 'Return from customer stored successfully.' );
 

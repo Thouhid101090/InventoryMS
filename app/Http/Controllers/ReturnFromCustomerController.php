@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Excepsion;
 use App\Models\Sale;
+use App\Models\Stock;
 use App\Models\Product;
 use App\Models\Customer;
 use App\Models\SalesDetails;
@@ -26,9 +27,9 @@ class ReturnFromCustomerController extends Controller {
             $products = array();
             foreach ( $sale->details as $sd ) {
                 $product = Product::find( $sd->product_id );
-                $products[] = array( 'quantity'=>$sd->quantity, 
-                'unit_price'=>$sd->unit_price, 
-                'id'=>$product->id, 
+                $products[] = array( 'quantity'=>$sd->quantity,
+                'unit_price'=>$sd->unit_price,
+                'id'=>$product->id,
                 'product_name'=>$product->product_name,
                 'product_id'=>$sd->product_id
              );
@@ -39,8 +40,8 @@ class ReturnFromCustomerController extends Controller {
                 'customer_name' => $sale->customer->name,
                 'sales_date' => $sale->sales_date,
                 'products' => $products,
-                
-               
+
+
             ];
             return response()->json( $data );
 
@@ -50,11 +51,11 @@ class ReturnFromCustomerController extends Controller {
 
     public function index() {
         {
-           
+
                 $returnFromCustomers = ReturnFromCustomer::all();
                 return view('return.ReturnFromCustomer.index', compact('returnFromCustomers'));
-            
-            
+
+
         }
     }
 
@@ -79,6 +80,25 @@ class ReturnFromCustomerController extends Controller {
             $r->total_amount = $request->ttl_prs;
             // dd( $request->all() );
             $r->save();
+             // Update stock for the returned product
+             // Update stock for the returned product
+            // Update or create a new stock entry for the returned product
+        $stock = Stock::where('product_id', $request->pro)->first();
+        if ($stock) {
+            // Update existing stock
+            $stock->quantity += $request->ttl_qty;
+            $stock->return_from_customer_id = $r->id;
+            $stock->save();
+        } else {
+            // Create a new stock entry
+            Stock::create([
+                'product_id' => $request->pro,
+                'quantity' => $request->ttl_qty,
+                'return_from_customer_id' => $r->id,
+                // Add other necessary fields.
+            ]);
+        }
+
             DB::commit();
             return redirect()->route( 'return.index' )->with( 'success', 'Return from customer stored successfully.' );
 

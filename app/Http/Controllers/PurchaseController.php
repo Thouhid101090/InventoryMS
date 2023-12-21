@@ -130,7 +130,7 @@ class PurchaseController extends Controller
                         }
                     }
                 }
-                \Toastr::success('Create Successfully!');
+                $this->notice::success('Added added');
                 return redirect()->route('purchase.index');
             }
         }catch(Exception $e){
