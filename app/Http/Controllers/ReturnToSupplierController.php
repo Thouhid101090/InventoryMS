@@ -53,7 +53,7 @@ class ReturnToSupplierController extends Controller
     public function index()
     {
         $ReturnToSupplier = ReturnToSupplier::all();
-        return view('return.ReturnToSupplier.index', compact('ReturnToSupplier'));
+        return view('Return.ReturnToSupplier.index', compact('ReturnToSupplier'));
     }
 
     public function create()

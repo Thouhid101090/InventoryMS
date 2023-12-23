@@ -53,7 +53,7 @@ class ReturnFromCustomerController extends Controller {
         {
 
                 $returnFromCustomers = ReturnFromCustomer::all();
-                return view('return.ReturnFromCustomer.index', compact('returnFromCustomers'));
+                return view('Return.ReturnFromCustomer.index', compact('returnFromCustomers'));
 
 
         }
