@@ -97,7 +97,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="total_quantity">Unit Price</label>
-                                        <input name="unit_prs" type="text" id="unit_price" readonly class="form-control">
+                                        <input name="u_prs" type="text" id="unit_price" readonly class="form-control">
                                     </div>
 
                                 </div>

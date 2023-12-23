@@ -101,14 +101,14 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="unit_price">Unit Price</label>
-                                    <input name="ttl_prs" type="text" id="unit_price" readonly class="form-control">
+                                    <input name="u_prs" type="text" id="unit_price" readonly class="form-control">
                                 </div>
 
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="total">Total</label>
-                                    <input type="text" id="total" class="form-control">
+                                    <input name="ttl_prs" type="text" id="total" class="form-control">
                                 </div>
 
                             </div>

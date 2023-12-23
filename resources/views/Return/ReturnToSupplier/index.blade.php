@@ -12,7 +12,7 @@ background-image: linear-gradient(135deg, #9fa3a8 0%, #cde3e1 100%) !important;"
                 <div class="col-auto">
                     <h2 class="page-header-title d-flex">
                         <i class="menu-icon mdi mdi-undo-variant me-2"></i>
-                         Customers Return Details
+                         Suppliers Return Details
                     </h2>
                 </div>
             </div>

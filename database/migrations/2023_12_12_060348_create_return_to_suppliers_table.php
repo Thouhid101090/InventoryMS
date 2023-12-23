@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('purchase_id')->nullable();
             $table->unsignedBigInteger('product_id');
             $table->integer('returned_quantity');
+            $table->decimal('unit_price', 10, 2);
             $table->decimal('total_amount', 10, 2);
             $table->text('reason')->nullable();
             $table->string('created_by');

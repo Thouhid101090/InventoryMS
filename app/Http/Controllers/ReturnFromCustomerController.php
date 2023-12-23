@@ -77,27 +77,18 @@ class ReturnFromCustomerController extends Controller {
             $r->product_id = $request->pro;
             $r->sales_date = $request->sal_dt;
             $r->returned_quantity = $request->ttl_qty;
+            $r->unit_price = $request->u_prs;
             $r->total_amount = $request->ttl_prs;
             // dd( $request->all() );
-            $r->save();
-             // Update stock for the returned product
-             // Update stock for the returned product
-            // Update or create a new stock entry for the returned product
-        $stock = Stock::where('product_id', $request->pro)->first();
-        if ($stock) {
-            // Update existing stock
-            $stock->quantity += $request->ttl_qty;
-            $stock->return_from_customer_id = $r->id;
-            $stock->save();
-        } else {
-            // Create a new stock entry
-            Stock::create([
-                'product_id' => $request->pro,
-                'quantity' => $request->ttl_qty,
-                'return_from_customer_id' => $r->id,
-                // Add other necessary fields.
-            ]);
-        }
+            if($r->save()){
+                $stock=new Stock;
+                $stock->return_from_customer_id=$r->id;
+                $stock->product_id= $r->product_id ;
+                $stock->quantity =$r->returned_quantity;
+                $stock->unit_price = $r->unit_price;
+                $stock->save();
+                DB::commit();
+            }
 
             DB::commit();
             return redirect()->route( 'return.index' )->with( 'success', 'Return from customer stored successfully.' );
