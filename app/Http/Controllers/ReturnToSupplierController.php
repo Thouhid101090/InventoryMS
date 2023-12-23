@@ -60,7 +60,7 @@ class ReturnToSupplierController extends Controller
     {
         $supplier = new Supplier;
         $purDetails = new purchaseDetails;
-        return view( 'return.ReturnToSupplier.checkSupplierReturn',
+        return view( 'Return.ReturnToSupplier.checkSupplierReturn',
          compact( 'supplier', 'purDetails' ) );
 
     }

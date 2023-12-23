@@ -64,7 +64,7 @@ class ReturnFromCustomerController extends Controller {
         // $product = new Product;
         // $sale = new Sale;
         $saleDetails = new SalesDetails;
-        return view( 'return.ReturnFromCustomer.checkCustomerPurchase', compact( 'customer', 'saleDetails' ) );
+        return view( 'Return.ReturnFromCustomer.checkCustomerPurchase', compact( 'customer', 'saleDetails' ) );
     }
 
     public function store( Request $request ) {
