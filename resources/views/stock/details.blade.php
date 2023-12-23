@@ -2,9 +2,11 @@
 
 @push('page-styles')\
 <style>
-table, th, td {
-    border: 2px solid black;
-  }
+    table,
+    th,
+    td {
+        border: 2px solid black;
+    }
 </style>
 @endpush
 
@@ -44,10 +46,18 @@ table, th, td {
                                     <th rowspan="2">{{__('No.')}}</th>
                                     <th rowspan="2">{{__('Date')}}</th>
                                     <th class="text-center" colspan="3">{{__('Purchase')}}</th>
-                                    <th class="text-center"  colspan="3">{{__('Sales')}}</th>
-                                    <th class="text-center"   colspan="1">{{__('Balance')}}</th>
+                                    <th class="text-center" colspan="3">{{__('Sales')}}</th>
+                                    <th class="text-center" colspan="3">{{__('Return From Customer')}}</th>
+                                    <th class="text-center" colspan="3">{{__('Return To Supplier')}}</th>
+                                    <th class="text-center" colspan="1">{{__('Balance')}}</th>
                                 </tr>
                                 <tr>
+                                    <th>{{__('Qty')}}</th>
+                                    <th>{{__('Price')}}</th>
+                                    <th>{{__('Total')}}</th>
+                                    <th>{{__('Qty')}}</th>
+                                    <th>{{__('Price')}}</th>
+                                    <th>{{__('Total')}}</th>
                                     <th>{{__('Qty')}}</th>
                                     <th>{{__('Price')}}</th>
                                     <th>{{__('Total')}}</th>
@@ -58,10 +68,13 @@ table, th, td {
                                 </tr>
                             </thead>
                             <tbody>
-                                @php $total_sales=$total_purchase=$balance=0 @endphp
-                                @php $total_sales_qty=$total_purchase_qty=$balance_qty=0 @endphp
+                                @php $total_sales=$total_purchase=$total_return_from_customer=$total_return_to_supplier=$balance=0
+                                @endphp
+                                @php
+                                $total_sales_qty=$total_purchase_qty=$return_from_customer_qty=$return_to_supplier_qty=$balance_qty=0
+                                @endphp
 
-                               @forelse ($stock as $st)
+                                @forelse ($stock as $st)
                                 <tr>
                                     <td>{{++$loop->index}}</td>
                                     <td>
@@ -69,44 +82,74 @@ table, th, td {
                                         {{\Carbon\Carbon::parse($st->sale->sales_date)->format('M d Y')}}
                                         @elseif ($st->purchase)
                                         {{\Carbon\Carbon::parse($st->purchase->purchase_date)->format('M d Y')}}
-                                        @else
+                                        @elseif ($st->return_from_customer)
+                                        {{ \Carbon\Carbon::parse($st->return_from_customer->return_date)->format('M d
+                                        Y') }}
+                                        @elseif ($st->return_to_supplier)
+                                        {{ \Carbon\Carbon::parse($st->return_to_supplier->return_date)->format('M d Y')
+                                        }}
                                         @endif
                                     </td>
                                     @if($st->purchase_id)
-                                        @php
-                                            $total_purchase+=$st->unit_price * $st->quantity;
-                                            $total_purchase_qty+=$st->quantity;
-                                            $balance+=($st->unit_price * $st->quantity);
-                                        @endphp
-                                        <td>{{$st->quantity}}</td>
-                                        <td>{{$st->unit_price}}</td>
-                                        <td>{{$st->unit_price * $st->quantity}}</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>{{$balance_qty+=$st->quantity}}</td>
+                                    @php
+                                    $total_purchase+=$st->unit_price * $st->quantity;
+                                    $total_purchase_qty+=$st->quantity;
+                                    $balance+=($st->unit_price * $st->quantity);
+                                    @endphp
+                                    <td>{{$st->quantity}}</td>
+                                    <td>{{$st->unit_price}}</td>
+                                    <td>{{$st->unit_price * $st->quantity}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{$balance_qty+=$st->quantity}}</td>
 
-                                        <td></td>
+                                    <td></td>
                                     @elseif($st->sales_id)
-                                        @php
-                                            $total_sales+=$st->unit_price * abs($st->quantity);
-                                            $total_sales_qty+=abs($st->quantity);
-                                            $balance-=($st->unit_price * abs($st->quantity));
-                                        @endphp
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>{{abs($st->quantity)}}</td>
-                                        <td>{{$st->unit_price}}</td>
-                                        <td>{{$st->unit_price * abs($st->quantity)}}</td>
-                                        <td>{{$balance_qty+=$st->quantity}}</td>
+                                    @php
+                                    $total_sales+=$st->unit_price * abs($st->quantity);
+                                    $total_sales_qty+=abs($st->quantity);
+                                    $balance-=($st->unit_price * abs($st->quantity));
+                                    @endphp
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{abs($st->quantity)}}</td>
+                                    <td>{{$st->unit_price}}</td>
+                                    <td>{{$st->unit_price * abs($st->quantity)}}</td>
+                                    <td>{{$balance_qty+=$st->quantity}}</td>
 
-
+                                    @elseif ($st->return_from_customer_id)
+                                    @php
+                                        $total_return_from_customer += $st->unit_price * abs($st->quantity);
+                                        $return_from_customer_qty += abs($st->quantity);
+                                        $balance += $st->unit_price * abs($st->quantity);
+                                    @endphp
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{ abs($st->quantity) }}</td>
+                                    <td>{{ $st->unit_price }}</td>
+                                    <td>{{ $st->unit_price * abs($st->quantity) }}</td>
+                                    <td>{{ $balance_qty += $st->quantity }}</td>
+                                @elseif ($st->return_to_supplier_id)
+                                    @php
+                                        $total_return_to_supplier += $st->unit_price * abs($st->quantity);
+                                        $return_to_supplier_qty += abs($st->quantity);
+                                        $balance -= $st->unit_price * abs($st->quantity);
+                                    @endphp
+                                    <td>{{ abs($st->quantity) }}</td>
+                                    <td>{{ $st->unit_price }}</td>
+                                    <td>{{ $st->unit_price * abs($st->quantity) }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{ $balance_qty += $st->quantity }}</td>
                                     @endif
                                 </tr>
-                               @empty
+                                @empty
 
-                               @endforelse
+                                @endforelse
                             </tbody>
 
                             <tfoot>
@@ -135,5 +178,5 @@ table, th, td {
 @endsection
 
 @push('page-scripts')
-    {{--- ---}}
+{{--- ---}}
 @endpush

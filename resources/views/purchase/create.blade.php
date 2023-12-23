@@ -76,7 +76,7 @@
                                     <label for="reference_no" class="float-end"><h6>Ref. No.<span class="text-danger">*</span></h6></label>
                                 </div>
                                 <div class="col-md-4 mt-2">
-                                    <input type="text" class="form-control p-2" value="{{ old('reference_no')}}" name="reference_no" >
+                                    <input type="text" required class="form-control p-2" value="{{ old('reference_no')}}" name="reference_no" >
                                 </div>
                             </div>
                             <div class="row m-3">
@@ -132,7 +132,7 @@
                                             <label for="" class="form-group"><h6>Discount on</h6></label>
                                         </div>
                                         <div class="col-4 mt-2">
-                                            <input type="text" class="form-control form-group" id="discount_all" name="discount_all" onkeyup="check_change()">
+                                            <input value="0" type="text" class="form-control form-group" id="discount_all" name="discount_all" onkeyup="check_change()">
                                         </div>
                                         <div class="col-2 mt-2">
                                             <select onchange="check_change()" class="form-control" id="discount_all_type" name="discount_all_type">

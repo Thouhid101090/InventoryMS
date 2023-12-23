@@ -55,11 +55,14 @@ class PurchaseController extends Controller
      */
     public function product_search_data(Request $request)
     {
+        $request->validate([
+            'total_quantity' => 'required|numeric',
+            // Add other validation rules as needed
+        ]);
         if($request->item_id){
             $product=Product::where('id',$request->item_id)->first();
             $data='<tr class="text-center">';
             $data.='<td class="p-2">'.$product->product_name.'<input name="product_id[]" type="hidden" value="'.$product->id.'"></td>';
-
             $data.='<td class="p-2"><input onkeyup="get_cal(this)" name="qty[]" type="text" class="form-control qty" value="0"></td>';
             $data.='<td class="p-2"><input onkeyup="get_cal(this)" name="price[]" type="text" class="form-control price" value="0"></td>';
             $data.='<td class="p-2"><input onkeyup="get_cal(this)" name="tax[]" type="text" class="form-control tax" value=""></td>';

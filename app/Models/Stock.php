@@ -13,8 +13,8 @@ class Stock extends Model
         'product_id',
         'purchase_id',
         'sales_id',
-        'return_from_customer_id', // Add this line
-        // ... other columns
+        'return_from_customer_id',
+        'return_to_supplier_id',
     ];
     public function product(){
         return $this->belongsTo(Product::class);
