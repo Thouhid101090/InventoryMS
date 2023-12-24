@@ -8,6 +8,7 @@
         border: 2px solid black;
         padding: .7rem;
         font-size: 1rem;
+        
     }
 </style>
 @endpush
@@ -162,12 +163,19 @@
                                         $return_to_supplier_qty += abs($st->quantity);
                                         $balance -= $st->unit_price * abs($st->quantity);
                                     @endphp
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>{{ abs($st->quantity) }}</td>
                                     <td>{{ $st->unit_price }}</td>
                                     <td>{{ $st->unit_price * abs($st->quantity) }}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    
                                     <td>{{ $balance_qty += $st->quantity }}</td>
                                     @endif
                                 </tr>

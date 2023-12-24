@@ -26,11 +26,14 @@ class AuthenticationController extends Controller
             $user->email=$request->EmailAddress;
             $user->password=Hash::make($request->password);
             $user->role_id=4;
-            if($user->save())
-                return redirect('login')->with('success','Successfully Registred');
-            else
-                return redirect('login')->with('danger','Please try again');
-        }catch(Exception $e){
+            if($user->save()){
+                return redirect('login');
+                $this->notice::success('Successfully LoggedIn');
+            }else{
+                
+                $this->notice::danger('User Name or Password is wrong, Please try again');
+                return redirect('login');
+        }}catch(Exception $e){
             //dd($e);
             return redirect('login')->with('danger','Please try again');;
         }
