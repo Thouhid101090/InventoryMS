@@ -17,7 +17,10 @@ class StockController extends Controller
    }
 
    public function details($product_id){
+     
       $stock=Stock::where('product_id',$product_id)->get();
       return view('stock.details',compact('stock','product_id'));
    }
 }
+// In your controller or wherever you retrieve the stocks
+

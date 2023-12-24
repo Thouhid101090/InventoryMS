@@ -3,8 +3,10 @@
 namespace App\Models;
 
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ReturnToSupplier;
+use App\Models\ReturnFromCustomer;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Stock extends Model
 {
@@ -24,6 +26,12 @@ class Stock extends Model
     }
     public function purchase(){
         return $this->belongsTo(Purchase::class,'purchase_id');
+    }
+    public function rtcustomer(){
+        return $this->belongsTo(ReturnFromCustomer::class,'return_from_customer_id');
+    }
+    public function rtsupplier(){
+        return $this->belongsTo(ReturnToSupplier::class,'return_to_supplier_id');
     }
 
 }

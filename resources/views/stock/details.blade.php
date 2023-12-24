@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
-@push('page-styles')\
+@push('page-styles')
 <style>
     table,
     th,
     td {
         border: 2px solid black;
+        padding: .7rem;
+        font-size: 1rem;
     }
 </style>
 @endpush
@@ -37,9 +39,11 @@
                         <table class="table table-striped align-middle text-center">
                             <colgroup>
                                 <col span="2" style="background-color: #fff">
-                                <col span="3" style="background-color: #b3d2d2">
+                                <col span="3" style="background-color: #759898">
                                 <col span="3" style="background-color: #9ce3e3">
-                                <col span="2" style="background-color: #779090">
+                                <col span="3" style="background-color: #779090">
+                                <col span="3" style="background-color: #adf0f0">
+                                <col span="1" style="background-color: #9aa0a0">
                             </colgroup>
                             <thead class="thead-light">
                                 <tr>
@@ -78,15 +82,17 @@
                                 <tr>
                                     <td>{{++$loop->index}}</td>
                                     <td>
+                                        
                                         @if($st->sale)
                                         {{\Carbon\Carbon::parse($st->sale->sales_date)->format('M d Y')}}
                                         @elseif ($st->purchase)
                                         {{\Carbon\Carbon::parse($st->purchase->purchase_date)->format('M d Y')}}
-                                        @elseif ($st->return_from_customer)
-                                        {{ \Carbon\Carbon::parse($st->return_from_customer->return_date)->format('M d
+                                        @elseif ($st->rtcustomer)
+                                        
+                                        {{ \Carbon\Carbon::parse($st->rtcustomer->created_at)->format('M d
                                         Y') }}
-                                        @elseif ($st->return_to_supplier)
-                                        {{ \Carbon\Carbon::parse($st->return_to_supplier->return_date)->format('M d Y')
+                                        @elseif ($st->rtsupplier)
+                                        {{ \Carbon\Carbon::parse($st->rtsupplier->created_at)->format('M d Y')
                                         }}
                                         @endif
                                     </td>
@@ -102,6 +108,12 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>{{$balance_qty+=$st->quantity}}</td>
 
                                     <td></td>
@@ -113,10 +125,16 @@
                                     @endphp
                                     <td></td>
                                     <td></td>
-                                    <td></td>
+                                    <td></td> 
                                     <td>{{abs($st->quantity)}}</td>
                                     <td>{{$st->unit_price}}</td>
                                     <td>{{$st->unit_price * abs($st->quantity)}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>{{$balance_qty+=$st->quantity}}</td>
 
                                     @elseif ($st->return_from_customer_id)
@@ -128,11 +146,17 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>{{ abs($st->quantity) }}</td>
                                     <td>{{ $st->unit_price }}</td>
                                     <td>{{ $st->unit_price * abs($st->quantity) }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>{{ $balance_qty += $st->quantity }}</td>
-                                @elseif ($st->return_to_supplier_id)
+                                    @elseif ($st->return_to_supplier_id)
                                     @php
                                         $total_return_to_supplier += $st->unit_price * abs($st->quantity);
                                         $return_to_supplier_qty += abs($st->quantity);
@@ -161,6 +185,12 @@
                                     <th>{{$total_sales_qty}}</th>
                                     <th></th>
                                     <th>{{$total_sales}}</th>
+                                    <th>{{$return_from_customer_qty}}</th>
+                                    <th></th>
+                                    <th>{{$total_return_from_customer}}</th>
+                                    <th>{{$return_to_supplier_qty}}</th>
+                                    <th></th>
+                                    <th>{{$total_return_to_supplier}}</th>
                                     <th>{{$balance_qty}}</th>
 
                                 </tr>

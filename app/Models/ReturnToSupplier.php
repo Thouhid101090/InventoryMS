@@ -25,4 +25,7 @@ class ReturnToSupplier extends Model
     public function supplier(){
         return $this->belongsTo(Supplier::class,'supplier_id','id');
     }
+    public function stock(){
+        return $this->hasMany(Stock::class);
+    }
 }
