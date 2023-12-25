@@ -70,19 +70,33 @@
           <span class="menu-title"><b>{{__('Categories')}}</b></span>
         </a>
       </li>
+
       <li class="nav-item">
-        <a class="nav-link" href="{{route('return.create')}}">
+        <a class="nav-link" data-bs-toggle="collapse" href="#Return" aria-expanded="false" aria-controls="Return">
+          <i class="menu-icon mdi mdi-undo-variant"></i>
+          <span class="menu-title"><b>Return Products</b></span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="Return">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{route('rtnFromCust.index')}}">{{__('Customer Return')}}</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('supplierReturn.index')}}">{{__('Supplier Return')}}</a></li>
+          </ul>
+        </div>
+      </li>
+      {{-- <li class="nav-item">
+        <a class="nav-link" href="{{route('rtnFromCust.index')}}">
           <i class="menu-icon mdi mdi-undo-variant"></i>
           <span class="menu-title"><b>{{__('Customer Return Check')}}</b></span>
         </a>
       </li>
      
       <li class="nav-item">
-        <a class="nav-link" href="{{route('supplierReturn.create')}}">
+        <a class="nav-link" href="{{route('supplierReturn.index')}}">
           <i class="menu-icon mdi mdi-undo-variant"></i>
           <span class="menu-title"><b>{{__('Supplier Return Check')}}</b></span>
         </a>
-      </li>
+      </li> --}}
       <li class="nav-item">
         <a class="nav-link" href="{{route('user.index')}}">
           <i class="menu-icon mdi mdi-account-key"></i>

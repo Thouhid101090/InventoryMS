@@ -91,7 +91,7 @@ class ReturnFromCustomerController extends Controller {
             }
 
             DB::commit();
-            return redirect()->route( 'return.index' )->with( 'success', 'Return from customer stored successfully.' );
+            return redirect()->route( 'rtnFromCust.index' )->with( 'success', 'Return from customer stored successfully.' );
 
         } catch ( \Throwable $e ) {
             DB::rollback();

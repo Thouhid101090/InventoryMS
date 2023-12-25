@@ -81,7 +81,7 @@ use App\Http\Controllers\PermissionController as permission;
 
      // Route Purchases
      Route::resource('purchase', PurchaseController::class);
-     Route::get('/purchase-report', [ReportController::class, 'generatePurchaseReport'])->name('purchase-report.generate');
+     Route::get('/report-p', [ReportController::class, 'generatePurchaseReport'])->name('purchase-report.generate');
 
      // incoice
     Route::get('/purchase/{id}/generate-invoice', [PurchaseController::class,'invoice'])->name('purchase.generate-invoice');
@@ -90,8 +90,8 @@ use App\Http\Controllers\PermissionController as permission;
      //Route Sales
      Route::resource('sale', SaleController::class);
      Route::get('sale/show-details/{id}',[SaleController::class,'showDetails'])->name('sale.show-details');
-     Route::get('/sale-report', [ReportController::class, 'generateSaleReport'])->name('sale-report.generate');
-     Route::post('/sale-report', [ReportController::class, 'generateSaleReport']);
+     Route::get('/report-s', [ReportController::class, 'generateSaleReport'])->name('sale-report.generate');
+     Route::post('/report-s', [ReportController::class, 'generateSaleReport']);
 
 
      //Route stock
@@ -104,15 +104,7 @@ use App\Http\Controllers\PermissionController as permission;
 
     // return
 
-    Route::resource('return',ReturnFromCustomerController::class);
+    Route::resource('rtnFromCust',ReturnFromCustomerController::class);
     Route::resource('supplierReturn',ReturnToSupplierController::class);
 
 });
-
-
-
-
-
-
-
-

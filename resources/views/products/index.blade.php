@@ -21,11 +21,11 @@
                     <a href="{{ route('products.import') }}" class="btn btn-success add-list ">Import
                     </a>
                     <a href="{{ route('products.export') }}" class="btn btn-warning add-list ">Export
-                        <a>
-                            <a href="{{ route('products.create') }}" class="btn btn-primary add-list">Add
-                            </a>
-                            <a href="{{ route('products.index') }}" class="btn btn-danger add-list">Clear Search
-                            </a>
+                    <a>
+                   <a href="{{ route('products.create') }}" class="btn btn-primary add-list">Add
+                   </a>
+                  <a href="{{ route('products.index') }}" class="btn btn-danger add-list">Clear Search
+                  </a>
                 </div>
             </div>
 
@@ -36,7 +36,7 @@
     {{-- @include('partials.session') --}}
 </header>
 
-<div  class="container px-4 mt-n10">
+<div class="container px-4 mt-n10">
     <div class="card mb-4">
         <div class="card-body">
             <div class="row mx-n4">

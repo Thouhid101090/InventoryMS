@@ -54,7 +54,7 @@
                 <div class="card mb-4">
                     <div class="card-body">
 
-                        <form action="{{ route('return.store') }}" method="post">
+                        <form action="{{ route('rtnFromCust.store') }}" method="post">
                             @csrf
                             <div class="form-group col-md-6 offset-md-3">
                                 <label for="item_search">Reference Number:</label>
