@@ -7,7 +7,9 @@
         <div class="signin-content">
             <div class="signin-image">
                 <figure><img src="{{asset('public/auth/images/signin-image.jpg')}}" alt="sing up image"></figure>
-                <a href="{{route('register')}}" class="signup-image-link">Create an account</a>
+                {{-- <a href="#" class="signup-image-link"></a> --}}
+                <p>Email:thouhidul.islam2020@gmail.com</p>
+                <p>password: 0 </p>
             </div>
 
             <div class="signin-form">
